@@ -4,8 +4,31 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Phone Number (10-digit, no formatting, no '+1')" %><br />
+    <%= f.telephone_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br/>
+    Male
+    <%= f.radio_button :gender, 'male'%>
+    Female
+    <%= f.radio_button :gender, 'female'  %>
   </div>
 
   <div class="field">
