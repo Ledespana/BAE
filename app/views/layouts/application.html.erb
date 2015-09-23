@@ -5,36 +5,70 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">Bae</a></h1>
-      </li>
-    </ul>
+  <body>
+    <nav class="top-bar" data-topbar>
+         <ul class="title-area">
+           <li class="name">
+             <h1>
+               <a href="#">
+                 BAE
+               </a>
+             </h1>
+           </li>
+           <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+         </ul>
+         <section class="top-bar-section">
+         <ul class="right">
+           <li class="divider"></li>
+           <li class="has-dropdown">
+             <a href="#">Main Item 1</a>
+             <ul class="dropdown">
+               <li><label>Section Name</label></li>
+               <li class="has-dropdown">
+                 <a href="#" class="">Has Dropdown, Level 1</a>
+                 <ul class="dropdown">
+                   <li><a href="#">Dropdown Options</a></li>
+                   <li><a href="#">Dropdown Options</a></li>
+                   <li><a href="#">Level 2</a></li>
+                   <li><a href="#">Subdropdown Option</a></li>
+                   <li><a href="#">Subdropdown Option</a></li>
+                   <li><a href="#">Subdropdown Option</a></li>
+                 </ul>
+               </li>
+               <li><a href="#">Dropdown Option</a></li>
+               <li><a href="#">Dropdown Option</a></li>
+               <li class="divider"></li>
+               <li><label>Section Name</label></li>
+               <li><a href="#">Dropdown Option</a></li>
+               <li><a href="#">Dropdown Option</a></li>
+               <li><a href="#">Dropdown Option</a></li>
+               <li class="divider"></li>
+               <li><a href="#">See all →</a></li>
+             </ul>
+           </li>
+           <%- if current_user -%>
+             <li class="divider"></li>
+             <li class="has-dropdown">
+               <a href="#">Profile</a>
+               <ul class="dropdown">
+                 <li><%= link_to 'See profile', user_path(current_user.id) %></li>
+                 <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+               </ul>
+             </li>
+           </ul>
+           <% end %>
+       </section>
+    </nav>
 
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
-    </section>
-  </nav>
+    <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <%= value %>
+      </div>
+    <%- end -%>
 
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
+    <%= yield %>
 
-  <%= yield %>
-
-  <%= javascript_include_tag 'application' %>
-  <%= yield :extra_footer %>
-</body>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :extra_footer %>
+  </body>
 </html>
