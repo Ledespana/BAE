@@ -6,6 +6,9 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
     username 'galapago'
+    description 'The best of the best'
+    phone_number "1234123123"
     gender 'male'
   end
+
 end

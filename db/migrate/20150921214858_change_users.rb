@@ -4,7 +4,7 @@ class ChangeUsers < ActiveRecord::Migration
       t.string :username, null: false
       t.string :gender, null: false
       t.string :profile_picture
-      t.string :phone_number
+      t.string :phone_number, null: false
       t.string :description
     end
   end
