@@ -1,5 +1,6 @@
 class Bot < ActiveRecord::Base
   belongs_to :user
+  has_many :interactions, dependent: :destroy
 
   validates :name, presence: true
   validates :eye_color, presence: true
