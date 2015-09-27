@@ -6,10 +6,7 @@ feature 'user edits his account', %Q{
   So that I can keep my profile up to date
 } do
 
-  # Acceptance Criteria
-  # [X]* If I'm signed in, I have an option to edit my profile
-  # [X]* When I edit my profile, I get a confirmation that my identity has been
-  #   changed
+
   let(:user) { FactoryGirl.create(:user) }
 
   before do
@@ -20,6 +17,7 @@ feature 'user edits his account', %Q{
   end
 
   scenario 'user visits edit path for his profile'do
+
     visit edit_user_registration_path(user)
 
     expect(page).to have_content('Edit User')

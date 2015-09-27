@@ -28,7 +28,7 @@ CRUD User Stories
   I want to see all the keywords/responses of my BAE
   So I can manage them.
 
-[X]# As an authenticated user
+# As an authenticated user
   I want to see my  profile
   So I can see my profile details.
 
@@ -37,7 +37,7 @@ CRUD User Stories
 
 # As an authenticated user
   I want to update keywords/responses to my BAE
-  So I can have my personalize BAE
+  So I can have my personalized BAE
 
 [X]# As an authenticated user
   I want to update my information
@@ -47,7 +47,7 @@ CRUD User Stories
 
 # As an authenticated user
   I want to delete keywords/responses to my BAE
-  So I can have my personalize BA
+  So I can have my personalized BAE
 
 [X]# As an authenticated user
   I want to delete my account

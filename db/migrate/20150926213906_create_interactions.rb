@@ -1,13 +1,15 @@
 class CreateInteractions < ActiveRecord::Migration
   def change
     create_table :interactions do |t|
-      t.string :keyword1, null: false
-      t.string :keyword2
-      t.string :keyword3
-      t.string :response, null: false
+      t.string :category, null: false
       t.string :sentiment
-      t.integer :priority
+      t.string :keyword1
+      t.string :keyword2
+      t.string :sentence
+      t.string :response, null: false
       t.belongs_to :bot, null: false
+
+      t.timestamps null: false
     end
   end
 end

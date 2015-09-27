@@ -17,22 +17,27 @@ ActiveRecord::Schema.define(version: 20150926213906) do
   enable_extension "plpgsql"
 
   create_table "bots", force: :cascade do |t|
-    t.string  "name",        null: false
-    t.string  "eye_color",   null: false
-    t.string  "hair_color",  null: false
-    t.integer "age",         null: false
-    t.string  "description"
-    t.integer "user_id",     null: false
+    t.string   "name",        null: false
+    t.string   "gender",      null: false
+    t.integer  "age",         null: false
+    t.string   "eye_color",   null: false
+    t.string   "hair_color",  null: false
+    t.string   "description"
+    t.integer  "user_id",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "interactions", force: :cascade do |t|
-    t.string  "keyword1",  null: false
-    t.string  "keyword2"
-    t.string  "keyword3"
-    t.string  "response",  null: false
-    t.string  "sentiment"
-    t.integer "priority"
-    t.integer "bot_id",    null: false
+    t.string   "category",   null: false
+    t.string   "sentiment"
+    t.string   "keyword1"
+    t.string   "keyword2"
+    t.string   "sentence"
+    t.string   "response",   null: false
+    t.integer  "bot_id",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
