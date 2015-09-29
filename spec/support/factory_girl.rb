@@ -3,8 +3,8 @@ require 'factory_girl'
 FactoryGirl.define do
   factory :user do
     sequence(:email) {|n| "user#{n}@example.com" }
-    password 'password'
-    password_confirmation 'password'
+    password 'LE34567890'
+    password_confirmation 'LE34567890'
     username 'galapago'
     description 'The best of the best'
     phone_number "1234123123"
@@ -17,6 +17,6 @@ FactoryGirl.define do
     eye_color 'Green'
     hair_color 'Black'
     age 26
-    user_id 1
+    association  :user
   end
 end

@@ -10,6 +10,7 @@ class BotsController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
     @bot = Bot.new
   end
 

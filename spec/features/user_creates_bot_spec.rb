@@ -40,18 +40,20 @@ feature 'user creates a bot', %Q{
     user = FactoryGirl.create(:user)
     visit new_user_session_path
 
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
+    fill_in('Email', with: user.email)
+    fill_in('Password', with: user.password)
+    click_button('Log in')
 
     visit new_user_bot_path(user)
-
     fill_in 'Name', with: 'Asia'
-      #gender, age, eye_color, hair_color would be special fields
-    fill_in 'Description', with: 'Romantic. Loves hiking and videogames'
+    select('Male', from: 'bot[gender]')
+    select('Green', from: 'bot[eye_color]')
+    select('Black', from: 'bot[hair_color]')
+    fill_in('Age', with: 34)
+    fill_in('Description', with: 'Romantic. Loves hiking and videogames')
 
-    click_button 'Create'
-
+    click_button('Create')
+    
     expect(page).to have_content('BAE created!')
 
   end
