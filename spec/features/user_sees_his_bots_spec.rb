@@ -9,13 +9,8 @@ feature 'user sees his bots', %Q{
   scenario 'user visits bots index page' do
     user = FactoryGirl.create(:user)
     mary = FactoryGirl.create(:bot, user_id: user.id)
-
-    visit new_user_session_path
-
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
-
+    login(user)
+    
     visit user_bots_path(user)
     expect(page).to have_content(mary.name)
   end

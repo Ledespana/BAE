@@ -11,19 +11,12 @@ feature 'user edits his account', %Q{
   let!(:user) { FactoryGirl.create(:user) }
 
   before(:each) do
-    visit new_user_session_path
-    fill_in('Email', with: user.email)
-    fill_in('Password', with: user.password)
-    click_button 'Log in'
+    login(user)
   end
 
   scenario 'user visits edit path for his profile'do
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
     visit edit_user_registration_path(user)
-
+    
     expect(page).to have_content('Edit User')
   end
 

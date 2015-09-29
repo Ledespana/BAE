@@ -8,13 +8,7 @@ feature 'user signs out', %Q{
 
   scenario 'authenticated user signs out' do
     user = FactoryGirl.create(:user)
-
-    visit new_user_session_path
-
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-
-    click_button 'Log in'
+    login(user)
 
     expect(page).to have_content('Signed in successfully')
 
@@ -23,7 +17,7 @@ feature 'user signs out', %Q{
   end
 
   scenario 'unauthenticated user attempts to sign out' do
-    visit '/'
+    visit root_path
     expect(page).to_not have_content('Sign Out')
   end
 end

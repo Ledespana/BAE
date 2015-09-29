@@ -6,6 +6,7 @@
   <%= csrf_meta_tags %>
 </head>
   <body>
+
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
         <li class="name">
@@ -14,40 +15,50 @@
           </h1>
         </li>
       </ul>
+
       <section class="top-bar-section">
         <ul class="right">
+
           <% if current_user %>
             <li class="divider"></li>
             <li><%= link_to 'Dashboard', user_bots_path(current_user) %></li>
+            <li class="divider"></li>
+
             <% unless current_user.bots.empty? %>
-              <li class="divider"></li>
               <li class="has-dropdown">
               <%= link_to 'BAEs', user_bots_path(current_user) %>
 
                 <ul class="dropdown">
                   <li><label><%= current_user.bots.first.name %></label></li>
-                  <li><%= link_to 'Profile', user_bots_path(current_user.bots.first)  %></li>
+                  <li><%= link_to 'Profile', user_bot_path(current_user, current_user.bots.first)  %></li>
                   <li><a href="#">[ ]Vocabulary</a></li>
+
                   <% if current_user.bots.length >= 2 %>
                     <li class="divider"></li>
                     <li><label><%= current_user.bots[1].name %></label></li>
-                    <li><%= link_to 'Profile', user_bots_path(current_user.bots[1])  %></li>
+                    <li><%= link_to 'Profile', user_bot_path(current_user, current_user.bots[1])  %></li>
                     <li><a href="#">[ ]Vocabulary</a></li>
                     <li class="divider"></li>
                     <li><%= link_to 'See all →', user_bots_path(current_user) %></li>
                   <% end %>
                   <li class="divider"></li>
-              <% end %>
                   <li><%= link_to 'Create new BAE', new_user_bot_path(current_user) %></li>
                 </ul>
                 </li>
+                <% else %>
+
+              <li class="divider"></li>
+              <li><%= link_to 'Create new BAE', new_user_bot_path(current_user) %></li>
+            <% end %>
           <% end %>
+
           <%- if !current_user -%>
             <li class="divider"></li>
             <li><%= link_to 'About BAE', new_user_registration_path %></li>
             <li><%= link_to 'Sign in', new_user_session_path %></li>
             <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <% end %>
+
           <%- if current_user -%>
             <li class="divider"></li>
             <li class="has-dropdown">
@@ -58,9 +69,10 @@
                  <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
                </ul>
              </li>
-           </ul>
-           <% end %>
-       </section>
+          <% end %>
+
+        </ul>
+      </section>
     </nav>
 
     <%- flash.each do |key, value| -%>
