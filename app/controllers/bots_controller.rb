@@ -19,12 +19,23 @@ class BotsController < ApplicationController
     @bot = @user.bots.new(bot_params)
     if @bot.save
       flash[:notice] = "BAE created!"
-      redirect_to user_bots_path
+      redirect_to user_bots_path(@user)
     else
       flash[:errors] = "Something went wrong!"
-      redirect_to new_user_bot_path
+      redirect_to new_user_bot_path(@user)
     end
+  end
 
+  def destroy
+    @bot = Bot.find(params[:id])
+    if signed_in? && current_user == @bot.user
+      @bot.destroy
+      flash[:notice] = 'BAE deleted successfully'
+      redirect_to user_bots_path
+    else
+      flash[:error] = 'You have no permission to delete this BAE'
+      redirect_to user_bots_path
+    end
   end
 
   protected

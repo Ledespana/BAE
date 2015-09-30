@@ -10,7 +10,7 @@ feature 'user sees his bots', %Q{
     user = FactoryGirl.create(:user)
     mary = FactoryGirl.create(:bot, user_id: user.id)
     login(user)
-    
+
     visit user_bots_path(user)
     expect(page).to have_content(mary.name)
   end
@@ -27,4 +27,5 @@ feature 'user sees his bots', %Q{
     visit user_bot_path(user, mary)
     expect(page).to have_content(mary.name)
   end
+
 end
