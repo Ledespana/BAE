@@ -1,7 +1,8 @@
 <ul>
   <% @bots.each do |bot| %>
-    <li><%= bot.name %></li>
-    <%= button_to 'Delete', user_bot_path(current_user, bot), method: :delete %>
-
+    <div class='bot'>
+      <li><%= bot.name %></li>
+      <%= button_to 'Delete', user_bot_path(current_user, bot), method: :delete %>
+    </div>
   <% end %>
 </ul>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user udpdates his bots', %Q{
+feature 'user deletes a bots', %Q{
   As an authenticated user
   I want to delete one of my bots
   So that I don't have to see it anymore
@@ -13,23 +13,16 @@ feature 'user udpdates his bots', %Q{
   scenario 'user sees delete button on the bots index page' do
     login(user)
     visit user_bots_path(user)
-    within 'bot' do
+    save_and_open_page
+    within '.bot' do
       expect(page).to have_content('Delete')
     end
   end
 
-  scenario 'user sees delete button on a both update page' do
+  scenario 'user sees delete button on a bot show page' do
     login(user)
-    visit edit_user_bot_path(user, bot)
+    visit user_bot_path(user, bot)
     expect(page).to have_content('Delete')
-  end
-
-  scenario 'user deletes bot from the bots index page ' do
-    login(user)
-    visit user_bots_path(user)
-    within 'bot' do # I have to create a special class for each bot
-      expect(page).to have_content('Still thinking')
-    end
   end
 
   scenario 'user deletes bot from a bot show page ' do

@@ -9,7 +9,7 @@ feature 'user creates a bot', %Q{
   scenario 'user visits bots new page' do
     user = FactoryGirl.create(:user)
     login(user)
-    
+
     visit new_user_bot_path(user)
     expect(page).to have_content('Create a new BAE')
   end
@@ -19,7 +19,7 @@ feature 'user creates a bot', %Q{
     login(user)
 
     visit new_user_bot_path(user)
-    click_button 'Create'
+    click_button 'Submit'
     expect(page).to have_content('Something went wrong!')
   end
 
@@ -35,7 +35,7 @@ feature 'user creates a bot', %Q{
     fill_in('Age', with: 34)
     fill_in('Description', with: 'Romantic. Loves hiking and videogames')
 
-    click_button('Create')
+    click_button('Submit')
 
     expect(page).to have_content('BAE created!')
 

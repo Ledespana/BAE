@@ -1,0 +1,31 @@
+<%= form_for [@user, @bot] do |f| %>
+<div class="large-6 large-centered columns panel">
+    <div class="login-box">
+      <div class="row">
+        <div class="large-12 columns">
+            <div class="field">
+              <%= f.text_field :name, placeholder: 'Name' %>
+            </div>
+            <div class="field">
+              <%= f.select :gender, ['Male', 'Female'], placeholder: 'Gender'%>
+            </div>
+            <div class="field">
+              <%= f.select :eye_color, ['Green', 'Blue','Grey', 'Brown', 'Black'], placeholder: 'Eye color'%>
+            </div>
+            <div class="field">
+              <%= f.select :hair_color, ['Black', 'Brown', 'Blonde', 'Red'], placeholder: 'Hair color'%>
+            </div>
+            <div class="field">
+              <%= f.number_field :age, min: 18, max: 99, placeholder: 'Age' %>
+            </div>
+            <div class="field">
+              <%= f.text_area :description, placeholder: 'Description' %>
+            </div>
+            <div class="field">
+              <%= f.submit "Submit", class: "button expand" %>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

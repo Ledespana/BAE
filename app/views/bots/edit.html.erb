@@ -1,0 +1,13 @@
+<div class='row text-center'>
+  <h1>Edit <%= @bot.name %></h1>
+
+  <%= render 'form' %>
+  <div class="large-6 large-centered columns panel">
+
+    <div class="row">
+      <div class="large-12 columns">
+        <%= button_to 'Delete', user_bot_path(current_user, @bot), method: :delete, class: "button expand alert" %>
+      </div>
+    </div>
+  </div>
+</div>

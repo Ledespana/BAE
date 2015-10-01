@@ -13,10 +13,10 @@ feature 'user udpdates his bots', %Q{
     login(user)
   end
 
-  scenario 'user sees delete button on the bots index page' do
+  scenario 'user sees update button on the bots index page' do
     visit user_bots_path(user)
-    within 'bot' do
-      expect(page).to have_content('Delete')
+    within '.bot' do
+      expect(page).to have_content('Update')
     end
   end
 
