@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry'
 
 feature 'user edits his account', %Q{
   As an authenticated user
@@ -16,7 +15,7 @@ feature 'user edits his account', %Q{
 
   scenario 'user visits edit path for his profile'do
     visit edit_user_registration_path(user)
-    
+
     expect(page).to have_content('Edit User')
   end
 
