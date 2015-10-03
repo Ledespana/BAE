@@ -46,6 +46,6 @@ feature "user edits his account", %{
     visit edit_user_registration_path(user)
 
     click_button "Update"
-    expect(page).to have_content("Current password can"t be blank")
+    expect(page).to have_content("Current password can't be blank")
   end
 end

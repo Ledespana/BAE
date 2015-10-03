@@ -66,7 +66,7 @@ feature "user udpdates his bots", %{
     expect(page).to have_content("Marcos")
   end
 
-  scenario "only the creator of the bot sees update button on the bot index page" do
+  scenario "only the creator of the bot sees update button on bot index page" do
     visit user_bots_path(user)
     expect(page).to have_content("Edit")
 

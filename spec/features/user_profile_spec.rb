@@ -5,13 +5,13 @@ feature "user sees his and others profile", %{
   I want to see my profile and others profile
   So I can see my profile details and others.
 }do
-# Acceptance Criteria
-# [X] User clicking on "Profile" should show a page with his profile
-# [X] I should see my list of bots
-# [X] I should see a link to each bot show page
-# [X] I should see the the number of bots that I have
-# [ ] I should see my BAEs vocabulary (total of sentences, keywords
-# and combination of keywords)
+  # Acceptance Criteria
+  # [X] User clicking on "Profile" should show a page with his profile
+  # [X] I should see my list of bots
+  # [X] I should see a link to each bot show page
+  # [X] I should see the the number of bots that I have
+  # [ ] I should see my BAEs vocabulary (total of sentences, keywords
+  # and combination of keywords)
 
   let!(:user) { FactoryGirl.create(:user) }
   let!(:bot) { FactoryGirl.create(:bot, user: user) }
