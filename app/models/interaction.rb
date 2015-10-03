@@ -1,8 +1,6 @@
 class Interaction < ActiveRecord::Base
-  belongs_to :bot
+  has_and_belongs_to_many :bots
 
   validates :category, presence: true
   validates :response, presence: true
-  validates :bot_id, presence: true
-
 end

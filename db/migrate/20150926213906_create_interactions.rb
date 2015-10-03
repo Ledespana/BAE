@@ -7,7 +7,6 @@ class CreateInteractions < ActiveRecord::Migration
       t.string :keyword2
       t.string :sentence
       t.string :response, null: false
-      t.belongs_to :bot, null: false
 
       t.timestamps null: false
     end

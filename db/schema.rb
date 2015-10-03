@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926213906) do
+ActiveRecord::Schema.define(version: 20151003150706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20150926213906) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "bots_interactions", force: :cascade do |t|
+    t.integer "bot_id",         null: false
+    t.integer "interaction_id", null: false
+  end
+
   create_table "interactions", force: :cascade do |t|
     t.string   "category",   null: false
     t.string   "sentiment"
@@ -35,7 +40,6 @@ ActiveRecord::Schema.define(version: 20150926213906) do
     t.string   "keyword2"
     t.string   "sentence"
     t.string   "response",   null: false
-    t.integer  "bot_id",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
