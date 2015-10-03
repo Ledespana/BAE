@@ -1,6 +1,7 @@
 <ul>
   <% @bots.each do |bot| %>
     <div class='bot'>
+      <%= image_tag(bot.avatar) %>
       <li><%= link_to bot.name, user_bot_path(current_user, bot) %></li>
       <li><%= link_to 'Edit', edit_user_bot_path(current_user, bot), class: 'button small' %></li>
       <li><%= button_to 'Delete', user_bot_path(current_user, bot), method: :delete, class: 'button small' %></li>

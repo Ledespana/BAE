@@ -12,5 +12,8 @@ class Bot < ActiveRecord::Base
   validates :hair_color, presence: true
   validates :user_id, presence: true
 
+  def avatar
+   gender + '-' + hair_color + '-' + eye_color + '.png'
+  end
 
 end
