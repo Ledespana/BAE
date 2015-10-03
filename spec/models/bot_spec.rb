@@ -4,7 +4,7 @@ RSpec.describe Bot, type: :model do
   it { should belong_to(:user) }
   it { should have_many(:bots_interactions) }
   it { should have_many(:interactions).through(:bots_interactions) }
-  
+
   it { should validate_presence_of :name}
   it { should validate_presence_of :gender}
   it { should validate_presence_of :eye_color}
