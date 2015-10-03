@@ -13,22 +13,21 @@ feature 'user deletes a bots', %Q{
   scenario 'user sees delete button on the bots index page' do
     login(user)
     visit user_bots_path(user)
-    save_and_open_page
     within '.bot' do
-      expect(page).to have_content('Delete')
+      find_button('Delete').visible?
     end
   end
 
   scenario 'user sees delete button on a bot show page' do
     login(user)
     visit user_bot_path(user, bot)
-    expect(page).to have_content('Delete')
+    find_button('Delete').visible?
   end
 
   scenario 'user deletes bot from a bot show page ' do
     login(user)
     visit edit_user_bot_path(user, bot)
-    click_button 'Delete'
+    click_on 'Delete'
     expect(page).to_not have_content('bot.name')
   end
 

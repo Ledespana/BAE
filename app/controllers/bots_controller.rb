@@ -37,8 +37,9 @@ class BotsController < ApplicationController
     elsif !signed_in?
       authenticate_user!
     else
+      @bot = Bot.find(params[:id])
       flash[:notice] = 'You have no permission to edit this BAE'
-      redirect_to user_both_path(@user, @bot)
+      redirect_to user_bot_path(@user, @bot)
     end
   end
 
@@ -48,7 +49,7 @@ class BotsController < ApplicationController
       @bot = Bot.find(params[:id])
       if @bot.update_attributes(bot_params)
         flash[:success] = 'BAE edited successfully'
-        redirect_to user_both_path(@user, @bot)
+        redirect_to user_bot_path(@user, @bot)
       else
         flash[:alert] = 'Something went wrong'
         render :edit
