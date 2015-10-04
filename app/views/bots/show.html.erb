@@ -1,4 +1,5 @@
 <ul>
+    <li><%= image_tag(@bot.avatar) %></li>
     <li><%= @bot.name %></li>
     <%= link_to 'Edit', edit_user_bot_path(current_user, @bot), class: 'button small' %>
     <%= button_to 'Delete', user_bot_path(current_user, @bot), method: :delete, class: 'button small' %>

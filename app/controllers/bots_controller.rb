@@ -21,12 +21,17 @@ class BotsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @bot = @user.bots.new(bot_params)
-    if @bot.save
-      flash[:notice] = "BAE created!"
+    if @user.bots.count == 3
+      flash[:notice] = "You have reached the limits of BAEs"
       redirect_to user_bots_path(@user)
     else
-      flash[:errors] = "Something went wrong!"
-      redirect_to new_user_bot_path(@user)
+      if @bot.save
+        flash[:notice] = "BAE created!"
+        redirect_to user_bots_path(@user)
+      else
+        flash[:errors] = "Something went wrong!"
+        redirect_to new_user_bot_path(@user)
+      end
     end
   end
 

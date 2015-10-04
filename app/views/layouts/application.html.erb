@@ -42,8 +42,10 @@
                     <li class="divider"></li>
                     <li><%= link_to 'See all →', user_bots_path(current_user) %></li>
                   <% end %>
-                  <li class="divider"></li>
-                  <li><%= link_to 'Create new BAE', new_user_bot_path(current_user) %></li>
+                  <% if current_user.bots.count < 3 %>
+                    <li class="divider"></li>
+                    <li><%= link_to 'Create new BAE', new_user_bot_path(current_user) %></li>
+                  <% end %>
                 </ul>
                 </li>
                 <% else %>
