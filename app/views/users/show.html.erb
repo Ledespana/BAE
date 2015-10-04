@@ -16,6 +16,7 @@
       <h3>List of BAEs</h3>
       <ul>
         <% @user.bots.each do |bot| %>
+          <li><%= image_tag(bot.avatar) %></li>
           <li> <%= bot.name %> <li>
             <%= link_to 'See', user_bot_path(@user, bot), class: 'button small' %>
           <% end %>
