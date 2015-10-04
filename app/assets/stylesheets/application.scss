@@ -1,0 +1,97 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+
+//paletee of colors #C63D0F #3B3738 #FDF3E7 #7E8F7C //
+
+.login-in {
+  padding-top: 8%;
+}
+
+body {
+  background-color: #FDF3E7;
+}
+
+.bot-avatar {
+  border: 6px solid #C63D0F;
+  border-radius: 1000px;
+  height: 50%;
+  width: 50%;
+}
+
+.user-picture {
+  border: 5px solid #3B3738;
+  border-radius: 800px;
+  height: 200px;
+  width: 200px;
+}
+
+.profile-box {
+  background-color: #FDF3E7;
+  color: #3B3738;
+}
+
+li {
+  list-style-type: none;
+}
+
+//Buttons for adding  vocabulary//
+
+.wrapper {
+  background: #fff;
+  border: 2px solid #008cba;
+  border-radius: 999px;
+  display: inline-block;
+  margin-top: 50px;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+
+  &:hover {
+    background-color: #008cba;
+    border: none;
+    transition: background-color 0.3s ease;
+
+    .inside {
+      display: block;
+      float: left;
+      font-size: 16px;
+      padding: 22px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
+      }
+    }
+
+    label { display: none; }
+  }
+
+  .inside {
+    color: #fff;
+    display: none;
+    width: 50%;
+    z-index: 9999;
+  }
+
+  label {
+    color: #008cba;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 16px;
+  }
+}

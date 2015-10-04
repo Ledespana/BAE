@@ -1,6 +1,32 @@
-<ul>
-    <li><%= image_tag(@bot.avatar) %></li>
-    <li><%= @bot.name %></li>
-    <%= link_to 'Edit', edit_user_bot_path(current_user, @bot), class: 'button small' %>
-    <%= button_to 'Delete', user_bot_path(current_user, @bot), method: :delete, class: 'button small' %>
-</ul>
+<br>
+<div class="row text-center profile panel profile-box">
+  <div class='row'>
+  <div class="large-4 columns">
+  <div class="panel large-12 columns">
+    <p><%= image_tag @bot.avatar, class: 'user-picture' %></p>
+    <h1><%= @bot.name %></h1>
+  </div>
+  <div class='row'>
+    <div class="large-12 columns">
+      <% if @user == current_user %>
+        <div class="large-6 columns">
+          <%= link_to 'Edit', edit_user_bot_path(@user, @bot), class: 'button small' %>
+        </div>
+        <div class="large-6 columns">
+          <%= button_to 'Delete', user_bot_path(@user, @bot), method: :delete, class: 'button small' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  <div class="large-8 columns">
+    <ul>
+        <li>Gender: <%= @bot.gender %></li>
+        <li>Age: <%= @bot.age %></li>
+        <li><%= @bot.description %></li>
+    </ul>
+  </div>
+</div>
+
+
+</div>

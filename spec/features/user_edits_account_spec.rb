@@ -30,7 +30,8 @@ feature "user edits his account", %{
     fill_in "Current password", with: user.password
     fill_in "user_phone_number", with: "1234567890"
     click_button "Update"
-    expect(page).to have_content("Your account has been updated successfully.")
+    visit user_path(user)
+    expect(page).to have_content("milo231")
   end
 
   scenario "user tries to update profile with invalid data" do
