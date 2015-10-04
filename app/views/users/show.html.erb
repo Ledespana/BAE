@@ -3,9 +3,9 @@
   <div class="panel large-4 columns">
     <h1><%= @user.username %></h1>
     <% if @user.profile_picture.file %>
-      <p><%= image_tag @user.profile_picture, class: 'user_picture' %></p>
+      <p><%= image_tag @user.profile_picture, class: 'user-picture' %></p>
     <% else %>
-      <p><%= image_tag "noprofile.png", class: 'user_picture' %></p>
+      <p><%= image_tag "noprofile.png", class: 'user-picture' %></p>
     <% end %>
   </div>
   <div class="large-8 columns">
@@ -25,7 +25,7 @@
     <div class="row text-center">
     <% @user.bots.each do |bot| %>
       <div class="small-12 medium-4 columns ">
-        <li><%= image_tag bot.avatar, class: 'bot_avatar'%></li>
+        <li><%= image_tag bot.avatar, class: 'bot-avatar'%></li>
             <div class="wrapper">
               <label><%= bot.name %></label>
               <%= link_to 'Profile', user_bot_path(@user, bot), class: 'inside' %>

@@ -19,28 +19,28 @@
 /*paletee of colors #C63D0F #3B3738 #FDF3E7 #7E8F7C */
 
 .login-in {
- padding-top: 8%;
+  padding-top: 8%;
 }
 
 body {
   background-color: #FDF3E7;
 }
 
-.bot_avatar {
+.bot-avatar {
   border: 6px solid #C63D0F;
   border-radius: 1000px;
-  width: 50%;
   height: 50%;
+  width: 50%;
 }
-.user_picture {
+.user-picture {
   border: 5px solid #3B3738;
   border-radius: 800px;
-  width: 200px;
   height: 200px;
+  width: 200px;
 }
 .profile-box {
-  background-color: #FDF3E7;
   color: #3B3738;
+  background-color: #FDF3E7;
 }
 
 li {
@@ -50,45 +50,45 @@ li {
 /*////////////////////////////*/
 /*Buttons for adding  vocabulary*/
 .wrapper {
-  overflow: hidden;
-  display: inline-block;
+  background: #fff;
   border: 2px solid #008cba;
   border-radius: 999px;
+  display: inline-block;
+  margin-top: 50px;
+  overflow: hidden;
   text-align: center;
   width: 100%;
-  background: #fff;
-  margin-top: 50px;
 
   &:hover {
-    border: none;
     background-color: #008cba;
+    border: none;
     transition: background-color 0.3s ease;
 
     .inside {
       display: block;
+      float: left;
       font-size: 16px;
       padding: 22px;
-      float: left;
 
       &:hover {
-        transition: background-color 0.3s ease;
         background-color: rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease;
       }
     }
 
     label { display: none; }
   }
   .inside {
-    display: none;
     color: #fff;
+    display: none;
     width: 50%;
     z-index: 9999;
   }
 
   label {
-    padding: 16px;
     color: #008cba;
     font-size: 16px;
     font-weight: bold;
+    padding: 16px;
   }
 }

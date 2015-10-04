@@ -1,5 +1,4 @@
 class ProfilePictureUploader < CarrierWave::Uploader::Base
-
   storage :file
 
   def store_dir
@@ -7,7 +6,6 @@ class ProfilePictureUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-     "noprofile.png"
+    "noprofile.png"
   end
-
 end

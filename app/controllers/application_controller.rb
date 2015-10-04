@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  #  method to sanitized params for devise user sign up
   protected
 
   def configure_permitted_parameters
