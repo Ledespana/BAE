@@ -18,7 +18,7 @@ feature "user sees the right avatar for his bot", %{
 
     visit user_path(user)
     expect(page).to have_xpath(
-      "//img[@src="/assets/Male-Blonde-Green.png"]"
+      '//img[@src="/assets/Male-Blonde-Green.png"]'
       )
   end
 end
