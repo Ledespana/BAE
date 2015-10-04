@@ -16,7 +16,7 @@
 
  */
 
-/*paletee of colors #C63D0F #3B3738 #FDF3E7 #7E8F7C */
+//paletee of colors #C63D0F #3B3738 #FDF3E7 #7E8F7C //
 
 .login-in {
   padding-top: 8%;
@@ -32,23 +32,25 @@ body {
   height: 50%;
   width: 50%;
 }
+
 .user-picture {
   border: 5px solid #3B3738;
   border-radius: 800px;
   height: 200px;
   width: 200px;
 }
+
 .profile-box {
-  color: #3B3738;
   background-color: #FDF3E7;
+  color: #3B3738;
 }
 
 li {
   list-style-type: none;
 }
 
-/*////////////////////////////*/
-/*Buttons for adding  vocabulary*/
+//Buttons for adding  vocabulary//
+
 .wrapper {
   background: #fff;
   border: 2px solid #008cba;
@@ -78,6 +80,7 @@ li {
 
     label { display: none; }
   }
+
   .inside {
     color: #fff;
     display: none;
