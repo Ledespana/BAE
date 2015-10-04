@@ -32,7 +32,7 @@ feature "user creates a bot", %{
     select("Male", from: "bot[gender]")
     select("Green", from: "bot[eye_color]")
     select("Black", from: "bot[hair_color]")
-    select("26", from: 'bot[age]')
+    select("26", from: "bot[age]")
     fill_in("Description", with: "Romantic. Loves hiking and videogames")
 
     click_button("Submit")
