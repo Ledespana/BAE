@@ -1,0 +1,94 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+
+/*paletee of colors #C63D0F #3B3738 #FDF3E7 #7E8F7C */
+
+.login-in {
+ padding-top: 8%;
+}
+
+body {
+  background-color: #FDF3E7;
+}
+
+.bot_avatar {
+  border: 6px solid #C63D0F;
+  border-radius: 1000px;
+  width: 50%;
+  height: 50%;
+}
+.user_picture {
+  border: 5px solid #3B3738;
+  border-radius: 800px;
+  width: 200px;
+  height: 200px;
+}
+.profile-box {
+  background-color: #FDF3E7;
+  color: #3B3738;
+}
+
+li {
+  list-style-type: none;
+}
+
+/*////////////////////////////*/
+/*Buttons for adding  vocabulary*/
+.wrapper {
+  overflow: hidden;
+  display: inline-block;
+  border: 2px solid #008cba;
+  border-radius: 999px;
+  text-align: center;
+  width: 100%;
+  background: #fff;
+  margin-top: 50px;
+
+  &:hover {
+    border: none;
+    background-color: #008cba;
+    transition: background-color 0.3s ease;
+
+    .inside {
+      display: block;
+      font-size: 16px;
+      padding: 22px;
+      float: left;
+
+      &:hover {
+        transition: background-color 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    label { display: none; }
+  }
+  .inside {
+    display: none;
+    color: #fff;
+    width: 50%;
+    z-index: 9999;
+  }
+
+  label {
+    padding: 16px;
+    color: #008cba;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}

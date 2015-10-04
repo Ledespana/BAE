@@ -54,7 +54,7 @@ class BotsController < ApplicationController
       @bot = Bot.find(params[:id])
       if @bot.update_attributes(bot_params)
         flash[:success] = 'BAE edited successfully'
-        redirect_to user_bot_path(@user, @bot)
+        redirect_to user_path(@user)
       else
         flash[:alert] = 'Something went wrong'
         render :edit

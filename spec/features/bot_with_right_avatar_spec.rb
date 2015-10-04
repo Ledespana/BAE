@@ -8,6 +8,7 @@ feature "user sees the right avatar for his bot", %{
 
   scenario "user sees the right avatar for a male,blonde, green eyes bot " do
     user = FactoryGirl.create(:user)
+    login(user)
     mary = FactoryGirl.create(
       :bot,
       gender: "Male",

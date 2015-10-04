@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+.env
+# Ignore uploaded files in test/development
+/public/uploads
