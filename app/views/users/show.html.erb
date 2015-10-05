@@ -10,7 +10,7 @@
   </div>
   <div class="large-8 columns">
     <ul>
-      <% if !@user.description.empty? %>
+      <% if @user.description %>
         <li><%= @user.description %></li>
       <% end %>
       <li>Gender: <%= @user.gender %></li>
