@@ -47,11 +47,3 @@ RSpec.describe User, type: :model do
     expect(user.total_vocabulary).to eq(20)
   end
 end
-
-def total_vocabulary
-  count = 0
-  self.bots.each do |bot|
-    count += bot.interactions.count
-  end
-  count
-end
