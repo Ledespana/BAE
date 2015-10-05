@@ -17,9 +17,9 @@ RSpec.describe User, type: :model do
   it { should have_valid(:email).when("eu@inkedgorl.com") }
   it { should_not have_valid(:email).when(nil, "") }
 
-  it { should have_valid(:gender).when("male")}
-  it { should have_valid(:gender).when("female")}
-  it { should_not have_valid(:gender).when(nil, "")}
+  it { should have_valid(:gender).when("male") }
+  it { should have_valid(:gender).when("female") }
+  it { should_not have_valid(:gender).when(nil, "") }
 
   it { should have_valid(:phone_number).when(1234123123)}
   it { should_not have_valid(:phone_number).when(nil, "", 2331)}
@@ -29,7 +29,6 @@ RSpec.describe User, type: :model do
     bot1 = FactoryGirl.create(:bot, user: user)
     bot2 = FactoryGirl.create(:bot, user: user)
     10.times do
-
       Interaction.create(
         category: "Sentence",
         sentence: Faker::Lorem.sentence,
