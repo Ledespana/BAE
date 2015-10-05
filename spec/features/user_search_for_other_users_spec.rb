@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "User searches for a user", %(
   As a user
@@ -8,8 +8,7 @@ feature "User searches for a user", %(
   Acceptance Criteria
   [ ] I must be displayed with all the users that match my search
 ) do
-
-  scenario 'visitor searches for a tattoo' do
+  scenario "visitor searches for a tattoo" do
     user1 = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user)
     user3 = FactoryGirl.create(:user)

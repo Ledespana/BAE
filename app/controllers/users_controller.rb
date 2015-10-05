@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def index
     if params[:search]
       search = params[:search]
