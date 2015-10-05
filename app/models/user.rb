@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   validates :gender, presence: true
   validates :phone_number, presence: true, numericality: { only_integer: true }
   validates_length_of :phone_number, is: 10
+
+  def self.search(query)
+    where("username ILIKE ?", "%#{query}%")
+  end
 end

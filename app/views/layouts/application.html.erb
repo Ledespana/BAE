@@ -55,10 +55,14 @@
             <% end %>
           <% end %>
 
+          <li class="divider"></li>
+          <li><%= link_to 'Users', users_path %></li>
           <%- if !current_user -%>
             <li class="divider"></li>
             <li><%= link_to 'About BAE', new_user_registration_path %></li>
+            <li class="divider"></li>
             <li><%= link_to 'Sign in', new_user_session_path %></li>
+            <li class="divider"></li>
             <li><%= link_to 'Sign up', new_user_registration_path %></li>
           <% end %>
 
@@ -88,5 +92,23 @@
 
     <%= javascript_include_tag 'application' %>
     <%= yield :extra_footer %>
+
+    <footer class="row text-center">
+      <div class="large-12 columns"><hr/>
+      <table width="70%" class="shareable"%>
+        <tr>
+          <td><%= facebook_button %></td>
+          <td><%= twitter_button %></td>
+          <td><%= google_plus_button %></td>
+          <td><%= linkedin_button %></td>
+          <td><%= reddit_button %></td>
+          <td><%= tumblr_button %></td>
+        </tr>
+      </table>
+      <div class='copyright'>
+        © Copyright 2015 Pablo Ledesma.
+      </div>
+
+</footer>
   </body>
 </html>
