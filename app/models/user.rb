@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
   def total_vocabulary
     count = 0
-    self.bots.each do |bot|
+    bots.each do |bot|
       count += bot.interactions.count
     end
     count

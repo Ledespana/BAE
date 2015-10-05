@@ -9,24 +9,24 @@
 
   2.times do
     Bot.create(
-    name: Faker::Name.first_name,
-    gender: 'Female',
-    eye_color: 'Green',
-    hair_color: 'Black',
-    age: 26,
-    user: User.last
+      name: Faker::Name.first_name,
+      gender: "Female",
+      eye_color: "Green",
+      hair_color: "Black",
+      age: 26,
+      user: User.last
     )
 
     20.times do
       Interaction.create(
-      category: 'sentence',
-      sentence: Faker::Lorem.sentence,
-      response: Faker::Lorem.sentence,
+        category: "sentence",
+        sentence: Faker::Lorem.sentence,
+        response: Faker::Lorem.sentence,
       )
 
       BotsInteraction.create(
-      bot: Bot.last,
-      interaction: Interaction.last
+        bot: Bot.last,
+        interaction: Interaction.last
       )
     end
   end
