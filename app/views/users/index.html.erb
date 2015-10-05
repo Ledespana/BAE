@@ -1,11 +1,29 @@
+<br>
+<div class="row">
+  <div class="medium-4 medium-8 large-centered columns">
+    <span class='search-user'>
+      <%= form_tag(users_path, method: "get", class: "user-search") do %>
+        <div class="small-6 column">
+          <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+        </div>
+        <div class="small-6 column">
+          <%= submit_tag "Search", name: nil, class: "button small" %>
+        </div>
+      <% end %>
+    </span>
+  </div>
+</div>
 <div class="row text-center profile panel profile-box">
-
   <% @users.each do |user| %>
-    <ul class="small-block-grid-3">
-      <div >
-        <li><%= image_tag user.profile_picture, class: 'user-picture' %></li>
-        <li><%= link_to user.username, user_path(user) %></li>
-      </div>
-    </ul>
+    <div class= "user">
+      <ul class="small-block-grid-3">
+        <div >
+          <li><%= image_tag user.profile_picture, class: 'user-picture' %></li>
+          <li><%= link_to user.username, user_path(user) %></li>
+          <li>Number of BAEs: <%= user.bots.count %></li>
+        </div>
+      </ul>
+  </div>
   <% end %>
 </div>
+<%= paginate @users %>

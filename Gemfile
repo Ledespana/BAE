@@ -56,4 +56,6 @@ gem 'foundation-rails'
 gem "carrierwave"
 gem "mini_magick"
 gem 'rmagick'
+gem 'kaminari'
 gem 'shareable'
+gem 'faker'

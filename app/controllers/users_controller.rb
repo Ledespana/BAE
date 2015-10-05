@@ -3,9 +3,10 @@ class UsersController < ApplicationController
   def index
     if params[:search]
       search = params[:search]
-      @users = User.search(search).order("email")
+      n_page = params[:page]
+      @users = User.search(search).order("username").page(n_page).per(10)
     else
-      @users = User.all
+      @users = User.all.order("username").page(n_page).per(10)
     end
   end
 

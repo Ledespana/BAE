@@ -33,34 +33,12 @@ feature "Visitor sees a list of all the users", %(
     expect(page).to have_content('List of BAEs')
   end
 
-  scenario "user searches for users" do
-    FactoryGirl.create(
-      :user,
-      email: "bob@aol.com",
-      username: "markus"
-      )
-    FactoryGirl.create(
-      :user,
-      email: "sam@aol.com",
-      username: "mike23"
-      )
-    FactoryGirl.create(
-      :user,
-      email: "joe@aol.com",
-      username: "bob"
-      )
-    FactoryGirl.create(
-      :user,
-      email: "nick@gmail.com",
-      username: "nick"
-      )
-    visit users_path
-    within(".search-user") do
-      fill_in "search", with: "bob"
-      click_button("Search")
-    end
-    expect(page).to have_content("bob")
-    expect(page).to_not have_content("nick")
-  end
+  scenario "user sees a maximum of 10 users per page" do
+  15.times { FactoryGirl.create(:user, username: Faker::Name.name  ) }
+
+  visit users_path
+  expect(page).to have_selector('.user', count: 10)
+
+end
 
 end
