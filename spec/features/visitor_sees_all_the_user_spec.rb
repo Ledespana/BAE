@@ -6,11 +6,11 @@ feature "Visitor sees a list of all the users", %(
   So that I can see one with more detail
 
   Acceptance Criteria
-  [] I must see the list of all the users
+  [X] I must see the list of all the users
   [] For each user I must see: his avatar, number of BAES
   and Total of Vocabulary
-  [] I must be able to click on a user an see his show page
-  [] I must be able to search for a specific user
+  [X] I must be able to click on a user an see his show page
+  [X] I must be able to search for a specific user
 ) do
   scenario "visitor sees list of users" do
     user1 = FactoryGirl.create(:user)
