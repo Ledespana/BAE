@@ -16,4 +16,12 @@ class User < ActiveRecord::Base
   def self.search(query)
     where("username ILIKE ?", "%#{query}%")
   end
+
+  def total_vocabulary
+    count = 0
+    self.bots.each do |bot|
+      count += bot.interactions.count
+    end
+    count
+  end
 end
