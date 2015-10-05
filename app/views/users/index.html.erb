@@ -1,0 +1,11 @@
+<div class="row text-center profile panel profile-box">
+
+  <% @users.each do |user| %>
+    <ul class="small-block-grid-3">
+      <div >
+        <li><%= image_tag user.profile_picture, class: 'user-picture' %></li>
+        <li><%= link_to user.username, user_path(user) %></li>
+      </div>
+    </ul>
+  <% end %>
+</div>
