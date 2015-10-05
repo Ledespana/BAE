@@ -34,10 +34,9 @@ feature "Visitor sees a list of all the users", %(
   end
 
   scenario "user sees a maximum of 10 users per page" do
-  15.times { FactoryGirl.create(:user, username: Faker::Name.name) }
+    15.times { FactoryGirl.create(:user, username: Faker::Name.name) }
 
-  visit users_path
-  expect(page).to have_selector(".user", count: 10)
+    visit users_path
+    expect(page).to have_selector(".user", count: 10)
   end
-
 end
