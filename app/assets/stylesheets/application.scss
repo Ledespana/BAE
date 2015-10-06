@@ -99,14 +99,14 @@ li {
 
 // button group bot show page
 
-$primary-color: #008CBA;
+$primary-color: #008cba;
 $secondary-color: #e7e7e7;
 $alert-color: #f04124;
-$success-color: #43AC6A;
+$success-color: #43ac6a;
 $warning-color: #f08a24;
 $info-color: #a0d3e8;
 
-$selected-color: salmon;
+$selected-color: #fa8072;
 
 input[data-toggle] {
   display: none;
@@ -127,5 +127,5 @@ input[data-toggle]:checked + label:active {
 
 //hidden tables
 .hidden {
-  display: none !important;
+  display: none;
 }
