@@ -1,0 +1,17 @@
+<div class="large-6 large-centered columns panel">
+
+  <%= form_for [@interaction] do |f| %>
+
+    <%= f.label :category %>
+    <%= f.select :category,['Sentence', 'Keyword', 'Combo'] %>
+
+    <%= f.label :sentiment %>
+    <%= f.select :sentiment,['Possitive', 'Neutral', 'Negative'] %>
+
+    <%= f.text_field :keyword1, placeholder: 'Keyword' %>
+    <%= f.text_field :keyword2, placeholder: 'Second keyword' %>
+    <%= f.text_field :sentence, placeholder: 'Sentence' %>
+    <%= f.text_field :response, placeholder: 'Response' %>
+
+    <% end %>
+</div>

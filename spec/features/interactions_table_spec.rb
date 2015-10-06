@@ -44,6 +44,7 @@ feature "user sees list of interactions for a bot", %{
   end
 
   scenario "user doesnt see any table unless he clicks on a button " do
+
     visit user_bot_path(user, bot)
     page.has_css?("sentences row text-center hidden")
     page.has_css?("keywords row text-center hidden")

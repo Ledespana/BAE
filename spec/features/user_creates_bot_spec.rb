@@ -10,7 +10,7 @@ feature "user creates a bot", %{
     user = FactoryGirl.create(:user)
     login(user)
 
-    visit new_user_bot_path(user)
+    visit new_bot_path
     expect(page).to have_content("Create a new BAE")
   end
 
@@ -18,7 +18,7 @@ feature "user creates a bot", %{
     user = FactoryGirl.create(:user)
     login(user)
 
-    visit new_user_bot_path(user)
+    visit new_bot_path
     click_button "Submit"
     expect(page).to have_content("Something went wrong!")
   end
@@ -27,7 +27,7 @@ feature "user creates a bot", %{
     user = FactoryGirl.create(:user)
     login(user)
 
-    visit new_user_bot_path(user)
+    visit new_bot_path
     fill_in "Name", with: "Asia"
     select("Male", from: "bot[gender]")
     select("Green", from: "bot[eye_color]")

@@ -10,8 +10,8 @@
         <div class="large-12 columns">
           <% if @user == current_user %>
             <ul class= "button-group">
-              <li><%= link_to 'Edit', edit_user_bot_path(@user, @bot), class: 'button small' %></li>
-              <li><%= button_to 'Delete', user_bot_path(@user, @bot), method: :delete, class: 'button small' %></li>
+              <li><%= link_to 'Edit', edit_bot_path(@bot), class: 'button small' %></li>
+              <li><%= button_to 'Delete', bot_path(@bot), data: { confirm: "Are you sure?" }, method: :delete, class: 'button small' %></li>
             </ul>
           <% end %>
         </div>
@@ -45,7 +45,7 @@
           <input type="radio" id="r3" name="r-group" data-toggle="button">
           <label class="button" for="r3">Combo</label>
         </li>
-      
+
       </ul>
     </div>
   </div>
