@@ -1,0 +1,40 @@
+<% if @bot.user == current_user %>
+<div class= "small-10 columns">
+  <table>
+    <thead>
+      <tr>
+        <th width="200">Sentence</th>
+        <th width="150">Response</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sentences.each do |column| %>
+        <tr>
+          <td><%= column.sentence %></td>
+          <td><%= column.response %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+  <div class= "small-10 columns">
+    <table>
+      <thead>
+        <tr>
+          <th width="200">Sentence</th>
+          <th width="150">Response</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sentences.each do |column| %>
+          <tr>
+            <td><%= column.sentence %></td>
+            <td><%= column.response %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

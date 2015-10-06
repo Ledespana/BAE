@@ -6,9 +6,9 @@ feature "User searches for a user", %(
   So that I can view their profile
 
   Acceptance Criteria
-  [ ] I must be displayed with all the users that match my search
+  [X] I must be displayed with all the users that match my search
 ) do
-  scenario "visitor searches for a tattoo" do
+  scenario "visitor searches for another user" do
     user1 = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user)
     user3 = FactoryGirl.create(:user)

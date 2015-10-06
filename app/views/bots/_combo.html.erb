@@ -1,0 +1,22 @@
+<div class= "small-10 columns">
+  <table>
+    <thead>
+      <tr>
+        <th width="100">Sentiment</th>
+        <th width="100">Keyword1</th>
+        <th width="100">Keyword2</th>
+        <th width="200">Response</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @combo.each do |row| %>
+        <tr>
+          <td><%= row.sentiment %></td>
+          <td><%= row.keyword1 %></td>
+          <td><%= row.keyword2 %></td>
+          <td><%= row.response %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

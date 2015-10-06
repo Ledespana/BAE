@@ -7,6 +7,9 @@ class BotsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @bot = Bot.find(params[:id])
+    @sentences = @bot.interactions.where(category: 'Sentence').order("Sentence")
+    @keywords = @bot.interactions.where(category: 'Keyword').order("Keyword1")
+    @combo = @bot.interactions.where(category: 'Combo').order("Keyword1")
   end
 
   def new
