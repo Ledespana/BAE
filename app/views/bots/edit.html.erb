@@ -6,7 +6,7 @@
 
     <div class="row">
       <div class="large-12 columns">
-        <%= link_to 'Delete', user_bot_path(current_user, @bot), method: :delete, class: "button expand alert" %>
+        <%= link_to 'Delete', bot_path(@bot), data: { confirm: "Are you sure?" }, method: :delete, class: "button expand alert" %>
       </div>
     </div>
   </div>

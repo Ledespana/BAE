@@ -22,12 +22,12 @@
 
           <% if current_user %>
             <li class="divider"></li>
-            <li><%= link_to 'Dashboard', user_bots_path(current_user) %></li>
+            <li><%= link_to 'Dashboard', user_path(current_user) %></li>
             <li class="divider"></li>
 
             <% unless current_user.bots.empty? %>
               <li class="has-dropdown">
-              <%= link_to 'BAEs', user_bots_path(current_user) %>
+              <%= link_to 'BAEs', user_path(current_user) %>
 
                 <ul class="dropdown">
                   <li><label><%= current_user.bots.first.name %></label></li>
@@ -40,18 +40,18 @@
                     <li><%= link_to 'Profile', user_bot_path(current_user, current_user.bots[1])  %></li>
                     <li><a href="#">[ ]Vocabulary</a></li>
                     <li class="divider"></li>
-                    <li><%= link_to 'See all →', user_bots_path(current_user) %></li>
+                    <li><%= link_to 'See all →', user_path(current_user) %></li>
                   <% end %>
                   <% if current_user.bots.count < 3 %>
                     <li class="divider"></li>
-                    <li><%= link_to 'Create new BAE', new_user_bot_path(current_user) %></li>
+                    <li><%= link_to 'Create new BAE', new_bot_path %></li>
                   <% end %>
                 </ul>
                 </li>
                 <% else %>
 
               <li class="divider"></li>
-              <li><%= link_to 'Create new BAE', new_user_bot_path(current_user) %></li>
+              <li><%= link_to 'Create new BAE', new_bot_path %></li>
             <% end %>
           <% end %>
 
@@ -83,7 +83,7 @@
     </nav>
 
     <%- flash.each do |key, value| -%>
-      <div class="flash flash-<%= key %>">
+      <div class="alert-box <%= key %>">
         <%= value %>
       </div>
     <%- end -%>

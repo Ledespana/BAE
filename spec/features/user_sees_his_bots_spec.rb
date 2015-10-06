@@ -6,12 +6,12 @@ feature "user sees his bots", %{
   So that I can know the ones on my profile
 } do
 
-  scenario "user visits bots index page" do
+  scenario "user visits his list of bots" do
     user = FactoryGirl.create(:user)
     mary = FactoryGirl.create(:bot, user_id: user.id)
     login(user)
 
-    visit user_bots_path(user)
+    visit user_path(user)
     expect(page).to have_content(mary.name)
   end
 

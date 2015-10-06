@@ -31,7 +31,7 @@
               <label><%= bot.name %></label>
               <%= link_to 'Profile', user_bot_path(@user, bot), class: 'inside' %>
               <% if @user == current_user %>
-                <%= link_to 'Edit', edit_user_bot_path(@user, bot), class: 'inside' %>
+                <%= link_to 'Edit', edit_bot_path(bot), class: 'inside' %>
               <% end %>
         </div>
       </div>

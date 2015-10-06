@@ -1,8 +1,4 @@
 class BotsController < ApplicationController
-  def index
-    @user = User.find(params[:user_id])
-    @bots = @user.bots
-  end
 
   def show
     @user = User.find(params[:user_id])
@@ -14,7 +10,7 @@ class BotsController < ApplicationController
 
   def new
     if signed_in?
-      @user = User.find(params[:user_id])
+      @user = current_user
       @bot = Bot.new
     else
       authenticate_user!
@@ -22,48 +18,44 @@ class BotsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
     @bot = @user.bots.new(bot_params)
     if @user.bots.count == 3
       flash[:notice] = "You have reached the limits of BAEs"
-      redirect_to user_bots_path(@user)
+      redirect_to user_path(current_user)
     else
       if @bot.save
         flash[:notice] = "BAE created!"
-        redirect_to user_bots_path(@user)
+        redirect_to user_path(current_user)
       else
         flash[:errors] = "Something went wrong!"
-        redirect_to new_user_bot_path(@user)
+        redirect_to new_bot_path
       end
     end
   end
 
   def edit
-      @user = User.find(params[:user_id])
-    if signed_in? && current_user == @user
+    if current_user == Bot.find(params[:id]).user
       @bot = Bot.find(params[:id])
     elsif !signed_in?
       authenticate_user!
     else
       @bot = Bot.find(params[:id])
       flash[:notice] = "You have no permission to edit this BAE"
-      redirect_to user_bot_path(@user, @bot)
+      redirect_to user_bot_path(current_user, @bot)
     end
   end
 
   def update
-    @user = User.find(params[:user_id])
-    if signed_in? && current_user == @user
-      @bot = Bot.find(params[:id])
+    @bot = Bot.find(params[:id])
+    if current_user == @bot.user
       if @bot.update_attributes(bot_params)
         flash[:success] = "BAE edited successfully"
-        redirect_to user_path(@user)
+        redirect_to user_path(current_user)
       else
         flash[:alert] = "Something went wrong"
         render :edit
       end
-    elsif !signed_in?
-      authenticate_user!
     else
       flash[:error] = "You have no permission to edit this BAE"
       render :edit
@@ -71,17 +63,15 @@ class BotsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:user_id])
+    @user = current_user
     @bot = Bot.find(params[:id])
-    if signed_in? && current_user == @bot.user
+    if current_user
       @bot.destroy
       flash[:notice] = "BAE deleted successfully"
-      redirect_to user_bots_path(@user)
-    elsif !signed_in?
-      authenticate_user!
+      redirect_to user_path(@user)
     else
       flash[:error] = "You have no permission to delete this BAE"
-      redirect_to user_bots_path(@user)
+      redirect_to user_path(@user)
     end
   end
 

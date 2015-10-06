@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
   it { should have_valid(:phone_number).when(1234123123)}
   it { should_not have_valid(:phone_number).when(nil, "", 2331)}
 
-  it "Total_vocabulary sould return the total of interactions of user's bots" do
+  it "Total_vocabulary should return the total of interactions of a user" do
     user = FactoryGirl.create(:user)
     bot1 = FactoryGirl.create(:bot, user: user)
     bot2 = FactoryGirl.create(:bot, user: user)
