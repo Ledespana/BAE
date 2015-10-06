@@ -10,7 +10,7 @@ feature "user sees his and others profile", %{
   # [X] I should see my list of bots
   # [X] I should see a link to each bot show page
   # [X] I should see the the number of bots that I have
-  # [ ] I should see my BAEs vocabulary (total of sentences, keywords
+  # [X] I should see my BAEs vocabulary (total of sentences, keywords
   # and combination of keywords)
 
   let!(:user) { FactoryGirl.create(:user) }
@@ -35,8 +35,8 @@ feature "user sees his and others profile", %{
     expect(page).to have_content("Number of BAEs: " + user.bots.count.to_s)
   end
 
-  # scenario "user sees my list of bots"do
-  #   visit user_path(user)
-  #   expect(page).to have_content("Vocabulary:")
-  # end
+  scenario "user sees my list of bots"do
+    visit user_path(user)
+    expect(page).to have_content("List of BAEs")
+  end
 end

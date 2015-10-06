@@ -19,8 +19,33 @@
 
     20.times do
       Interaction.create(
-        category: "sentence",
+        category: "Sentence",
         sentence: Faker::Lorem.sentence,
+        response: Faker::Lorem.sentence,
+      )
+
+      BotsInteraction.create(
+        bot: Bot.last,
+        interaction: Interaction.last
+      )
+
+      Interaction.create(
+        category: "Keyword",
+        sentiment: "Positive",
+        keyword1: Faker::Lorem.word,
+        response: Faker::Lorem.sentence,
+      )
+
+      BotsInteraction.create(
+        bot: Bot.last,
+        interaction: Interaction.last
+      )
+
+      Interaction.create(
+        category: "Combo",
+        sentiment: "Positive",
+        keyword1: Faker::Lorem.word,
+        keyword2: Faker::Lorem.word,
         response: Faker::Lorem.sentence,
       )
 
