@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   devise_for :users, path: 'accounts'
 
   resources :users, only: [:show, :index] do
-    resources :bots, only:[:show]
+    resources :bots, only: [:show]
   end
 
   resources :bots, except: [:show, :index] do
-    resources :interactions, only: [:new, :create, :update, :destroy ]
+    resources :interactions, only: [:new, :create, :update, :destroy]
   end
 end

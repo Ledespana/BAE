@@ -47,7 +47,7 @@ class BotsController < ApplicationController
   end
 
   def update
-      @bot = Bot.find(params[:id])
+    @bot = Bot.find(params[:id])
     if current_user == @bot.user
       if @bot.update_attributes(bot_params)
         flash[:success] = "BAE edited successfully"
