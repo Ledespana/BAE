@@ -43,6 +43,9 @@ group :development do
   gem 'spring'
 end
 
+group :development, :test do
+  gem "dotenv-rails"
+end
 
 gem 'rspec-rails', group: [:development, :test]
 gem 'pry', group: [:development, :test]
@@ -59,3 +62,4 @@ gem 'rmagick'
 gem 'kaminari'
 gem 'shareable'
 gem 'faker'
+gem 'fog'
