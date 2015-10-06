@@ -1,11 +1,15 @@
 class InteractionsController < ApplicationController
-  def new
-    if signed_in?
-      @interaction = Interaction.new
-    else
-      authenticate_user!
-    end
+  def index
+    @interactions = Interaction.all
   end
+
+  # def new
+  #   if signed_in?
+  #     @interaction = Interaction.new
+  #   else
+  #     authenticate_user!
+  #   end
+  # end
 
   # def create
   #   @interaction = Interaction.new(interaction_params)
