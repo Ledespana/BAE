@@ -63,3 +63,4 @@ gem 'kaminari'
 gem 'shareable'
 gem 'faker'
 gem 'fog'
+gem 'coveralls', require: false

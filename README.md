@@ -1,8 +1,8 @@
 # B.A.E (Before Anyone Else)
-
+[ ![Codeship Status for ledes/BAE](https://codeship.com/projects/66a1d520-42b3-0133-a1f9-1eb5f82d52fc/status?branch=master)](https://codeship.com/projects/103829)
 [![Code Climate](https://codeclimate.com/github/ledes/BAE/badges/gpa.svg)](https://codeclimate.com/github/ledes/BAE)
 [![Coverage Status](https://coveralls.io/repos/ledes/BAE/badge.svg?branch=master&service=github)](https://coveralls.io/github/ledes/BAE?branch=master)
-[ ![Codeship Status for ledes/BAE](https://codeship.com/projects/66a1d520-42b3-0133-a1f9-1eb5f82d52fc/status?branch=master)](https://codeship.com/projects/103829)
+
 
 * Description
 
