@@ -7,9 +7,9 @@ class BotsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @bot = Bot.find(params[:id])
-    @sentences = @bot.interactions.where(category: 'Sentence').order("Sentence")
-    @keywords = @bot.interactions.where(category: 'Keyword').order("Keyword1")
-    @combo = @bot.interactions.where(category: 'Combo').order("Keyword1")
+    @sentences = @bot.interactions.where(category: "Sentence").order("Sentence")
+    @keywords = @bot.interactions.where(category: "Keyword").order("Keyword1")
+    @combo = @bot.interactions.where(category: "Combo").order("Keyword1")
   end
 
   def new
@@ -46,7 +46,7 @@ class BotsController < ApplicationController
       authenticate_user!
     else
       @bot = Bot.find(params[:id])
-      flash[:notice] = 'You have no permission to edit this BAE'
+      flash[:notice] = "You have no permission to edit this BAE"
       redirect_to user_bot_path(@user, @bot)
     end
   end
@@ -56,16 +56,16 @@ class BotsController < ApplicationController
     if signed_in? && current_user == @user
       @bot = Bot.find(params[:id])
       if @bot.update_attributes(bot_params)
-        flash[:success] = 'BAE edited successfully'
+        flash[:success] = "BAE edited successfully"
         redirect_to user_path(@user)
       else
-        flash[:alert] = 'Something went wrong'
+        flash[:alert] = "Something went wrong"
         render :edit
       end
     elsif !signed_in?
       authenticate_user!
     else
-      flash[:error] = 'You have no permission to edit this BAE'
+      flash[:error] = "You have no permission to edit this BAE"
       render :edit
     end
   end
@@ -75,12 +75,12 @@ class BotsController < ApplicationController
     @bot = Bot.find(params[:id])
     if signed_in? && current_user == @bot.user
       @bot.destroy
-      flash[:notice] = 'BAE deleted successfully'
+      flash[:notice] = "BAE deleted successfully"
       redirect_to user_bots_path(@user)
     elsif !signed_in?
       authenticate_user!
     else
-      flash[:error] = 'You have no permission to delete this BAE'
+      flash[:error] = "You have no permission to delete this BAE"
       redirect_to user_bots_path(@user)
     end
   end
