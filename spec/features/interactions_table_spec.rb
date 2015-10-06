@@ -13,7 +13,7 @@ feature "user sees list of interactions for a bot", %{
 
 } do
   let!(:user) { FactoryGirl.create(:user) }
-  let!(:bot) { FactoryGirl.create(:bot, user: user)}
+  let!(:bot) { FactoryGirl.create(:bot, user: user) }
 
   before(:each) do
     10.times do
@@ -45,44 +45,44 @@ feature "user sees list of interactions for a bot", %{
 
   scenario "user doesnt see any table unless he clicks on a button " do
     visit user_bot_path(user, bot)
-    page.has_css?('sentences row text-center hidden')
-    page.has_css?('keywords row text-center hidden')
-    page.has_css?('combo row text-center hidden')
+    page.has_css?("sentences row text-center hidden")
+    page.has_css?("keywords row text-center hidden")
+    page.has_css?("combo row text-center hidden")
   end
 
   scenario "user sees sentences table" do
     visit user_bot_path(user, bot)
-    choose('r1')
+    choose("r1")
     expect(page).to have_content(bot.interactions.first.sentence)
     expect(page).to have_content(bot.interactions.first.response)
     expect(page).to have_content(bot.interactions.second.sentence)
     expect(page).to have_content(bot.interactions.second.response)
-    page.has_css?('sentences row text-center')
-    page.has_css?('keywords row text-center hidden')
-    page.has_css?('combo row text-center hidden')
+    page.has_css?("sentences row text-center")
+    page.has_css?("keywords row text-center hidden")
+    page.has_css?("combo row text-center hidden")
   end
 
   scenario "user sees keywords table" do
     visit user_bot_path(user, bot)
-    choose('r1')
+    choose("r1")
     expect(page).to have_content(bot.interactions.first.sentence)
     expect(page).to have_content(bot.interactions.first.response)
     expect(page).to have_content(bot.interactions.second.sentence)
     expect(page).to have_content(bot.interactions.second.response)
-    page.has_css?('sentences row text-center hidden')
-    page.has_css?('keywords row text-center')
-    page.has_css?('combo row text-center hidden')
+    page.has_css?("sentences row text-center hidden")
+    page.has_css?("keywords row text-center")
+    page.has_css?("combo row text-center hidden")
   end
 
   scenario "user sees combo table" do
     visit user_bot_path(user, bot)
-    choose('r1')
+    choose("r1")
     expect(page).to have_content(bot.interactions.first.sentence)
     expect(page).to have_content(bot.interactions.first.response)
     expect(page).to have_content(bot.interactions.second.sentence)
     expect(page).to have_content(bot.interactions.second.response)
-    page.has_css?('sentences row text-center hidden')
-    page.has_css?('keywords row text-center hidden')
-    page.has_css?('combo row text-center')
+    page.has_css?("sentences row text-center hidden")
+    page.has_css?("keywords row text-center hidden")
+    page.has_css?("combo row text-center")
   end
 end
