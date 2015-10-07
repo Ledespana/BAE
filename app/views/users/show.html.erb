@@ -1,12 +1,19 @@
 <br>
 <div class="row text-center profile panel profile-box">
   <div class="panel large-4 columns">
-    <h1><%= @user.username %></h1>
     <% if @user.profile_picture.file %>
       <p><%= image_tag @user.profile_picture, class: 'user-picture' %></p>
     <% else %>
       <p><%= image_tag "noprofile.png", class: 'user-picture' %></p>
     <% end %>
+    <h1><%= @user.username %></h1>
+    <div class='row'>
+      <div class="large-12 columns">
+        <ul class= "button-group">
+          <li><%= link_to 'Vocabulary', user_interactions_path(@user), class: 'button small' %></li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="large-8 columns">
     <ul>

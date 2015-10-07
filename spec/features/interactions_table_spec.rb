@@ -64,7 +64,7 @@ feature "user sees list of interactions for a bot", %{
 
   scenario "user sees keywords table" do
     visit user_bot_path(user, bot)
-    choose("r1")
+    choose("r2")
     expect(page).to have_content(bot.interactions.first.sentence)
     expect(page).to have_content(bot.interactions.first.response)
     expect(page).to have_content(bot.interactions.second.sentence)
@@ -76,7 +76,7 @@ feature "user sees list of interactions for a bot", %{
 
   scenario "user sees combo table" do
     visit user_bot_path(user, bot)
-    choose("r1")
+    choose("r3")
     expect(page).to have_content(bot.interactions.first.sentence)
     expect(page).to have_content(bot.interactions.first.response)
     expect(page).to have_content(bot.interactions.second.sentence)

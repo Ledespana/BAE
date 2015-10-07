@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   has_many :bots, dependent: :destroy
+  has_many :users_interactions, dependent: :destroy
+  has_many :interactions, through: :users_interactions, dependent: :destroy
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :bots, except: [:show, :index]
 
   resources :users, only: [:none] do
-    resources :interactions, only: [:new, :create, :update, :destroy]
+    resources :interactions, only: [:index, :new, :create, :update, :destroy]
   end
 
 end
