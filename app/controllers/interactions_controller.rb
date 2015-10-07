@@ -1,28 +1,10 @@
 class InteractionsController < ApplicationController
   def index
-    @interactions = Interaction.all
+    @user = User.find(params[:user_id])
+    @sentences = @user.interactions.where(category: "Sentence").order("Sentence")
+    @keywords = @user.interactions.where(category: "Keyword").order("Keyword1")
+    @combo = @user.interactions.where(category: "Combo").order("Keyword1")
   end
-
-  # def new
-  #   if signed_in?
-  #     @interaction = Interaction.new
-  #   else
-  #     authenticate_user!
-  #   end
-  # end
-
-  # def create
-  #   @interaction = Interaction.new(interaction_params)
-  #
-  #   if @interaction.save
-  #     BotsInteraction.create(@interaction, @bot)
-  #     flash[:notice] = "Interaction created!"
-  #     redirect_to user_bots_path(@current_user)
-  #   else
-  #     flash[:errors] = "Something went wrong!"
-  #     redirect_to new_interaction_path
-  #   end
-  # end
 
   protected
 

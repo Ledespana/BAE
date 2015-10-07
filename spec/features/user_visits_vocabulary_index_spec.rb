@@ -16,7 +16,6 @@ feature "User sees his vocabulary index page", %(
 
 ) do
   let!(:user) { FactoryGirl.create(:user) }
-  let!(:bot) { FactoryGirl.create(:bot) }
 
   before(:each) do
     10.times do
@@ -25,7 +24,7 @@ feature "User sees his vocabulary index page", %(
         sentence: Faker::Lorem.sentence,
         response: Faker::Lorem.sentence
       )
-      BotsInteraction.create(bot: bot, interaction: Interaction.last)
+      UsersInteraction.create(user: user, interaction: Interaction.last)
 
       Interaction.create(
         category: "Keyword",
@@ -33,7 +32,7 @@ feature "User sees his vocabulary index page", %(
         keyword1: Faker::Lorem.word,
         response: Faker::Lorem.sentence,
       )
-      BotsInteraction.create(bot: bot, interaction: Interaction.last)
+      UsersInteraction.create(user: user, interaction: Interaction.last)
 
       Interaction.create(
         category: "Combo",
@@ -42,20 +41,46 @@ feature "User sees his vocabulary index page", %(
         keyword2: Faker::Lorem.word,
         response: Faker::Lorem.sentence,
       )
-      BotsInteraction.create(bot: bot, interaction: Interaction.last)
+      UsersInteraction.create(user: user, interaction: Interaction.last)
     end
   end
-  # 
-  # scenario "user sees his sentences in the interaction index page" do
-  #   visit user_interactions(user)
-  #
-  #   choose("r1")
-  #   expect(page).to have_content(bot.interactions.first.sentence)
-  #   expect(page).to have_content(bot.interactions.first.response)
-  #   expect(page).to have_content(bot.interactions.second.sentence)
-  #   expect(page).to have_content(bot.interactions.second.response)
-  #   page.has_css?("sentences row text-center")
-  #   page.has_css?("keywords row text-center hidden")
-  #   page.has_css?("combo row text-center hidden")
-  # end
+
+  scenario "user sees his sentences in the interaction index page" do
+    visit user_interactions_path(user)
+
+    choose("r1")
+    expect(page).to have_content(user.interactions.first.sentence)
+    expect(page).to have_content(user.interactions.first.response)
+    expect(page).to have_content(user.interactions.second.sentence)
+    expect(page).to have_content(user.interactions.second.response)
+    page.has_css?("sentences row text-center")
+    page.has_css?("keywords row text-center hidden")
+    page.has_css?("combo row text-center hidden")
+  end
+
+  scenario "user sees his keywords in the interaction index page" do
+    visit user_interactions_path(user)
+
+    choose("r2")
+    expect(page).to have_content(user.interactions.first.sentence)
+    expect(page).to have_content(user.interactions.first.response)
+    expect(page).to have_content(user.interactions.second.sentence)
+    expect(page).to have_content(user.interactions.second.response)
+    page.has_css?("sentences row text-center hidden")
+    page.has_css?("keywords row text-center")
+    page.has_css?("combo row text-center hidden")
+  end
+
+  scenario "user sees his combos in the interaction index page" do
+    visit user_interactions_path(user)
+
+    choose("r3")
+    expect(page).to have_content(user.interactions.first.sentence)
+    expect(page).to have_content(user.interactions.first.response)
+    expect(page).to have_content(user.interactions.second.sentence)
+    expect(page).to have_content(user.interactions.second.response)
+    page.has_css?("sentences row text-center hidden")
+    page.has_css?("keywords row text-center hidden")
+    page.has_css?("combo row text-center")
+  end
 end
