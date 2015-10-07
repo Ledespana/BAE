@@ -15,7 +15,7 @@
 </div>
 <div class="row text-center profile panel profile-box">
   <% @users.each do |user| %>
-    <div class= "user">
+    <div class= "user column large-3  medium-6  small-12 ">
       <ul class="small-block-grid-3">
         <div >
           <li><%= image_tag user.profile_picture, class: 'user-picture' %></li>
@@ -26,5 +26,5 @@
       </ul>
   </div>
   <% end %>
+  <%= paginate @users %>
 </div>
-<%= paginate @users %>

@@ -19,11 +19,15 @@
 
       <section class="top-bar-section">
         <ul class="right">
-
+          <li class="divider"></li>
+          <li><%= link_to 'Users', users_path %></li>
           <% if current_user %>
             <li class="divider"></li>
             <li><%= link_to 'Dashboard', user_path(current_user) %></li>
             <li class="divider"></li>
+            <li><%= link_to 'Vocabulary', user_interactions_path(current_user) %></li>
+            <li class="divider"></li>
+
 
             <% unless current_user.bots.empty? %>
               <li class="has-dropdown">
@@ -32,13 +36,11 @@
                 <ul class="dropdown">
                   <li><label><%= current_user.bots.first.name %></label></li>
                   <li><%= link_to 'Profile', user_bot_path(current_user, current_user.bots.first)  %></li>
-                  <li><a href="#">[ ]Vocabulary</a></li>
 
                   <% if current_user.bots.length >= 2 %>
                     <li class="divider"></li>
                     <li><label><%= current_user.bots[1].name %></label></li>
                     <li><%= link_to 'Profile', user_bot_path(current_user, current_user.bots[1])  %></li>
-                    <li><a href="#">[ ]Vocabulary</a></li>
                     <li class="divider"></li>
                     <li><%= link_to 'See all →', user_path(current_user) %></li>
                   <% end %>
@@ -55,8 +57,6 @@
             <% end %>
           <% end %>
 
-          <li class="divider"></li>
-          <li><%= link_to 'Users', users_path %></li>
           <%- if !current_user -%>
             <li class="divider"></li>
             <li><%= link_to 'About BAE', new_user_registration_path %></li>
@@ -71,7 +71,6 @@
             <li class="has-dropdown">
               <%= link_to 'Profile', user_path(current_user.id) %>
               <ul class="dropdown">
-                 <li><%= link_to 'See profile', user_path(current_user.id) %></li>
                  <li><%= link_to 'Edit profile', edit_user_registration_path(current_user.id) %></li>
                  <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
                </ul>

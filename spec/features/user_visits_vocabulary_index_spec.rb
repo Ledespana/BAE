@@ -6,8 +6,8 @@ feature "User sees his vocabulary index page", %(
   So that I can use them
 
   Acceptance Criteria
-  [ ] I must see the list of all the interactions
-  [ ] I must be able to hide tables depending of the category of the interaction
+  [X] I must see the list of all the interactions
+  [X] I must be able to hide tables depending of the category of the interaction
   [ ] I must be able to have a link that it will send the user to new_interaction_path
   [ ] I must be able to have a link that it will send the user to edit_interaction_path
   [ ] I must be able to delete any interaction
