@@ -1,11 +1,11 @@
 <br>
-<div class="row text-center profile panel profile-box">
+<div class="row text-center profile panel profile-box " id="tables_JS">
   <div class='row'>
     <div class="large-4 columns">
       <div class="panel large-12 columns">
         <p><%= image_tag @user.profile_picture, class: 'user-picture' %></p>
         <h1><%= @user.username %></h1>
-        <li><%= link_to 'Add Vocabulary', new_user_interaction_path(@user), class: 'button expand' %></li>
+        <li><%= link_to 'Add vocabulary', new_user_interaction_path(@user), class: 'button expand' %></li>
 
       </div>
     </div>
@@ -21,7 +21,7 @@
             </li>
             <li>
               <input type="radio" id="r2" name="r-group" data-toggle="button">
-              <label class="button" for="r2">Keywords</label>
+              <label class="button" for="r2">Keyword</label>
             </li>
             <li>
               <input type="radio" id="r3" name="r-group" data-toggle="button">
