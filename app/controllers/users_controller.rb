@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-      n_page = params[:page]
+    n_page = params[:page]
     if params[:search]
       search = params[:search]
       @users = User.search(search).order("username").page(n_page).per(12)

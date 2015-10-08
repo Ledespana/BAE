@@ -76,7 +76,6 @@ class InteractionsController < ApplicationController
       flash[:error] = "You have no permission to modify this vocabulary"
       redirect_to user_interactions_path(@user)
     end
-
   end
 
   protected

@@ -11,16 +11,15 @@ class Interaction < ActiveRecord::Base
 
   def one_of_three_interactions
     if category == "Sentence" && sentence.blank?
-      errors.add(:sentence, 'You need to fill the sentence field')
+      errors.add(:sentence, "You need to fill the sentence field")
     elsif category == "Keyword" && keyword1.blank?
-      errors.add(:keyword1, 'You need to fill the keyword field')
+      errors.add(:keyword1, "You need to fill the keyword field")
     elsif category == "Combo" && keyword1.blank?
-      errors.add(:keyword1, 'You need to fill the form')
+      errors.add(:keyword1, "You need to fill the form")
     elsif category == "Combo" && keyword2.blank?
-      errors.add( :keyword2, 'You need to fill the form')
+      errors.add( :keyword2, "You need to fill the form")
     elsif category == "Combo" && keyword1.blank? && keyword2.blank?
-      errors.add(:keyword1, :keyword2, 'You need to fill the form')
+      errors.add(:keyword1, :keyword2, "You need to fill the form")
     end
   end
-
 end
