@@ -7,10 +7,10 @@
       </tr>
     </thead>
     <tbody>
-      <% @sentences.each do |column| %>
+      <% @sentences.each do |row| %>
         <tr>
-          <td><%= column.sentence %></td>
-          <td><%= column.response %></td>
+          <td><%= row.sentence %></td>
+          <td><%= row.response %></td>
         </tr>
       <% end %>
     </tbody>

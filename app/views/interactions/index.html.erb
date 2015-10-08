@@ -1,12 +1,13 @@
 <br>
-<div class="row text-center profile panel profile-box">
+<div class="row text-center profile panel profile-box " id="tables_JS">
   <div class='row'>
     <div class="large-4 columns">
       <div class="panel large-12 columns">
         <p><%= image_tag @user.profile_picture, class: 'user-picture' %></p>
         <h1><%= @user.username %></h1>
-        <li><%= link_to 'Add Vocabulary', new_user_interaction_path(@user), class: 'button expand' %></li>
-
+        <% if @user == current_user %>
+          <li><%= link_to 'Add vocabulary', new_user_interaction_path(@user), class: 'button expand add_vocabulary' %></li>
+        <% end %>
       </div>
     </div>
     <div class="large-8 columns text-center">
@@ -14,14 +15,14 @@
       <div class="row">
         <div class="small-9 small-centered columns">
 
-          <ul class="button-group round toggle" data-toggle="buttons-radio">
+          <ul class="button-group toggle" data-toggle="buttons-radio">
             <li>
               <input type="radio" id="r1" name="r-group" data-toggle="button">
               <label class="button" id="r1" for="r1">Sentences</label>
             </li>
             <li>
               <input type="radio" id="r2" name="r-group" data-toggle="button">
-              <label class="button" for="r2">Keywords</label>
+              <label class="button" for="r2">Keyword</label>
             </li>
             <li>
               <input type="radio" id="r3" name="r-group" data-toggle="button">
@@ -38,13 +39,13 @@
 
 
 <div class="sentences row text-center hidden" id="sentences">
-  <%= render 'bots/sentences' %>
+  <%= render 'interactions/sentences' %>
 </div>
 
 <div class="keywords row text-center hidden" id="keywords">
-  <%= render 'bots/keywords' %>
+  <%= render 'interactions/keywords' %>
 </div>
 
 <div class="combo row text-center hidden" id="combo">
-  <%= render 'bots/combo' %>
+  <%= render 'interactions/combo' %>
 </div>

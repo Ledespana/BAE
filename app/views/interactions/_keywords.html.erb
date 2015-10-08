@@ -1,0 +1,42 @@
+<div class= "small-10 columns">
+  <table>
+    <thead>
+      <tr>
+        <th width="100">Sentiment</th>
+        <th width="100">Keyword</th>
+        <th width="200">Response</th>
+        <th width="100">Actions</th>
+        <% if @user == current_user %>
+          <% @user.bots.each do |bot|%>
+            <th width="100">Add to <%= bot.name %></th>
+          <% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @keywords.each do |row| %>
+        <tr>
+          <td><%= row.sentiment %></td>
+          <td><%= row.keyword1 %></td>
+          <td><%= row.response %></td>
+            <% if @user == current_user %>
+              <td><%= link_to  edit_user_interaction_path(@user, row) do %>
+                  <i class="fa fa-pencil"></i>
+                <% end%>
+                <%= link_to user_interaction_path(@user, row), id: "delete_button", data: { confirm: "Are you sure?" }, method: :delete do %>
+                  <i class="fa fa-trash-o"></i>
+                <% end%>
+              </td>
+            <% else %>
+              <td><i class="fa fa-plus-circle"></i></td>
+            <% end %>
+            <% if @user == current_user %>
+            <% @user.bots.each do |bot|%>
+              <td><%= image_tag bot.avatar %></td>
+            <% end %>
+          <% end %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>

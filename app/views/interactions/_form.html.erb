@@ -1,17 +1,48 @@
+
+<%= form_for [@user, @interaction] do |f| %>
 <div class="large-6 large-centered columns panel">
-
-  <%= form_for [@interaction] do |f| %>
-
-    <%= f.label :category %>
-    <%= f.select :category,['Sentence', 'Keyword', 'Combo'] %>
-
-    <%= f.label :sentiment %>
-    <%= f.select :sentiment,['Possitive', 'Neutral', 'Negative'] %>
-
-    <%= f.text_field :keyword1, placeholder: 'Keyword' %>
-    <%= f.text_field :keyword2, placeholder: 'Second keyword' %>
-    <%= f.text_field :sentence, placeholder: 'Sentence' %>
-    <%= f.text_field :response, placeholder: 'Response' %>
-
-    <% end %>
+    <div class="login-box">
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="large-12 columns">
+            <div class="field">
+              <%= f.label :category %>
+              <%= f.select :category,['Sentence', 'Keyword', 'Combo'], id: 'category', class: 'category' %>
+            </div>
+            </div>
+            <div class="large-12 columns combo">
+              <div class="field">
+                <%= f.label :sentiment %>
+                <%= f.select :sentiment,['Positive', 'Neutral', 'Negative'] %>
+              </div>
+            </div>
+            <div class="large-12 columns combo">
+              <div class="field">
+                <%= f.text_field :keyword1, placeholder: 'Keyword' %>
+              </div>
+            </div>
+            <div class="large-12 columns combo second_keyword">
+              <div class="field">
+                <%= f.text_field :keyword2, placeholder: 'Second keyword' %>
+              </div>
+            </div>
+            <div class="large-12 columns sentence_interaction">
+              <div class="field">
+                <%= f.text_field :sentence, placeholder: 'Sentence' %>
+              </div>
+            </div>
+            <div class="large-12 columns">
+              <div class="field">
+                <%= f.text_area :response, placeholder: 'Response' %>
+              </div>
+            </div>
+            <div class="large-12 columns">
+              <div class="field">
+                <%= f.submit "Submit", class: "button expand" %>
+              </div>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
 </div>
