@@ -23,7 +23,12 @@ feature "user adds interactions", %(
 
   scenario "other users can't see the button add vocabulary" do
     visit user_interactions_path(user)
-    !find_link("Add vocabulary").visible?
+
+    expect(page).to_not have_css('.add_vocabulary')
+
+    login(user)
+    visit user_interactions_path(user)
+    expect(page).to have_css('.add_vocabulary')
   end
 
   scenario "user adds a sentence to his vocabulary" do

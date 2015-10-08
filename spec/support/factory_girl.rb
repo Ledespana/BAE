@@ -19,4 +19,5 @@ FactoryGirl.define do
     age 26
     association  :user
   end
+  
 end

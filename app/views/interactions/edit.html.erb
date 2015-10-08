@@ -1,0 +1,71 @@
+<div class='row text-center small-8 medium-8' id="interactions_form">
+  <h1>Update an interaction</h1>
+
+<%= form_for [@user, @interaction] do |f| %>
+<div class="large-6 large-centered columns panel">
+    <div class="login-box">
+      <div class="row">
+        <div class="large-12 columns">
+
+          <% if @interaction.category == 'Sentence' %>
+            <div class="large-12 columns">
+              <div class="field">
+                <%= f.label :sentence %>
+                <%= f.text_field :sentence, placeholder: 'Sentence' %>
+              </div>
+            </div>
+          <% elsif @interaction.category == 'Keyword' %>
+
+            <div class="large-12 columns combo">
+              <div class="field">
+                <%= f.label :sentiment %>
+                <%= f.select :sentiment,['Positive', 'Neutral', 'Negative'] %>
+              </div>
+            </div>
+            <div class="large-12 columns combo">
+              <div class="field">
+                <%= f.label :keyword %>
+
+                <%= f.text_field :keyword1, placeholder: 'Keyword' %>
+              </div>
+            </div>
+
+          <%  elsif @interaction.category == 'Combo' %>
+            <div class="large-12 columns combo">
+              <div class="field">
+                <%= f.label :sentiment %>
+                <%= f.select :sentiment,['Positive', 'Neutral', 'Negative'] %>
+              </div>
+            </div>
+            <div class="large-12 columns combo">
+              <div class="field">
+                <%= f.label :keyword %>
+                <%= f.text_field :keyword1, placeholder: 'Keyword' %>
+              </div>
+            </div>
+            <div class="large-12 columns combo ">
+              <div class="field">
+                <%= f.label :second_keyword %>
+                <%= f.text_field :keyword2, placeholder: 'Second keyword' %>
+              </div>
+            </div>
+
+          <% end %>
+
+              <div class="large-12 columns">
+                <div class="field">
+                  <%= f.label :response %>
+                  <%= f.text_area :response, placeholder: 'Response' %>
+                </div>
+              </div>
+              <div class="large-12 columns">
+                <div class="field">
+                  <%= f.submit "Submit", class: "button expand" %>
+                </div>
+              </div>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

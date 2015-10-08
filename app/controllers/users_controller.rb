@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   def index
+      n_page = params[:page]
     if params[:search]
       search = params[:search]
-      n_page = params[:page]
       @users = User.search(search).order("username").page(n_page).per(12)
     else
-      @users = User.all.order("username").page(n_page).per(12)
+      @users = User.order("username").page(n_page).per(12)
     end
   end
 

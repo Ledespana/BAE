@@ -7,4 +7,20 @@ class Interaction < ActiveRecord::Base
 
   validates :category, presence: true
   validates :response, presence: true
+  validate :one_of_three_interactions
+
+  def one_of_three_interactions
+    if category == "Sentence" && sentence.blank?
+      errors.add(:sentence, 'You need to fill the sentence field')
+    elsif category == "Keyword" && keyword1.blank?
+      errors.add(:keyword1, 'You need to fill the keyword field')
+    elsif category == "Combo" && keyword1.blank?
+      errors.add(:keyword1, 'You need to fill the form')
+    elsif category == "Combo" && keyword2.blank?
+      errors.add( :keyword2, 'You need to fill the form')
+    elsif category == "Combo" && keyword1.blank? && keyword2.blank?
+      errors.add(:keyword1, :keyword2, 'You need to fill the form')
+    end
+  end
+
 end
