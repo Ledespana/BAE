@@ -48,7 +48,7 @@ feature "user deletes interactions", %(
 
   scenario "visitor can't see delete button for a combo" do
     user2 = FactoryGirl.create(:user)
-    interaction  = Interaction.create(
+    interaction = Interaction.create(
       category: "Combo",
       sentiment: "Positive",
       keyword1: Faker::Lorem.word,

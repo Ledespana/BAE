@@ -60,7 +60,7 @@ RSpec.describe Interaction, type: :model do
     expect(interaction.one_of_three_interactions).to eq([
       "You need to fill the form",
       "You need to fill the form"
-      ])
+    ])
   end
 
   scenario "one_of_three_interactions returns error if keyword1 and keyword2

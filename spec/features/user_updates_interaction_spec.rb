@@ -46,7 +46,7 @@ feature "user updates interactions", %(
 
   scenario "visitor can't see update button for a combo" do
     user2 = FactoryGirl.create(:user)
-    interaction  = Interaction.create(
+    interaction = Interaction.create(
       category: "Combo",
       sentiment: "Positive",
       keyword1: Faker::Lorem.word,
@@ -62,7 +62,7 @@ feature "user updates interactions", %(
 
   scenario "user updates a sentence from his vocabulary" do
     login(user)
-    interaction  = Interaction.create(
+    interaction = Interaction.create(
       category: "Sentence",
       sentence: Faker::Lorem.sentence,
       response: Faker::Lorem.sentence
@@ -77,14 +77,14 @@ feature "user updates interactions", %(
 
   scenario "user updates a keyword from his vocabulary" do
     login(user)
-    interaction  = Interaction.create(
+    interaction = Interaction.create(
       category: "Keyword",
       sentiment: "Positive",
       keyword1: Faker::Lorem.word,
       response: Faker::Lorem.sentence,
     )
     UsersInteraction.create(user: user, interaction: interaction)
-    visit   edit_user_interaction_path(user, interaction)
+    visit edit_user_interaction_path(user, interaction)
     fill_in "Response", with: "You are right"
     click_button("Submit")
 
@@ -93,7 +93,7 @@ feature "user updates interactions", %(
 
   scenario "user updates a combo from his vocabulary" do
     login(user)
-    interaction  = Interaction.create(
+    interaction = Interaction.create(
       category: "Combo",
       sentiment: "Positive",
       keyword1: Faker::Lorem.word,
@@ -109,7 +109,7 @@ feature "user updates interactions", %(
 
   scenario "user submit an empty form" do
     login(user)
-    interaction  = Interaction.create(
+    interaction = Interaction.create(
       category: "Sentence",
       sentence: Faker::Lorem.sentence,
       response: Faker::Lorem.sentence
@@ -121,5 +121,4 @@ feature "user updates interactions", %(
 
     expect(page).to have_content("Something went wrong")
   end
-
 end

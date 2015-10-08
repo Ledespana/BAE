@@ -13,22 +13,21 @@ feature "user adds interactions", %(
 ) do
   let!(:user) { FactoryGirl.create(:user) }
 
-
   scenario "user goes to the new interaction page clicking on add vocabulary" do
     login(user)
     visit user_interactions_path(user)
-    click_link 'Add vocabulary'
-    expect(page).to have_content('Create a new interaction')
+    click_link "Add vocabulary"
+    expect(page).to have_content("Create a new interaction")
   end
 
   scenario "other users can't see the button add vocabulary" do
     visit user_interactions_path(user)
 
-    expect(page).to_not have_css('.add_vocabulary')
+    expect(page).to_not have_css(".add_vocabulary")
 
     login(user)
     visit user_interactions_path(user)
-    expect(page).to have_css('.add_vocabulary')
+    expect(page).to have_css(".add_vocabulary")
   end
 
   scenario "user adds a sentence to his vocabulary" do
@@ -86,5 +85,4 @@ feature "user adds interactions", %(
     page.has_css?("second_keyword hidden")
     page.has_css?("combo")
   end
-
 end
