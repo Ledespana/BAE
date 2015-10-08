@@ -3,7 +3,7 @@ $(document).ready(function() {
   if(document.getElementById("interactions_form")!=null){
 
     var sentencefields = document.querySelectorAll(".sentence_interaction");
-    var second_keyword = document.querySelectorAll(".second_keyword");
+    var secondKeyword = document.querySelectorAll(".second_keyword");
     var combo = document.querySelectorAll(".combo");
 
     sentencefields[0].classList.remove("hidden");
@@ -28,7 +28,7 @@ $(document).ready(function() {
         $.each(combo, function( index, value ) {
           value.classList.remove("hidden");
         });
-        second_keyword[0].classList.add("hidden");
+        secondKeyword[0].classList.add("hidden");
       }
     });
   };
