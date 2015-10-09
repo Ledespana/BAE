@@ -5,7 +5,7 @@
         <tr>
           <th width="200">Sentence</th>
           <th width="250">Response</th>
-          <th width="100">Actions</th>
+          <th width="100">Your vocabulary</th>
           <% if @user == current_user %>
             <% @user.bots.each do |bot|%>
               <th width="100">Add to <%= bot.name %></th>
@@ -20,19 +20,23 @@
             <td><%= row.response %></td>
             <% if @user == current_user %>
               <td><%= link_to  edit_user_interaction_path(@user, row) do %>
-                  <i class="fa fa-pencil" id='edit'></i>
+                  <i class="fa fa-pencil"></i>
                 <% end%>
                 <%= link_to user_interaction_path(@user, row), id: "delete_button", data: { confirm: "Are you sure?" }, method: :delete do %>
-                  <i class="fa fa-trash-o" ></i>
+                  <i class="fa fa-trash-o"></i>
                 <% end%>
               </td>
-            <% else %>
-              <td><i class="fa fa-plus-circle"></i></td>
-            <% end %>
+              <% else %>
+                <% if !current_user.interactions.include?(row) %>
+                  <td><%= link_to user_interactions_path( category: 'Sentence', sentence: row.sentence, response: row.response, user_id: current_user.id), id: "add_interacion_to_vocabulary", method: :post do %>
+                      <i class="fa fa-plus"></i>
+                    <% end %>
+                  </td>
+              <% end %>
+              <% end %>
             <% if @user == current_user %>
               <% @user.bots.each do |bot|%>
                 <td><%= image_tag bot.avatar %></td>
-
               <% end %>
             <% end %>
         <% end %>

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+// Hides and shows the interactions table
   if(document.getElementById("tables_JS")!=null){
     $("#r1").click(function() {
       var sentencesTable = document.querySelectorAll("#sentences");
@@ -32,4 +32,5 @@ $(document).ready(function() {
 
     });
   };
+
 });

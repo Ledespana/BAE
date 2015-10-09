@@ -23,7 +23,6 @@ class InteractionsController < ApplicationController
     if current_user == @user
       @interaction = @user.interactions.new(interaction_params)
       if @interaction.save
-        UsersInteraction.create(user: @user, interaction: @interaction)
         flash[:notice] = "Interaction created!"
         redirect_to user_interactions_path(@user)
       else
@@ -88,6 +87,7 @@ class InteractionsController < ApplicationController
       :keyword2,
       :sentence,
       :response,
+      :user_id
     )
   end
 end
