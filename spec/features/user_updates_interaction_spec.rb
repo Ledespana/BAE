@@ -20,9 +20,9 @@ feature "user updates interactions", %(
     interaction = Interaction.create(
       category: "Sentence",
       sentence: Faker::Lorem.sentence,
-      response: Faker::Lorem.sentence
+      response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user2, interaction: interaction)
 
     visit user_interactions_path(user2)
 
@@ -36,9 +36,8 @@ feature "user updates interactions", %(
       sentiment: "Positive",
       keyword1: Faker::Lorem.word,
       response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user2, interaction: interaction)
-
     visit user_interactions_path(user2)
 
     page.has_css?("fa fa-pencil")
@@ -52,9 +51,8 @@ feature "user updates interactions", %(
       keyword1: Faker::Lorem.word,
       keyword2: Faker::Lorem.word,
       response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user2, interaction: interaction)
-
     visit user_interactions_path(user2)
 
     page.has_css?("fa fa-pencil")
@@ -65,9 +63,9 @@ feature "user updates interactions", %(
     interaction = Interaction.create(
       category: "Sentence",
       sentence: Faker::Lorem.sentence,
-      response: Faker::Lorem.sentence
+      response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user, interaction: interaction)
     visit edit_user_interaction_path(user, interaction)
     fill_in "Response", with: "You are right"
     click_button("Submit")
@@ -82,8 +80,8 @@ feature "user updates interactions", %(
       sentiment: "Positive",
       keyword1: Faker::Lorem.word,
       response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user, interaction: interaction)
     visit edit_user_interaction_path(user, interaction)
     fill_in "Response", with: "You are right"
     click_button("Submit")
@@ -99,8 +97,8 @@ feature "user updates interactions", %(
       keyword1: Faker::Lorem.word,
       keyword2: Faker::Lorem.word,
       response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user, interaction: interaction)
     visit edit_user_interaction_path(user, interaction)
     fill_in "Response", with: "You are right"
     click_button("Submit")
@@ -112,9 +110,9 @@ feature "user updates interactions", %(
     interaction = Interaction.create(
       category: "Sentence",
       sentence: Faker::Lorem.sentence,
-      response: Faker::Lorem.sentence
+      response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user, interaction: interaction)
     visit edit_user_interaction_path(user, interaction)
     fill_in "Response", with: ""
     click_button("Submit")

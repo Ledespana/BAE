@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151006232655) do
     t.string   "response",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id",    null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,10 +67,5 @@ ActiveRecord::Schema.define(version: 20151006232655) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "users_interactions", force: :cascade do |t|
-    t.integer "user_id",        null: false
-    t.integer "interaction_id", null: false
-  end
 
 end

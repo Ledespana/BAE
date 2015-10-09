@@ -1,7 +1,7 @@
 class Bot < ActiveRecord::Base
   belongs_to :user
-  has_many :bots_interactions, dependent: :destroy
-  has_many :interactions, through: :bots_interactions, dependent: :destroy
+  has_many :bots_interactions
+  has_many :interactions, through: :bots_interactions
 
   validates :name, presence: true
   validates :gender, presence: true

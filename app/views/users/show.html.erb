@@ -22,7 +22,7 @@
       <% end %>
       <li>Gender: <%= @user.gender %></li>
       <li>Number of BAEs: <%= @user.bots.count %></li>
-      <li>Vocabulary: <%= @user.total_vocabulary %></li>
+      <li>Vocabulary: <%= @user.interactions.count %></li>
 
     </ul>
   </div>
@@ -34,15 +34,15 @@
     <% @user.bots.each do |bot| %>
       <div class="small-12 medium-4 columns ">
         <li><%= image_tag bot.avatar, class: 'bot-avatar'%></li>
-            <div class="wrapper">
-              <label><%= bot.name %></label>
-              <%= link_to 'Profile', user_bot_path(@user, bot), class: 'inside' %>
-              <% if @user == current_user %>
-                <%= link_to 'Edit', edit_bot_path(bot), class: 'inside' %>
-              <% end %>
+        <div class="wrapper">
+          <label><%= bot.name %></label>
+          <%= link_to 'Profile', user_bot_path(@user, bot), class: 'inside' %>
+          <% if @user == current_user %>
+            <%= link_to 'Edit', edit_bot_path(bot), class: 'inside' %>
+          <% end %>
         </div>
       </div>
-      <% end %>
+    <% end %>
     </div>
   </ul>
 </div>

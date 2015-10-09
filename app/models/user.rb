@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
-  has_many :bots, dependent: :destroy
-  has_many :users_interactions, dependent: :destroy
-  has_many :interactions, through: :users_interactions, dependent: :destroy
+  has_many :bots
+  # has_many :users_interactions
+  # has_many :interactions, through: :users_interactions
+  has_many :interactions
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -18,13 +20,5 @@ class User < ActiveRecord::Base
 
   def self.search(query)
     where("username ILIKE ?", "%#{query}%")
-  end
-
-  def total_vocabulary
-    count = 0
-    bots.each do |bot|
-      count += bot.interactions.count
-    end
-    count
   end
 end

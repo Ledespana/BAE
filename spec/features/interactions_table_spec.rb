@@ -20,7 +20,8 @@ feature "user sees list of interactions for a bot", %{
       Interaction.create(
         category: "Sentence",
         sentence: Faker::Lorem.sentence,
-        response: Faker::Lorem.sentence
+        response: Faker::Lorem.sentence,
+        user_id: user.id
       )
       BotsInteraction.create(bot: bot, interaction: Interaction.last)
 
@@ -29,6 +30,7 @@ feature "user sees list of interactions for a bot", %{
         sentiment: "Positive",
         keyword1: Faker::Lorem.word,
         response: Faker::Lorem.sentence,
+        user_id: user.id
       )
       BotsInteraction.create(bot: bot, interaction: Interaction.last)
 
@@ -38,6 +40,7 @@ feature "user sees list of interactions for a bot", %{
         keyword1: Faker::Lorem.word,
         keyword2: Faker::Lorem.word,
         response: Faker::Lorem.sentence,
+        user_id: user.id
       )
       BotsInteraction.create(bot: bot, interaction: Interaction.last)
     end

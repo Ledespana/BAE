@@ -5,7 +5,7 @@
         <tr>
           <th width="200">Sentence</th>
           <th width="250">Response</th>
-          <th width="100">Actions</th>
+          <th width="100">Your vocabulary</th>
           <% if @user == current_user %>
             <% @user.bots.each do |bot|%>
               <th width="100">Add to <%= bot.name %></th>
@@ -14,25 +14,39 @@
         </tr>
       </thead>
       <tbody>
-        <% @sentences.each do |row| %>
+        <% @sentences.each do |sentence| %>
           <tr>
-            <td><%= row.sentence %></td>
-            <td><%= row.response %></td>
+            <td><%= sentence.sentence %></td>
+            <td><%= sentence.response %></td>
             <% if @user == current_user %>
-              <td><%= link_to  edit_user_interaction_path(@user, row) do %>
-                  <i class="fa fa-pencil" id='edit'></i>
+              <td><%= link_to  edit_user_interaction_path(@user, sentence) do %>
+                  <i class="fa fa-pencil"></i>
                 <% end%>
-                <%= link_to user_interaction_path(@user, row), id: "delete_button", data: { confirm: "Are you sure?" }, method: :delete do %>
-                  <i class="fa fa-trash-o" ></i>
+                <%= link_to user_interaction_path(@user, sentence), id: "delete_button", data: { confirm: "Are you sure?" }, method: :delete do %>
+                  <i class="fa fa-trash-o"></i>
                 <% end%>
               </td>
-            <% else %>
-              <td><i class="fa fa-plus-circle"></i></td>
-            <% end %>
+              <% else %>
+                <% if !current_user.interactions.include?(sentence) %>
+                  <td><%= form_for [current_user, Interaction.new ] do |f| %>
+                        <%= f.text_field :category, value: sentence.category, type:"hidden" %>
+                        <%= f.text_field :sentence, value: sentence.sentence, type:"hidden" %>
+                        <%= f.text_field :response, value: sentence.response, type:"hidden" %>
+                        <%= f.submit "Add", class: "button expand" %>
+                      <% end %>
+                  </td>
+              <% end %>
+              <% end %>
             <% if @user == current_user %>
               <% @user.bots.each do |bot|%>
-                <td><%= image_tag bot.avatar %></td>
-
+                <td>
+                  <%= image_tag bot.avatar %>
+                  <%= form_for [bot, BotsInteraction.new] do |f| %>
+                        <%= f.text_field :interaction_id, value: sentence.id, type:"hidden" %>
+                        <%= f.text_field :bot_id, value: bot.id, type:"hidden" %>
+                        <%= f.submit "Add", class: "button expand" %>
+                      <% end %>
+                </td>
               <% end %>
             <% end %>
         <% end %>

@@ -22,10 +22,9 @@ feature "user deletes interactions", %(
     interaction = Interaction.create(
       category: "Sentence",
       sentence: Faker::Lorem.sentence,
-      response: Faker::Lorem.sentence
+      response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user2, interaction: interaction)
-
     visit user_interactions_path(user2)
 
     page.has_css?("fa fa-trash-o")
@@ -38,9 +37,8 @@ feature "user deletes interactions", %(
       sentiment: "Positive",
       keyword1: Faker::Lorem.word,
       response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user2, interaction: interaction)
-
     visit user_interactions_path(user2)
 
     page.has_css?("fa fa-trash-o")
@@ -54,9 +52,8 @@ feature "user deletes interactions", %(
       keyword1: Faker::Lorem.word,
       keyword2: Faker::Lorem.word,
       response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user2, interaction: interaction)
-
     visit user_interactions_path(user2)
 
     page.has_css?("fa fa-trash-o")
@@ -66,9 +63,9 @@ feature "user deletes interactions", %(
     interaction = Interaction.create(
       category: "Sentence",
       sentence: Faker::Lorem.sentence,
-      response: Faker::Lorem.sentence
+      response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user, interaction: interaction)
 
     visit user_interactions_path(user)
     choose("r1")
@@ -83,8 +80,8 @@ feature "user deletes interactions", %(
     sentiment: "Positive",
     keyword1: Faker::Lorem.word,
     response: Faker::Lorem.sentence,
+    user_id: user.id
     )
-    UsersInteraction.create(user: user, interaction: interaction)
 
     visit user_interactions_path(user)
     choose("r2")
@@ -100,8 +97,8 @@ feature "user deletes interactions", %(
       keyword1: Faker::Lorem.word,
       keyword2: Faker::Lorem.word,
       response: Faker::Lorem.sentence,
+      user_id: user.id
     )
-    UsersInteraction.create(user: user, interaction: interaction)
 
     visit user_interactions_path(user)
     choose("r3")

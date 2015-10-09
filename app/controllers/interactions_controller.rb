@@ -10,7 +10,7 @@ class InteractionsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    if current_user == @user
+    if current_user
       @interaction = Interaction.new
     else
       flash[:errors] = "You have no permission to do that!"
@@ -20,10 +20,9 @@ class InteractionsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    if current_user == @user
+    if current_user
       @interaction = @user.interactions.new(interaction_params)
       if @interaction.save
-        UsersInteraction.create(user: @user, interaction: @interaction)
         flash[:notice] = "Interaction created!"
         redirect_to user_interactions_path(@user)
       else
@@ -88,6 +87,7 @@ class InteractionsController < ApplicationController
       :keyword2,
       :sentence,
       :response,
+      :user_id
     )
   end
 end

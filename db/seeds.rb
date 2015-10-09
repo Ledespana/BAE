@@ -14,7 +14,7 @@
       eye_color: "Green",
       hair_color: "Black",
       age: 26,
-      user: User.last
+      user_id: User.last.id
     )
 
     20.times do
@@ -22,6 +22,7 @@
         category: "Sentence",
         sentence: Faker::Lorem.sentence,
         response: Faker::Lorem.sentence,
+        user_id: User.last.id
       )
 
       BotsInteraction.create(
@@ -29,26 +30,28 @@
         interaction: Interaction.last
       )
 
-      UsersInteraction.create(
-        user: User.last,
-        interaction: Interaction.last
-      )
+      # UsersInteraction.create(
+      #   user: User.last,
+      #   interaction: Interaction.last
+      # )
 
       Interaction.create(
         category: "Keyword",
         sentiment: "Positive",
         keyword1: Faker::Lorem.word,
         response: Faker::Lorem.sentence,
+        user_id: User.last.id
+
       )
 
       BotsInteraction.create(
         bot: Bot.last,
         interaction: Interaction.last
       )
-      UsersInteraction.create(
-        user: User.last,
-        interaction: Interaction.last
-      )
+      # UsersInteraction.create(
+      #   user: User.last,
+      #   interaction: Interaction.last
+      # )
 
       Interaction.create(
         category: "Combo",
@@ -56,6 +59,8 @@
         keyword1: Faker::Lorem.word,
         keyword2: Faker::Lorem.word,
         response: Faker::Lorem.sentence,
+        user_id: User.last.id
+
       )
 
       BotsInteraction.create(
@@ -63,10 +68,10 @@
         interaction: Interaction.last
       )
 
-      UsersInteraction.create(
-        user: User.last,
-        interaction: Interaction.last
-      )
+      # UsersInteraction.create(
+      #   user: User.last,
+      #   interaction: Interaction.last
+      # )
     end
   end
 end
