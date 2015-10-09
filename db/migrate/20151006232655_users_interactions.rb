@@ -1,6 +1,6 @@
 class UsersInteractions < ActiveRecord::Migration
   def up
-  add_column :interactions, :user_id, :integer, null: false
+    add_column :interactions, :user_id, :integer, null: false
   end
 
   def down

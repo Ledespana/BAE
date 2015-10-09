@@ -20,7 +20,7 @@ class InteractionsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    if current_user 
+    if current_user
       @interaction = @user.interactions.new(interaction_params)
       if @interaction.save
         flash[:notice] = "Interaction created!"

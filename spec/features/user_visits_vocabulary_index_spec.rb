@@ -16,7 +16,7 @@ feature "User sees his vocabulary index page", %(
 
 ) do
   let!(:user) { FactoryGirl.create(:user) }
-  
+
   scenario "user sees his sentences in the interaction index page" do
     interaction1 = Interaction.create(
       category: "Sentence",
