@@ -7,8 +7,9 @@ feature "user adds interactions", %(
 
   Acceptance Criteria
   [X] I must go to a page to add an interactions
-  [] I will see a different form depending of the category of the interaction
+  [X] I will see a different form depending of the category of the interaction
   [X] I must be redirected to my vocabulary page.
+  [X] I must be able to add and interaction from other users table
 
 ) do
   let!(:user) { FactoryGirl.create(:user) }
@@ -84,5 +85,56 @@ feature "user adds interactions", %(
     page.has_css?("sentence_interaction hidden")
     page.has_css?("second_keyword hidden")
     page.has_css?("combo")
+  end
+
+  scenario "user visits other user table and adds a sentence to his interacions" do
+    user2 = FactoryGirl.create(:user)
+    interaction = Interaction.create(
+      category: "Sentence",
+      sentence: Faker::Lorem.sentence,
+      response: Faker::Lorem.sentence,
+      user_id: user2.id
+    )
+
+    login(user)
+    visit user_interactions_path(user2)
+    choose("r1")
+    click_on "Add"
+    expect(page).to have_content("Interaction created!")
+  end
+
+  scenario "user visits other user table and adds a keyword to his interacions" do
+    user2 = FactoryGirl.create(:user)
+    interaction = Interaction.create(
+      category: "Keyword",
+      sentiment: "Positive",
+      keyword1: Faker::Lorem.word,
+      response: Faker::Lorem.sentence,
+      user_id: user2.id
+    )
+
+    login(user)
+    visit user_interactions_path(user2)
+    choose("r2")
+    click_on "Add"
+    expect(page).to have_content("Interaction created!")
+  end
+
+  scenario "user visits other user table and adds a combo to his interacions" do
+    user2 = FactoryGirl.create(:user)
+    interaction = Interaction.create(
+      category: "Combo",
+      sentiment: "Positive",
+      keyword1: Faker::Lorem.word,
+      keyword2: Faker::Lorem.word,
+      response: Faker::Lorem.sentence,
+      user_id: user2.id
+    )
+
+    login(user)
+    visit user_interactions_path(user2)
+    choose("r3")
+    click_on "Add"
+    expect(page).to have_content("Interaction created!")
   end
 end

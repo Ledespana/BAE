@@ -30,11 +30,6 @@
         interaction: Interaction.last
       )
 
-      # UsersInteraction.create(
-      #   user: User.last,
-      #   interaction: Interaction.last
-      # )
-
       Interaction.create(
         category: "Keyword",
         sentiment: "Positive",
@@ -48,10 +43,6 @@
         bot: Bot.last,
         interaction: Interaction.last
       )
-      # UsersInteraction.create(
-      #   user: User.last,
-      #   interaction: Interaction.last
-      # )
 
       Interaction.create(
         category: "Combo",
@@ -67,11 +58,6 @@
         bot: Bot.last,
         interaction: Interaction.last
       )
-
-      # UsersInteraction.create(
-      #   user: User.last,
-      #   interaction: Interaction.last
-      # )
     end
   end
 end

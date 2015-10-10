@@ -6,39 +6,62 @@
         <th width="100">Keyword1</th>
         <th width="100">Keyword2</th>
         <th width="200">Response</th>
-        <th width="100">Actions</th>
-        <% if @user == current_user %>
-          <% @user.bots.each do |bot|%>
-            <th width="100">Add to <%= bot.name %></th>
+        <% if current_user %>
+          <th width="100">Actions</th>
+          <% if @user == current_user %>
+            <% @user.bots.each do |bot|%>
+              <th width="100"><%= bot.name %></th>
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
       </tr>
     </thead>
     <tbody>
-      <% @combo.each do |row| %>
-        <tr>
-          <td><%= row.sentiment %></td>
-          <td><%= row.keyword1 %></td>
-          <td><%= row.keyword2 %></td>
-          <td><%= row.response %></td>
-          <% if @user == current_user %>
-            <td><%= link_to  edit_user_interaction_path(@user, row) do %>
-                <i class="fa fa-pencil"></i>
-              <% end%>
-              <%= link_to user_interaction_path(@user, row), id: "delete_button", data: { confirm: "Are you sure?" }, method: :delete do %>
-                <i class="fa fa-trash-o"></i>
-              <% end%>
-            </td>
-            <% else %>
-              <td><i class="fa fa-plus-circle"></i></td>
-            <% end %>
+      <% @interactions.each do |interaction| %>
+      <% if interaction.keyword1 != nil && interaction.keyword2 != nil %>
+          <tr>
+            <td><%= interaction.sentiment %></td>
+            <td><%= interaction.keyword1 %></td>
+            <td><%= interaction.keyword2 %></td>
+            <td><%= interaction.response %></td>
             <% if @user == current_user %>
-              <% @user.bots.each do |bot|%>
-                <td><%= image_tag bot.avatar %></td>
+              <td><%= link_to  edit_user_interaction_path(@user, interaction) do %>
+                  <i class="fa fa-pencil"></i>
+                <% end%>
+                <%= link_to user_interaction_path(@user, interaction), id: "delete_button", data: { confirm: "Are you sure?" }, method: :delete do %>
+                  <i class="fa fa-trash-o"></i>
+                <% end%>
+              </td>
+              <% elsif current_user %>
+                  <td><%= form_for [current_user, Interaction.new ] do |f| %>
+                    <%= f.text_field :category, value: interaction.category, type:"hidden" %>
+                    <%= f.text_field :sentiment, value: interaction.sentiment, type:"hidden" %>
+                    <%= f.text_field :keyword1, value: interaction.keyword1, type:"hidden" %>
+                    <%= f.text_field :keyword2, value: interaction.keyword2, type:"hidden" %>
+                    <%= f.text_field :response, value: interaction.response, type:"hidden" %>
+                    <%= f.submit "Add", class: "button expand"  %>
+                      <% end %>
+                  </td>
+              <% end %>
+              <% if @user == current_user %>
+                <% @user.bots.each do |bot|%>
+                  <td><% if !bot.interactions.include?(interaction) %>
+                    <%= image_tag bot.avatar %>
+                    <%= form_for [bot, BotsInteraction.new] do |f| %>
+                          <%= f.text_field :interaction_id, value: interaction.id, type:"hidden" %>
+                          <%= f.text_field :bot_id, value: bot.id, type:"hidden" %>
+                          <%= f.submit "Add", class: "button small expand" %>
+                        <% end %>
+                    <% else %>
+                    <%= image_tag bot.avatar %>
+                    <%= link_to 'Remove', bot_bots_interaction_path(bot, interaction), data: { confirm: "Are you sure?" }, method: :delete, class: 'button small expand' %>
+                    <% end %>
+                  </td>
+                <% end %>
               <% end %>
           <% end %>
-        <% end %>
-      </tr>
+          </tr>
+          <% end %>
     </tbody>
   </table>
 </div>
