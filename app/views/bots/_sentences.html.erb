@@ -7,11 +7,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @sentences.each do |row| %>
-        <tr>
-          <td><%= row.sentence %></td>
-          <td><%= row.response %></td>
-        </tr>
+      <% @interactions.each do |interaction| %>
+        <% if interaction.sentence != nil %>
+          <tr>
+            <td><%= interaction.sentence %></td>
+            <td><%= interaction.response %></td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

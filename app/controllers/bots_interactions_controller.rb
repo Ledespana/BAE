@@ -1,29 +1,29 @@
 class BotsInteractionsController < ApplicationController
-  def destroy
-    @bot = Bot.find(params[:bot_id])
-    @interaction = @bot.interactions.find(params[:id])
-    @bots_interaction = BotsInteraction.where(
-      bot: @bot,
-      interaction: @interaction
-    )
-    if current_user
-      @bots_interaction.destroy
-      flash[:notice] = "Interaction deleted successfully from your BAE"
-      redirect_to user_interactions_path(@user)
-    else
-      flash[:error] = "You have no permission to modify that"
-      redirect_to user_interactions_path(@user)
-    end
-  end
-
   def create
     @bot = Bot.find(params[:bot_id])
     @bots_interaction = BotsInteraction.new(bots_interaction_params)
     if @bots_interaction.save
-      flash[:notice] = "Interaction added!"
+      flash[:notice] = "Interaction added to #{@bot.name}!"
       redirect_to :back
     else
       flash[:errors] = "Something went wrong!"
+      redirect_to :back
+    end
+  end
+
+  def destroy
+    @bot = Bot.find(params[:bot_id])
+    @interaction = @bot.interactions.find(params[:id])
+    @bots_interaction = BotsInteraction.where(
+      bot_id: @bot.id,
+      interaction_id: @interaction.id
+    )
+    if current_user
+      @bots_interaction[0].destroy
+      flash[:notice] = "Interaction removed successfully from #{@bot.name}"
+      redirect_to :back
+    else
+      flash[:error] = "You have no permission to modify that"
       redirect_to :back
     end
   end
