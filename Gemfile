@@ -65,3 +65,4 @@ gem 'faker'
 gem 'fog'
 gem 'coveralls', require: false
 gem 'twilio-ruby'
+gem 'rails_12factor'
