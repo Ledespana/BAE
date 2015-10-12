@@ -23,6 +23,7 @@ class BotsController < ApplicationController
       redirect_to user_path(current_user)
     else
       if @bot.save
+        @bot.send_welcome_message
         flash[:notice] = "BAE created!"
         redirect_to user_path(current_user)
       else

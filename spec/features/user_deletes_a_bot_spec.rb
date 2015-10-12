@@ -30,7 +30,7 @@ feature "user deletes a bots", %{
   end
 
   scenario "only the creator of the bot can delete it" do
-    user2= FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     login(user2)
     visit user_path(user)
     expect(page).to_not have_content("Delete")

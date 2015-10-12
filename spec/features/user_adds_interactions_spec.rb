@@ -88,7 +88,7 @@ feature "user adds interactions", %(
   end
 
   scenario "user visits other user table and adds a sentence to his interacions" do
-    user2 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     interaction = Interaction.create(
       category: "Sentence",
       sentence: Faker::Lorem.sentence,
@@ -104,7 +104,7 @@ feature "user adds interactions", %(
   end
 
   scenario "user visits other user table and adds a keyword to his interacions" do
-    user2 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     interaction = Interaction.create(
       category: "Keyword",
       sentiment: "Positive",
@@ -121,7 +121,7 @@ feature "user adds interactions", %(
   end
 
   scenario "user visits other user table and adds a combo to his interacions" do
-    user2 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     interaction = Interaction.create(
       category: "Combo",
       sentiment: "Positive",

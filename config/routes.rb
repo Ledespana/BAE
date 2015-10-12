@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :users, only: [:none] do
     resources :interactions, except: [:show]
   end
+
+  post "twilio/answer" => "twilio#answer"
 end
