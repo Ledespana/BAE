@@ -35,7 +35,7 @@ feature "Visitor sees a list of all the users", %(
 
   scenario "user sees a maximum of 12 users per page" do
     15.times do
-        FactoryGirl.create(
+      FactoryGirl.create(
         :user,
         username: Faker::Name.name,
         phone_number: Faker::Number.number(10)

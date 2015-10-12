@@ -171,7 +171,6 @@
         1,
         1,
         null,
-        null,
         null
       ],
       "/Users/Pablo/Desktop/bae/bae/app/controllers/users_controller.rb": [
@@ -263,12 +262,6 @@
         2,
         2,
         null,
-        0,
-        0,
-        null,
-        null,
-        null,
-        1,
         0,
         0,
         null,
@@ -428,6 +421,6 @@
         null
       ]
     },
-    "timestamp": 1444663729
+    "timestamp": 1444664126
   }
 }
