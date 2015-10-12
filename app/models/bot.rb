@@ -12,7 +12,6 @@ class Bot < ActiveRecord::Base
   validates :hair_color, presence: true
   validates :user_id, presence: true
 
-  WELCOME_MESSAGE = "Welcome to !"
   UNKNOWN_COMMAND_MESSAGE = "This is a test"
 
   def avatar
@@ -20,7 +19,8 @@ class Bot < ActiveRecord::Base
   end
 
   def send_welcome_message
-    send_message(user.full_phone_number, WELCOME_MESSAGE)
+    welcome_message = "Welcome to your new BAE! I'm #{self.name} and I can't wait to talk to you, #{self.user.username}! :)"
+    send_message(user.full_phone_number, welcome_message)
   end
 
   def send_message(recipient_phone, body)
@@ -37,12 +37,13 @@ class Bot < ActiveRecord::Base
   end
 
   class << self
+
     def route_incoming(params)
-      message_body = params[:Body]
       message_sender = params[:From]
-      user = User.find_by(phone_number: message_sender.sub("+1", ""))
+      # message_body = params[:Body]
+      # user = User.find_by(phone_number: message_sender.sub("+1", ""))
       reply_body = UNKNOWN_COMMAND_MESSAGE
-      Bot.send_message(message_sender, reply_body)
+      send_message(message_sender, reply_body)
     end
   end
 end
