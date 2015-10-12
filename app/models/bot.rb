@@ -36,14 +36,11 @@ class Bot < ActiveRecord::Base
     )
   end
 
-  class << self
-
-    def route_incoming(params)
-      message_sender = params[:From]
-      # message_body = params[:Body]
-      # user = User.find_by(phone_number: message_sender.sub("+1", ""))
-      reply_body = UNKNOWN_COMMAND_MESSAGE
-      self.send_message(message_sender, reply_body)
-    end
+  def self.route_incoming(params)
+    message_sender = params[:From]
+    # message_body = params[:Body]
+    # user = User.find_by(phone_number: message_sender.sub("+1", ""))
+    reply_body = UNKNOWN_COMMAND_MESSAGE
+    send_message(message_sender, reply_body)
   end
 end
