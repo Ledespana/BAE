@@ -12,7 +12,7 @@ class Bot < ActiveRecord::Base
   validates :hair_color, presence: true
   validates :user_id, presence: true
 
-  WELCOME_MESSAGE = "Yeiii!"
+  WELCOME_MESSAGE = "Welcome to !"
   UNKNOWN_COMMAND_MESSAGE = "This is a test"
 
   def avatar
@@ -23,7 +23,7 @@ class Bot < ActiveRecord::Base
     send_message(user.full_phone_number, WELCOME_MESSAGE)
   end
 
-  def send_message(recipient_phone,body)
+  def send_message(recipient_phone, body)
     @twilio_number = ENV["TWILIO_PHONE_NUMBER"]
     client = Twilio::REST::Client.new(
       ENV["TWILIO_ACCOUNT_SID"],
@@ -31,7 +31,7 @@ class Bot < ActiveRecord::Base
     )
     client.account.messages.create(
       from: "#{@twilio_number}",
-      to: self.user.full_phone_number,
+      to: user.full_phone_number,
       body: body
     )
   end

@@ -74,12 +74,6 @@ class BotsController < ApplicationController
     end
   end
 
-  def hook
-    Message.route_incoming(params)
-    render text: ""
-  end
-
-
   protected
 
   def bot_params
