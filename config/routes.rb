@@ -16,6 +16,5 @@ Rails.application.routes.draw do
     resources :interactions, except: [:show]
   end
 
-  post 'twilio/answer' => 'twilio#answer'
-
+  post "twilio/answer" => "twilio#answer"
 end

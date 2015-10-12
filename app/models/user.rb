@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :email, presence: true, uniqueness: true
   validates :gender, presence: true
-  validates_uniqueness_of :phone_number
+  validates :phone_number, uniqueness: true
   validates :phone_number, presence: true, numericality: { only_integer: true }
   validates_length_of :phone_number, is: 10
 
@@ -22,6 +22,6 @@ class User < ActiveRecord::Base
   end
 
   def full_phone_number
-   "+1#{phone_number}"
+    "+1#{phone_number}"
   end
 end
