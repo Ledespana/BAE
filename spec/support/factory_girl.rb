@@ -7,7 +7,7 @@ FactoryGirl.define do
     password_confirmation 'LE34567890'
     username 'galapago'
     description 'The best of the best'
-    phone_number "1234123123"
+    phone_number Faker::Number.number(10)
     gender 'Male'
   end
 

@@ -5,9 +5,6 @@ class Interaction < ActiveRecord::Base
   belongs_to :user
   validates :user_id, presence: true
 
-  # has_many :users_interactions
-  # has_many :users, through: :users_interactions
-
   validates :category, presence: true
   validates :response, presence: true
   validate :one_of_three_interactions

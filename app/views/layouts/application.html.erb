@@ -12,7 +12,11 @@
       <ul class="title-area">
         <li class="name">
           <h1>
-            <%= link_to 'BAE', root_path %>
+            <% if current_user %>
+            <%= link_to 'BAE', user_path(current_user) %>
+            <% else %>
+              <%= link_to 'BAE', root_path %>
+            <% end %>
           </h1>
         </li>
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>

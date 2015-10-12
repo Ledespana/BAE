@@ -42,7 +42,7 @@ feature "user udpdates his bots", %{
   end
 
   scenario "only the creator of the bot can update the bot" do
-    user2 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     bot2 = FactoryGirl.create(:bot, user: user2)
 
     visit user_bot_path(user2, bot2)
@@ -63,7 +63,7 @@ feature "user udpdates his bots", %{
     visit user_path(user)
     expect(page).to have_content("Edit")
 
-    user2 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     bot2 = FactoryGirl.create(:bot, user: user2)
     visit user_path(user2)
 

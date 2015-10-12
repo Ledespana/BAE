@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
   has_many :bots
-  # has_many :users_interactions
-  # has_many :interactions, through: :users_interactions
   has_many :interactions
 
 
@@ -15,10 +13,15 @@ class User < ActiveRecord::Base
   validates :username, presence: true
   validates :email, presence: true, uniqueness: true
   validates :gender, presence: true
+  validates_uniqueness_of :phone_number
   validates :phone_number, presence: true, numericality: { only_integer: true }
   validates_length_of :phone_number, is: 10
 
   def self.search(query)
     where("username ILIKE ?", "%#{query}%")
+  end
+
+  def full_phone_number
+   "+1#{phone_number}"
   end
 end

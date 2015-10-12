@@ -18,7 +18,7 @@ feature "user deletes interactions", %(
   end
 
   scenario "visitor can't see delete button for a sentence" do
-    user2 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     interaction = Interaction.create(
       category: "Sentence",
       sentence: Faker::Lorem.sentence,
@@ -31,7 +31,7 @@ feature "user deletes interactions", %(
   end
 
   scenario "visitor can't see delete button for a keyword" do
-    user2 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     interaction = Interaction.create(
       category: "Keyword",
       sentiment: "Positive",
@@ -45,7 +45,7 @@ feature "user deletes interactions", %(
   end
 
   scenario "visitor can't see delete button for a combo" do
-    user2 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     interaction = Interaction.create(
       category: "Combo",
       sentiment: "Positive",

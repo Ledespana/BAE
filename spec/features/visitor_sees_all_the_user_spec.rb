@@ -14,7 +14,7 @@ feature "Visitor sees a list of all the users", %(
 ) do
   scenario "visitor sees list of users" do
     user1 = FactoryGirl.create(:user)
-    user2 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
 
     visit root_path
     click_on("Users")
@@ -34,7 +34,7 @@ feature "Visitor sees a list of all the users", %(
   end
 
   scenario "user sees a maximum of 12 users per page" do
-    15.times { FactoryGirl.create(:user, username: Faker::Name.name) }
+    15.times { FactoryGirl.create(:user, username: Faker::Name.name, phone_number: Faker::Number.number(10)) }
 
     visit users_path
     expect(page).to have_selector(".user", count: 12)
