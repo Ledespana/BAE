@@ -38,8 +38,9 @@ class Bot < ActiveRecord::Base
 
   def self.route_incoming(params)
     message_sender = params[:From]
-    # message_body = params[:Body]
-    # user = User.find_by(phone_number: message_sender.sub("+1", ""))
+    message_body = params[:Body]
+    user = User.find_by(phone_number: message_sender.sub("+1", ""))
+    
     reply_body = UNKNOWN_COMMAND_MESSAGE
     @twilio_number = ENV["TWILIO_PHONE_NUMBER"]
     client = Twilio::REST::Client.new(
