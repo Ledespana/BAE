@@ -9,16 +9,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @interactions.each do |interaction| %>
-        <% if interaction.keyword1 != nil && interaction.keyword2 != nil %>
-
-          <tr>
-            <td><%= interaction.sentiment %></td>
-            <td><%= interaction.keyword1 %></td>
-            <td><%= interaction.keyword2 %></td>
-            <td><%= interaction.response %></td>
-          </tr>
-        <% end %>
+      <% @combo.each do |interaction| %>
+        <tr>
+          <td><%= interaction.sentiment %></td>
+          <td><%= interaction.keyword1 %></td>
+          <td><%= interaction.keyword2 %></td>
+          <td><%= interaction.response %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>

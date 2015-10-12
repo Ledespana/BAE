@@ -198,6 +198,8 @@
         12,
         12,
         12,
+        12,
+        12,
         null,
         null,
         1,
@@ -286,6 +288,8 @@
       "/Users/Pablo/Desktop/bae/bae/app/controllers/interactions_controller.rb": [
         1,
         1,
+        39,
+        39,
         39,
         39,
         null,
@@ -422,6 +426,6 @@
         null
       ]
     },
-    "timestamp": 1444669103
+    "timestamp": 1444671361
   }
 }
