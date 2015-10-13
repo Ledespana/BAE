@@ -22,4 +22,5 @@ class Interaction < ActiveRecord::Base
       errors.add(:keyword1, :keyword2, "You need to fill the form")
     end
   end
+
 end

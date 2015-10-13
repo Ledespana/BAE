@@ -38,9 +38,9 @@ class Bot < ActiveRecord::Base
   def self.reply_body(params)
     message_sender = params[:From]
     message_body = params[:Body]
-
-    reply_body = "This is a test"
     user = User.find_by(phone_number: message_sender.sub("+1", ""))
+
+    reply_body = user.bots[0].right_answer(message_body)
 
     twilio_number = ENV["TWILIO_PHONE_NUMBER"]
     client = Twilio::REST::Client.new(
@@ -53,4 +53,32 @@ class Bot < ActiveRecord::Base
       body: reply_body
     )
   end
+
+  def right_answer(message)
+    bot_interactions = self.interactions
+    unknown_message = [
+      "I'm not sure what you mean",
+      "mm..a...What do you mean?",
+      "I don't understand what you are saying but you are great anyway :)"
+    ]
+    keywords = message.split(/\W+/)
+    new_response = ""
+
+    bot_interactions.each do |interaction|
+      if interaction.sentence == message
+        new_response = interaction.response
+      elsif keywords.include?(interaction.keyword1)
+        new_response = interaction.response
+      elsif keywords.include?(interaction.keyword1) && keywords.include?(interaction.keyword2)
+        new_response = interaction.response
+      end
+    end
+
+    if new_response == ""
+      new_response = unknown_message.shuffle.sample
+    else
+      new_response
+    end
+  end
+
 end
