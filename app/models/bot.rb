@@ -12,7 +12,6 @@ class Bot < ActiveRecord::Base
   validates :hair_color, presence: true
   validates :user_id, presence: true
 
-  UNKNOWN_COMMAND_MESSAGE = "This is a test"
 
   def avatar
     gender + "-" + hair_color + "-" + eye_color + ".png"
@@ -23,34 +22,19 @@ class Bot < ActiveRecord::Base
     send_message(user.full_phone_number, welcome_message)
   end
 
-  def send_message(recipient_phone, body)
-    @twilio_number = ENV["TWILIO_PHONE_NUMBER"]
-    client = Twilio::REST::Client.new(
-      ENV["TWILIO_ACCOUNT_SID"],
-      ENV["TWILIO_AUTH_TOKEN"]
-    )
-    client.account.messages.create(
-      from: "#{@twilio_number}",
-      to: recipient_phone,
-      body: body
-    )
-  end
+  # def send_message(recipient_phone, body)
+  #   @twilio_number = ENV["TWILIO_PHONE_NUMBER"]
+  #   client = Twilio::REST::Client.new(
+  #     ENV["TWILIO_ACCOUNT_SID"],
+  #     ENV["TWILIO_AUTH_TOKEN"]
+  #   )
+  #   client.account.messages.create(
+  #     from: "#{@twilio_number}",
+  #     to: recipient_phone,
+  #     body: body
+  #   )
+  # end
+  #
+  # # def route_incoming(params)
 
-  def route_incoming(params)
-    message_sender = params[:From]
-    message_body = params[:Body]
-    user = User.find_by(phone_number: message_sender.sub("+1", ""))
-
-    reply_body = UNKNOWN_COMMAND_MESSAGE
-    twilio_number = ENV["TWILIO_PHONE_NUMBER"]
-    client = Twilio::REST::Client.new(
-      ENV["TWILIO_ACCOUNT_SID"],
-      ENV["TWILIO_AUTH_TOKEN"]
-    )
-    client.account.messages.create(
-      from: "#{twilio_number}",
-      to: user.full_phone_number,
-      body: reply_body
-    )
-  end
 end
