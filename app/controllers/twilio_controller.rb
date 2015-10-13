@@ -22,6 +22,6 @@ class TwilioController < ApplicationController
     # )
     # render plain: reply_body
     Bot.reply_body(params)
-    render plain: reply_body
+    render plain: ""
   end
 end
