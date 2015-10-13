@@ -23,13 +23,13 @@ class Bot < ActiveRecord::Base
   end
 
   def send_message(recipient_phone, body)
-    @twilio_number = ENV["TWILIO_PHONE_NUMBER"]
+    twilio_number = ENV["TWILIO_PHONE_NUMBER"]
     client = Twilio::REST::Client.new(
       ENV["TWILIO_ACCOUNT_SID"],
       ENV["TWILIO_AUTH_TOKEN"]
     )
     client.account.messages.create(
-      from: "#{@twilio_number}",
+      from: "#{twilio_number}",
       to: recipient_phone,
       body: body
     )
