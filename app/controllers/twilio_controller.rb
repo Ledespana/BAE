@@ -20,5 +20,6 @@ class TwilioController < ApplicationController
       to: user.full_phone_number,
       body: reply_body
     )
+    render plain: reply_body
   end
 end

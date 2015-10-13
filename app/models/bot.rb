@@ -34,7 +34,4 @@ class Bot < ActiveRecord::Base
       body: body
     )
   end
-  
-  # # def route_incoming(params)
-
 end
