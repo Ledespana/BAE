@@ -1,3 +1,5 @@
+require 'indico'
+
 class Bot < ActiveRecord::Base
   belongs_to :user
   has_many :bots_interactions
@@ -12,6 +14,11 @@ class Bot < ActiveRecord::Base
   validates :hair_color, presence: true
   validates :user_id, presence: true
 
+  UNKNOWN_MESSAGE = [
+    "I'm not sure what you mean",
+    "mm..a...What do you mean?",
+    "I don't understand what you are saying but you are great anyway :)"
+  ]
 
   def avatar
     gender + "-" + hair_color + "-" + eye_color + ".png"
@@ -56,29 +63,34 @@ class Bot < ActiveRecord::Base
 
   def right_answer(message)
     bot_interactions = self.interactions
-    unknown_message = [
-      "I'm not sure what you mean",
-      "mm..a...What do you mean?",
-      "I don't understand what you are saying but you are great anyway :)"
-    ]
     keywords = message.split(/\W+/)
     new_response = ""
 
     bot_interactions.each do |interaction|
       if interaction.sentence == message
         new_response = interaction.response
-      elsif keywords.include?(interaction.keyword1)
+      elsif keywords.include?(interaction.keyword1) && interaction.keyword2.nil? && interaction.sentiment == sentiment?(message)
         new_response = interaction.response
-      elsif keywords.include?(interaction.keyword1) && keywords.include?(interaction.keyword2)
+      elsif keywords.include?(interaction.keyword1) && keywords.include?(interaction.keyword2) && interaction.sentiment == sentiment?(message)
         new_response = interaction.response
       end
     end
 
     if new_response == ""
-      new_response = unknown_message.shuffle.sample
+      new_response = UNKNOWN_MESSAGE.shuffle.sample
     else
       new_response
     end
   end
 
+  def sentiment?(message)
+    Indico.api_key =  '870c1d15ad6580f240481b820f8a884b'
+    if Indico.sentiment_hq(message) > 0.65
+      "Positive"
+    elsif Indico.sentiment_hq(message) >= 0.25
+      "Neutral"
+    else
+      "Negative"
+    end
+  end
 end

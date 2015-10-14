@@ -80,6 +80,7 @@ RSpec.describe Bot, type: :model do
       user: user
     )
 
+
     BotsInteraction.create(
       bot: bot,
       interaction: interaction1
@@ -109,21 +110,48 @@ RSpec.describe Bot, type: :model do
       bot: bot,
       interaction: interaction6
     )
-
   end
 
-  scenario "the right_answer method should return the right answer for a sentence" do
-    message = "You are great"
-    expect(bot.right_answer(message)).to eq("I have a great teacher")
+  describe "right_anwer()" do
+    scenario "the right_answer method should return the right answer for a sentence" do
+      message = "You are great"
+      expect(bot.right_answer(message)).to eq("I have a great teacher")
+    end
+
+    scenario "the right_answer method should return the right answer for a keyword" do
+      message = "What do you think about cars?"
+      expect(bot.right_answer(message)).to eq("I like cars too")
+    end
+
+    scenario "the right_answer method should return the right answer for a combo" do
+      message = "What do you think about cars and bikes?"
+      expect(bot.right_answer(message)).to eq("I prefer cars")
+    end
+
+    scenario "the right_answer method should return the right answer for a keyword that also exists for a combo" do
+      message = "I like cars, What do you think about cars?"
+      expect(bot.right_answer(message)).to eq("I like cars too")
+
+      message = "I like pork, What do you think about pork?"
+      expect(bot.right_answer(message)).to_not eq("I love pork but I prefer chicken")
+    end
   end
 
-  scenario "the right_answer method should return the right answer for a keyword" do
-    message = "What do you think about cars?"
-    expect(bot.right_answer(message)).to eq("I like cars too")
+  describe "sentiment?()" do
+    scenario "the sentiment? method should return possitive if the indico score is higher than 0.65" do
+      message = "I don't like pork"
+      expect(bot.sentiment?(message)).to eq("Negative")
+    end
+
+    scenario "the sentiment? method should return neutral if the indico score is higher or equal than 0.25" do
+      message = "pork is an animal"
+      expect(bot.sentiment?(message)).to eq("Neutral")
+    end
+
+    scenario "the sentiment? method should return possitive if the indico score is lower than 0.65" do
+      message = "I love pork"
+      expect(bot.sentiment?(message)).to eq("Positive")
+    end
   end
 
-  scenario "the right_answer method should return the right answer for a combo" do
-    message = "What do you think about cars and bikes?"
-    expect(bot.right_answer(message)).to eq("I prefer cars")
-  end
 end
