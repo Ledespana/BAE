@@ -1,7 +1,7 @@
 require "twilio-ruby"
 
 class TwilioController < ApplicationController
-  # skip_before_action :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token, only: :hook
 
   def answer
     Bot.reply_body(params)
