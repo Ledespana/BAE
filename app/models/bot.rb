@@ -84,7 +84,7 @@ class Bot < ActiveRecord::Base
   end
 
   def sentiment?(message)
-    Indico.api_key =  '870c1d15ad6580f240481b820f8a884b'
+    Indico.api_key = ENV["INDICO"]
     if Indico.sentiment_hq(message) > 0.65
       "Positive"
     elsif Indico.sentiment_hq(message) >= 0.25
