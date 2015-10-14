@@ -61,6 +61,17 @@ class Bot < ActiveRecord::Base
     )
   end
 
+  def sentiment?(message)
+    Indico.api_key = ENV["INDICO"]
+    if Indico.sentiment_hq(message) > 0.65
+      "Positive"
+    elsif Indico.sentiment_hq(message) >= 0.25
+      "Neutral"
+    else
+      "Negative"
+    end
+  end
+  
   def right_answer(message)
     bot_interactions = self.interactions
     keywords = message.split(/\W+/)
@@ -83,14 +94,4 @@ class Bot < ActiveRecord::Base
     end
   end
 
-  def sentiment?(message)
-    Indico.api_key = ENV["INDICO"]
-    if Indico.sentiment_hq(message) > 0.65
-      "Positive"
-    elsif Indico.sentiment_hq(message) >= 0.25
-      "Neutral"
-    else
-      "Negative"
-    end
-  end
 end
