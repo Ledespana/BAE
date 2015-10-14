@@ -1,3 +1,5 @@
+require 'indico'
+
 class Bot < ActiveRecord::Base
   belongs_to :user
   has_many :bots_interactions
@@ -12,6 +14,11 @@ class Bot < ActiveRecord::Base
   validates :hair_color, presence: true
   validates :user_id, presence: true
 
+  UNKNOWN_MESSAGE = [
+    "I'm not sure what you mean",
+    "mm..a...What do you mean?",
+    "I don't understand what you are saying but you are great anyway :)"
+  ]
 
   def avatar
     gender + "-" + hair_color + "-" + eye_color + ".png"
@@ -23,15 +30,67 @@ class Bot < ActiveRecord::Base
   end
 
   def send_message(recipient_phone, body)
-    @twilio_number = ENV["TWILIO_PHONE_NUMBER"]
+    twilio_number = ENV["TWILIO_PHONE_NUMBER"]
     client = Twilio::REST::Client.new(
       ENV["TWILIO_ACCOUNT_SID"],
       ENV["TWILIO_AUTH_TOKEN"]
     )
     client.account.messages.create(
-      from: "#{@twilio_number}",
+      from: "#{twilio_number}",
       to: recipient_phone,
       body: body
     )
+  end
+
+  def self.reply_body(params)
+    message_sender = params[:From]
+    message_body = params[:Body]
+    user = User.find_by(phone_number: message_sender.sub("+1", ""))
+
+    reply_body = user.bots[0].right_answer(message_body)
+
+    twilio_number = ENV["TWILIO_PHONE_NUMBER"]
+    client = Twilio::REST::Client.new(
+      ENV["TWILIO_ACCOUNT_SID"],
+      ENV["TWILIO_AUTH_TOKEN"]
+    )
+    client.account.messages.create(
+      from: "#{twilio_number}",
+      to: user.full_phone_number,
+      body: reply_body
+    )
+  end
+
+  def right_answer(message)
+    bot_interactions = self.interactions
+    keywords = message.split(/\W+/)
+    new_response = ""
+
+    bot_interactions.each do |interaction|
+      if interaction.sentence == message
+        new_response = interaction.response
+      elsif keywords.include?(interaction.keyword1) && interaction.keyword2.nil? && interaction.sentiment == sentiment?(message)
+        new_response = interaction.response
+      elsif keywords.include?(interaction.keyword1) && keywords.include?(interaction.keyword2) && interaction.sentiment == sentiment?(message)
+        new_response = interaction.response
+      end
+    end
+
+    if new_response == ""
+      new_response = UNKNOWN_MESSAGE.shuffle.sample
+    else
+      new_response
+    end
+  end
+
+  def sentiment?(message)
+    Indico.api_key =  '870c1d15ad6580f240481b820f8a884b'
+    if Indico.sentiment_hq(message) > 0.65
+      "Positive"
+    elsif Indico.sentiment_hq(message) >= 0.25
+      "Neutral"
+    else
+      "Negative"
+    end
   end
 end

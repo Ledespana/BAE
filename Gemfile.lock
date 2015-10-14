@@ -55,6 +55,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chunky_png (1.3.4)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -202,7 +203,11 @@ GEM
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
+    indico (0.5.2)
+      inifile (~> 3.0.0)
+      oily_png (~> 1.2.0)
     inflecto (0.0.2)
+    inifile (3.0.0)
     ipaddress (0.8.0)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
@@ -234,6 +239,8 @@ GEM
     netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    oily_png (1.2.0)
+      chunky_png (~> 1.3.1)
     orm_adapter (0.5.0)
     pg (0.18.3)
     pry (0.10.1)
@@ -371,6 +378,7 @@ DEPENDENCIES
   faker
   fog
   foundation-rails
+  indico
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

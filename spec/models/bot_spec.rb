@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Bot, type: :model do
   it { should belong_to(:user) }
@@ -17,4 +17,139 @@ RSpec.describe Bot, type: :model do
 
   it { should have_valid(:age).when("34") }
   it { should_not have_valid(:age).when(nil, "", 12, 204) }
+
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:bot) { FactoryGirl.create(:bot, user_id: user.id) }
+
+  before(:each) do
+    Bot.create(
+      name: "Louisa",
+      gender: "Female",
+      eye_color: "Green",
+      hair_color: "Blonde",
+      age: 26,
+      user: user
+    )
+
+    interaction1 = Interaction.create(
+      category: "Sentence",
+      sentence: "You are great",
+      response: "I have a great teacher",
+      user: user
+
+    )
+
+    interaction2 = Interaction.create(
+      category: "Sentence",
+      sentence: "I want a bike",
+      response: "I think you should get one",
+      user: user
+    )
+
+    interaction3 = Interaction.create(
+      category: "Keyword",
+      sentiment: "Positive",
+      keyword1: "cars",
+      response: "I like cars too",
+      user: user
+    )
+
+    interaction4 = Interaction.create(
+      category: "Keyword",
+      sentiment: "Positive",
+      keyword1: "bikes",
+      response: "I love bikes but I prefer cars",
+      user: user
+    )
+
+    interaction5 = Interaction.create(
+      category: "Combo",
+      sentiment: "Positive",
+      keyword1: "bikes",
+      keyword2: "cars",
+      response: "I prefer cars",
+      user: user
+    )
+
+    interaction6 = Interaction.create(
+      category: "Combo",
+      sentiment: "Positive",
+      keyword1: "chicken",
+      keyword2: "pork",
+      response: "I love pork but I prefer chicken",
+      user: user
+    )
+
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction1
+    )
+
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction2
+    )
+
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction3
+    )
+
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction4
+    )
+
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction5
+    )
+
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction6
+    )
+  end
+
+  describe "right_anwer()" do
+    scenario "the right_answer method should return the right answer for a sentence" do
+      message = "You are great"
+      expect(bot.right_answer(message)).to eq("I have a great teacher")
+    end
+
+    scenario "the right_answer method should return the right answer for a keyword" do
+      message = "What do you think about cars?"
+      expect(bot.right_answer(message)).to eq("I like cars too")
+    end
+
+    scenario "the right_answer method should return the right answer for a combo" do
+      message = "What do you think about cars and bikes?"
+      expect(bot.right_answer(message)).to eq("I prefer cars")
+    end
+
+    scenario "the right_answer method should return the right answer for a keyword that also exists for a combo" do
+      message = "I like cars, What do you think about cars?"
+      expect(bot.right_answer(message)).to eq("I like cars too")
+
+      message = "I like pork, What do you think about pork?"
+      expect(bot.right_answer(message)).to_not eq("I love pork but I prefer chicken")
+    end
+  end
+
+  describe "sentiment?()" do
+    scenario "the sentiment? method should return possitive if the indico score is higher than 0.65" do
+      message = "I don't like pork"
+      expect(bot.sentiment?(message)).to eq("Negative")
+    end
+
+    scenario "the sentiment? method should return neutral if the indico score is higher or equal than 0.25" do
+      message = "pork is an animal"
+      expect(bot.sentiment?(message)).to eq("Neutral")
+    end
+
+    scenario "the sentiment? method should return possitive if the indico score is lower than 0.65" do
+      message = "I love pork"
+      expect(bot.sentiment?(message)).to eq("Positive")
+    end
+  end
 end

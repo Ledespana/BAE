@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
   <body>
 
@@ -98,17 +99,17 @@
     <%= yield :extra_footer %>
 
     <footer class="row text-center">
-      <div class="large-12 columns"><hr/>
-      <table width="70%" class="shareable"%>
-        <tr>
-          <td><%= facebook_button %></td>
-          <td><%= twitter_button %></td>
-          <td><%= google_plus_button %></td>
-          <td><%= linkedin_button %></td>
-          <td><%= reddit_button %></td>
-          <td><%= tumblr_button %></td>
-        </tr>
-      </table>
+      <hr/>
+        <table width="70%" class="shareable"%>
+          <tr>
+            <td><%= facebook_button %></td>
+            <td><%= twitter_button %></td>
+            <td><%= google_plus_button %></td>
+            <td><%= linkedin_button %></td>
+            <td><%= reddit_button %></td>
+            <td><%= tumblr_button %></td>
+          </tr>
+        </table>
       <div class='copyright'>
         © Copyright 2015 Pablo Ledesma.
       </div>
