@@ -1,13 +1,13 @@
 User.create(
-    email: 'pablo.ledesma.p@gmail.com',
-    username: 'Pablo',
-    password: '923138334',
+    email: "pablo.ledesma.p@gmail.com",
+    username: "Pablo",
+    password: "923138334",
     phone_number: Faker::Number.number(10),
     gender: "Male"
   )
 
 Bot.create(
-     name: 'Louisa',
+     name: "Louisa",
      gender: "Female",
      eye_color: "Green",
      hair_color: "Blonde",

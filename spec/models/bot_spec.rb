@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Bot, type: :model do
   it { should belong_to(:user) }
@@ -23,7 +23,7 @@ RSpec.describe Bot, type: :model do
 
   before(:each) do
     Bot.create(
-      name: 'Louisa',
+      name: "Louisa",
       gender: "Female",
       eye_color: "Green",
       hair_color: "Blonde",
@@ -49,8 +49,8 @@ RSpec.describe Bot, type: :model do
     interaction3 = Interaction.create(
       category: "Keyword",
       sentiment: "Positive",
-      keyword1: 'cars',
-      response: 'I like cars too',
+      keyword1: "cars",
+      response: "I like cars too",
       user: user
     )
 
@@ -79,7 +79,6 @@ RSpec.describe Bot, type: :model do
       response: "I love pork but I prefer chicken",
       user: user
     )
-
 
     BotsInteraction.create(
       bot: bot,
@@ -153,5 +152,4 @@ RSpec.describe Bot, type: :model do
       expect(bot.sentiment?(message)).to eq("Positive")
     end
   end
-
 end
