@@ -64,25 +64,26 @@ class Bot < ActiveRecord::Base
   def sentiment?(message)
     Indico.api_key = ENV["INDICO"]
     if Indico.sentiment_hq(message) > 0.65
-      "Positive"
+      sentiment = "Positive"
     elsif Indico.sentiment_hq(message) >= 0.25
-      "Neutral"
+      sentiment ="Neutral"
     else
-      "Negative"
+      sentiment ="Negative"
     end
+    sentiment
   end
-  
+
   def right_answer(message)
     bot_interactions = self.interactions
-    keywords = message.split(/\W+/)
+    words = message.split(/\W+/)
     new_response = ""
 
     bot_interactions.each do |interaction|
       if interaction.sentence == message
         new_response = interaction.response
-      elsif keywords.include?(interaction.keyword1) && interaction.keyword2.nil? && interaction.sentiment == sentiment?(message)
+      elsif words.include?(interaction.keyword1) && interaction.keyword2.nil? #&& interaction.sentiment == sentiment?(message)
         new_response = interaction.response
-      elsif keywords.include?(interaction.keyword1) && keywords.include?(interaction.keyword2) && interaction.sentiment == sentiment?(message)
+      elsif words.include?(interaction.keyword1) && words.include?(interaction.keyword2) # && interaction.sentiment == sentiment?(message)
         new_response = interaction.response
       end
     end
