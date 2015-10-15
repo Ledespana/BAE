@@ -89,7 +89,7 @@ class Bot < ActiveRecord::Base
         if interaction.sentiment == sentiment?(message)
           new_response = interaction.response
         end
-      elsif words.include?(interaction.keyword1) && interaction.keyword2.nil?
+      elsif words.include?(interaction.keyword1) && !interaction.keyword2.present?
         if interaction.sentiment == sentiment?(message)
           new_response = interaction.response
         end

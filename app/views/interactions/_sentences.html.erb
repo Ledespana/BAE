@@ -19,7 +19,7 @@
           <tr>
             <td><%= interaction.sentence %></td>
             <td><%= interaction.response %></td>
-            <% if @user == current_user %>
+            <% if @user == current_user || current_user.role == "Admin" %>
               <td><%= link_to  edit_user_interaction_path(@user, interaction) do %>
                   <i class="fa fa-pencil"></i>
                 <% end%>
@@ -36,7 +36,7 @@
                       <% end %>
                   </td>
               <% end %>
-            <% if @user == current_user %>
+            <% if @user == current_user || current_user.role == "Admin" %>
               <% @user.bots.each do |bot|%>
                 <td><% if !bot.interactions.include?(interaction) %>
                   <%= image_tag bot.avatar %>

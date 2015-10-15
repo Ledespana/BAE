@@ -49,6 +49,7 @@ RSpec.describe Bot, type: :model do
       category: "Keyword",
       sentiment: "Positive",
       keyword1: "cars",
+      keyword2: "",
       response: "I like cars too",
       user: user
     )
