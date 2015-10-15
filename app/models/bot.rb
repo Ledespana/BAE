@@ -29,6 +29,11 @@ class Bot < ActiveRecord::Base
     send_message(user.full_phone_number, welcome_message)
   end
 
+  def update_texts
+    message = "You conversation has been updated"
+    send_message(user.full_phone_number, message)
+  end
+
   def send_message(recipient_phone, body)
     twilio_number = ENV["TWILIO_PHONE_NUMBER"]
     client = Twilio::REST::Client.new(
@@ -64,13 +69,12 @@ class Bot < ActiveRecord::Base
   def sentiment?(message)
     Indico.api_key = ENV["INDICO"]
     if Indico.sentiment_hq(message) > 0.65
-      sentiment = "Positive"
+      "Positive"
     elsif Indico.sentiment_hq(message) >= 0.25
-      sentiment ="Neutral"
+      "Neutral"
     else
-      sentiment ="Negative"
+      "Negative"
     end
-    sentiment
   end
 
   def right_answer(message)
@@ -81,10 +85,14 @@ class Bot < ActiveRecord::Base
     bot_interactions.each do |interaction|
       if interaction.sentence == message
         new_response = interaction.response
-      elsif words.include?(interaction.keyword1) && interaction.keyword2.nil? #&& interaction.sentiment == sentiment?(message)
-        new_response = interaction.response
-      elsif words.include?(interaction.keyword1) && words.include?(interaction.keyword2) # && interaction.sentiment == sentiment?(message)
-        new_response = interaction.response
+      elsif words.include?(interaction.keyword1) && words.include?(interaction.keyword2)
+        if interaction.sentiment == sentiment?(message)
+          new_response = interaction.response
+        end
+      elsif words.include?(interaction.keyword1) && interaction.keyword2.nil?
+        if interaction.sentiment == sentiment?(message)
+          new_response = interaction.response
+        end
       end
     end
 

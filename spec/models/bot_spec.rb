@@ -30,13 +30,12 @@ RSpec.describe Bot, type: :model do
       age: 26,
       user: user
     )
-
+    ##Sentence
     interaction1 = Interaction.create(
       category: "Sentence",
       sentence: "You are great",
       response: "I have a great teacher",
       user: user
-
     )
 
     interaction2 = Interaction.create(
@@ -45,7 +44,7 @@ RSpec.describe Bot, type: :model do
       response: "I think you should get one",
       user: user
     )
-
+    ##keyword
     interaction3 = Interaction.create(
       category: "Keyword",
       sentiment: "Positive",
@@ -63,6 +62,22 @@ RSpec.describe Bot, type: :model do
     )
 
     interaction5 = Interaction.create(
+      category: "Keyword",
+      sentiment: "Positive",
+      keyword1: "pork",
+      response: "I like pork a lot!",
+      user: user
+    )
+
+    interaction6 = Interaction.create(
+      category: "Keyword",
+      sentiment: "Negative",
+      keyword1: "pork",
+      response: "I hate pork!",
+      user: user
+    )
+    ##Combo
+    interaction7 = Interaction.create(
       category: "Combo",
       sentiment: "Positive",
       keyword1: "bikes",
@@ -71,12 +86,30 @@ RSpec.describe Bot, type: :model do
       user: user
     )
 
-    interaction6 = Interaction.create(
+    interaction8 = Interaction.create(
+      category: "Combo",
+      sentiment: "Negative",
+      keyword1: "bikes",
+      keyword2: "cars",
+      response: "I don't like them either",
+      user: user
+    )
+
+    interaction9 = Interaction.create(
       category: "Combo",
       sentiment: "Positive",
       keyword1: "chicken",
       keyword2: "pork",
       response: "I love pork but I prefer chicken",
+      user: user
+    )
+
+    interaction10 = Interaction.create(
+      category: "Combo",
+      sentiment: "Negative",
+      keyword1: "chicken",
+      keyword2: "pork",
+      response: "Me neither!",
       user: user
     )
 
@@ -109,25 +142,47 @@ RSpec.describe Bot, type: :model do
       bot: bot,
       interaction: interaction6
     )
+
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction7
+    )
+
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction8
+    )
+
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction9
+    )
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction10
+    )
   end
 
   describe "right_anwer()" do
-    scenario "the right_answer method should return the right answer for a sentence" do
+    scenario "it should return the right answer for a sentence" do
       message = "You are great"
       expect(bot.right_answer(message)).to eq("I have a great teacher")
     end
 
-    scenario "the right_answer method should return the right answer for a keyword" do
+    scenario "it should return the right answer for a keyword" do
       message = "What do you think about cars?"
       expect(bot.right_answer(message)).to eq("I like cars too")
     end
 
-    scenario "the right_answer method should return the right answer for a combo" do
+    scenario "it should return the right answer for a combo" do
       message = "What do you think about cars and bikes?"
       expect(bot.right_answer(message)).to eq("I prefer cars")
+
+       message = "I love pork and chicken"
+       expect(bot.right_answer(message)).to eq("I love pork but I prefer chicken")
     end
 
-    scenario "the right_answer method should return the right answer for a keyword that also exists for a combo" do
+    scenario "it should return the right answer for a keyword that also exists for a combo" do
       message = "I like cars, What do you think about cars?"
       expect(bot.right_answer(message)).to eq("I like cars too")
 
@@ -136,18 +191,41 @@ RSpec.describe Bot, type: :model do
     end
   end
 
+  describe "Indico API" do
+    scenario "it should return the right answer depending of the sentiment" do
+      message = "I don't like pork"
+      expect(bot.right_answer(message)).to eq("I hate pork!")
+
+      message = "I love pork"
+      expect(bot.right_answer(message)).to eq("I like pork a lot!")
+
+      message = "I don't like pork either chicken"
+      expect(bot.right_answer(message)).to eq("Me neither!")
+
+      message = "I like pork either chicken"
+      expect(bot.right_answer(message)).to eq("I love pork but I prefer chicken")
+
+      message = "I like cars and bikes"
+      expect(bot.right_answer(message)).to eq("I prefer cars")
+
+      message = "I don't like cars neither bikes"
+      expect(bot.right_answer(message)).to eq("I don't like them either")
+
+    end
+  end
+
   describe "sentiment?()" do
-    scenario "the sentiment? method should return possitive if the indico score is higher than 0.65" do
+    scenario "it should return possitive if the indico score is higher than 0.65" do
       message = "I don't like pork"
       expect(bot.sentiment?(message)).to eq("Negative")
     end
 
-    scenario "the sentiment? method should return neutral if the indico score is higher or equal than 0.25" do
+    scenario "it should return neutral if the indico score is higher or equal than 0.25" do
       message = "pork is an animal"
       expect(bot.sentiment?(message)).to eq("Neutral")
     end
 
-    scenario "the sentiment? method should return possitive if the indico score is lower than 0.65" do
+    scenario "it should should return possitive if the indico score is lower than 0.65" do
       message = "I love pork"
       expect(bot.sentiment?(message)).to eq("Positive")
     end
