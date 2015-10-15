@@ -6,11 +6,14 @@
         <th width="250">Response</th>
         <% if current_user %>
           <th width="100">Actions</th>
-          <% if @user == current_user %>
+          <% if @user == current_user%>
             <% @user.bots.each do |bot|%>
               <th width="100"><%= bot.name %></th>
               <% end %>
             <% end %>
+          <% end %>
+          <% if current_user && @user.role == "Admin" %>
+            <th>Admin Vocabulary</th>
           <% end %>
       </tr>
     </thead>
@@ -19,7 +22,7 @@
           <tr>
             <td><%= interaction.sentence %></td>
             <td><%= interaction.response %></td>
-            <% if @user == current_user || current_user.role == "Admin" %>
+            <% if @user == current_user || (current_user && @user.role == "Admin") %>
               <td><%= link_to  edit_user_interaction_path(@user, interaction) do %>
                   <i class="fa fa-pencil"></i>
                 <% end%>
@@ -28,29 +31,41 @@
                 <% end%>
               </td>
               <% elsif current_user %>
-                  <td><%= form_for [current_user, Interaction.new ] do |f| %>
-                        <%= f.text_field :category, value: interaction.category, type:"hidden" %>
-                        <%= f.text_field :sentence, value: interaction.sentence, type:"hidden" %>
-                        <%= f.text_field :response, value: interaction.response, type:"hidden" %>
-                        <%= f.submit "Add", class: "button expand"  %>
-                      <% end %>
+                  <td>
+                    <%= form_for [current_user, Interaction.new ] do |f| %>
+                      <%= f.text_field :category, value: interaction.category, type:"hidden" %>
+                      <%= f.text_field :sentence, value: interaction.sentence, type:"hidden" %>
+                      <%= f.text_field :response, value: interaction.response, type:"hidden" %>
+                      <%= f.submit "Add", class: "button expand"  %>
+                    <% end %>
                   </td>
               <% end %>
-            <% if @user == current_user || current_user.role == "Admin" %>
+            <% if @user == current_user  %>
               <% @user.bots.each do |bot|%>
-                <td><% if !bot.interactions.include?(interaction) %>
-                  <%= image_tag bot.avatar %>
-                  <%= form_for [bot, BotsInteraction.new] do |f| %>
-                        <%= f.text_field :interaction_id, value: interaction.id, type:"hidden" %>
-                        <%= f.text_field :bot_id, value: bot.id, type:"hidden" %>
-                        <%= f.submit "Add", class: "button small expand" %>
-                      <% end %>
-                  <% else %>
-                  <%= image_tag bot.avatar %>
-                  <%= link_to 'Remove', bot_bots_interaction_path(bot, interaction), data: { confirm: "Are you sure?" }, method: :delete, class: 'button small expand' %>
+                <td>
+                  <% if !bot.interactions.include?(interaction) %>
+                    <%= image_tag bot.avatar %>
+                    <%= form_for [bot, BotsInteraction.new] do |f| %>
+                      <%= f.text_field :interaction_id, value: interaction.id, type:"hidden" %>
+                      <%= f.text_field :bot_id, value: bot.id, type:"hidden" %>
+                      <%= f.submit "Add", class: "button small expand" %>
                   <% end %>
+            <% else %>
+              <%= image_tag bot.avatar %>
+              <%= link_to 'Remove', bot_bots_interaction_path(bot, interaction), data: { confirm: "Are you sure?" }, method: :delete, class: 'button small expand' %>
+            <% end %>
                 </td>
               <% end %>
+            <% end %>
+            <% if current_user && @user.role == "Admin" %>
+              <td>
+                <%= form_for [current_user, Interaction.new ] do |f| %>
+                  <%= f.text_field :category, value: interaction.category, type:"hidden" %>
+                  <%= f.text_field :sentence, value: interaction.sentence, type:"hidden" %>
+                  <%= f.text_field :response, value: interaction.response, type:"hidden" %>
+                  <%= f.submit "Add", class: "button expand"  %>
+                <% end %>
+              </td>
             <% end %>
         <% end %>
         </tr>

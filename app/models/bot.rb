@@ -15,9 +15,9 @@ class Bot < ActiveRecord::Base
   validates :user_id, presence: true
 
   UNKNOWN_MESSAGE = [
-    "I'm not sure what you mean",
-    "mm..a...What do you mean?",
-    "I don't understand what you are saying but you are great anyway :)"
+    "I'm not sure what you mean, maybe you want to add more vocabulary https://protected-sands-5404.herokuapp.com ",
+    "mm..a...What do you mean?, maybe you want to add more vocabulary https://protected-sands-5404.herokuapp.com ",
+    "I don't understand what you are saying but you are great anyway :), maybe you want to add more vocabulary https://protected-sands-5404.herokuapp.com "
   ]
 
   def avatar
@@ -102,5 +102,4 @@ class Bot < ActiveRecord::Base
       new_response
     end
   end
-
 end
