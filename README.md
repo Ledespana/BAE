@@ -3,6 +3,8 @@
 [![Code Climate](https://codeclimate.com/github/ledes/BAE/badges/gpa.svg)](https://codeclimate.com/github/ledes/BAE)
 [![Coverage Status](https://coveralls.io/repos/ledes/BAE/badge.svg?branch=master&service=github)](https://coveralls.io/github/ledes/BAE?branch=master)
 
+* Ruby version
+  2.2.3
 
 * Description
 
