@@ -36,36 +36,14 @@
 
 
             <% unless current_user.bots.empty? %>
-              <li class="has-dropdown">
-              <%= link_to 'BAEs', user_path(current_user) %>
-
-                <ul class="dropdown">
-                  <li><label><%= current_user.bots.first.name %></label></li>
-                  <li><%= link_to 'Profile', user_bot_path(current_user, current_user.bots.first)  %></li>
-
-                  <% if current_user.bots.length >= 2 %>
-                    <li class="divider"></li>
-                    <li><label><%= current_user.bots[1].name %></label></li>
-                    <li><%= link_to 'Profile', user_bot_path(current_user, current_user.bots[1])  %></li>
-                    <li class="divider"></li>
-                    <li><%= link_to 'See all →', user_path(current_user) %></li>
-                  <% end %>
-                  <% if current_user.bots.count < 3 %>
-                    <li class="divider"></li>
-                    <li><%= link_to 'Create new BAE', new_bot_path %></li>
-                  <% end %>
-                </ul>
-                </li>
-                <% else %>
-
+              <li><%= link_to current_user.bots[0].name, user_bot_path(current_user, current_user.bots[0])  %></li>
+            <% else %>
               <li class="divider"></li>
               <li><%= link_to 'Create new BAE', new_bot_path %></li>
-            <% end %>
+              <% end %>
           <% end %>
 
           <%- if !current_user -%>
-            <li class="divider"></li>
-            <li><%= link_to 'About BAE', new_user_registration_path %></li>
             <li class="divider"></li>
             <li><%= link_to 'Sign in', new_user_session_path %></li>
             <li class="divider"></li>

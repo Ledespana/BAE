@@ -20,7 +20,7 @@ class BotsController < ApplicationController
   def create
     @user = current_user
     @bot = @user.bots.new(bot_params)
-    if @user.bots.count == 3
+    if @user.bots.count == 1
       flash[:notice] = "You have reached the limits of BAEs"
       redirect_to user_path(current_user)
     else
