@@ -24,7 +24,10 @@ feature "user creates a bot", %{
   end
 
   scenario "user creates a bot" do
-    user = FactoryGirl.create(:user, phone_number: ENV["TWILIO_PHONE_NUMBER"].sub("+1", ""))
+    user = FactoryGirl.create(
+      :user,
+      phone_number: ENV["TWILIO_PHONE_NUMBER"].sub("+1", "")
+    )
     login(user)
 
     visit new_bot_path
@@ -41,7 +44,10 @@ feature "user creates a bot", %{
   end
 
   scenario "user cannot create more than one bot" do
-    user = FactoryGirl.create(:user, phone_number: ENV["TWILIO_PHONE_NUMBER"].sub("+1", ""))
+    user = FactoryGirl.create(
+      :user,
+      phone_number: ENV["TWILIO_PHONE_NUMBER"].sub("+1", "")
+    )
     bot = FactoryGirl.create(:bot, user: user)
     login(user)
 
