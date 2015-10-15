@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of(:username) }
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:gender) }
+  it { should validate_presence_of(:role) }
   it { should validate_presence_of(:phone_number) }
   it { should validate_numericality_of(:phone_number) }
   it { should validate_length_of(:phone_number).is_equal_to(10) }

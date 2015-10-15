@@ -13,6 +13,9 @@
               <% end %>
             <% end %>
           <% end %>
+          <% if current_user && @user.role == "Admin" %>
+            <th>Admin Vocabulary</th>
+          <% end %>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +24,7 @@
           <td><%= interaction.sentiment %></td>
           <td><%= interaction.keyword1 %></td>
           <td><%= interaction.response %></td>
-          <% if @user == current_user %>
+          <% if @user == current_user || (current_user && @user.role == "Admin")%>
             <td><%= link_to  edit_user_interaction_path(@user, interaction) do %>
                 <i class="fa fa-pencil"></i>
               <% end%>
@@ -54,6 +57,16 @@
                 <% end %>
               </td>
             <% end %>
+          <% end %>
+          <% if current_user && @user.role == "Admin" %>
+            <td>
+              <%= form_for [@user, Interaction.new ] do |f| %>
+                <%= f.text_field :category, value: interaction.category, type:"hidden" %>
+                <%= f.text_field :sentence, value: interaction.sentence, type:"hidden" %>
+                <%= f.text_field :response, value: interaction.response, type:"hidden" %>
+                <%= f.submit "Add", class: "button expand"  %>
+              <% end %>
+            </td>
           <% end %>
       <% end %>
       </tr>
