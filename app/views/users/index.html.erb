@@ -20,7 +20,6 @@
         <div >
           <li><%= image_tag user.profile_picture, class: 'user-picture' %></li>
           <li><%= link_to user.username, user_path(user) %></li>
-          <li>Number of BAEs: <%= user.bots.count %></li>
           <li>Vocabulary: <%= user.interactions.count  %></li>
         </div>
       </ul>
