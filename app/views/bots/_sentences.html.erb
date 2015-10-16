@@ -1,18 +1,16 @@
-<div class= "small-10 columns">
-  <table>
-    <thead>
+<table>
+  <thead>
+    <tr>
+      <th width="200">Sentence</th>
+      <th width="150">Response</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sentences.each do |interaction| %>
       <tr>
-        <th width="200">Sentence</th>
-        <th width="150">Response</th>
+        <td><%= interaction.sentence %></td>
+        <td><%= interaction.response %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% @sentences.each do |interaction| %>
-        <tr>
-          <td><%= interaction.sentence %></td>
-          <td><%= interaction.response %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>

@@ -1,47 +1,53 @@
+
 <br>
-<div class="row text-center profile panel profile-box">
-  <div class="panel large-4 columns">
-    <% if @user.profile_picture.file %>
-      <p><%= image_tag @user.profile_picture, class: 'user-picture' %></p>
-    <% else %>
-      <p><%= image_tag "noprofile.png", class: 'user-picture' %></p>
-    <% end %>
-    <h1><%= @user.username %></h1>
-    <div class='row'>
-      <div class="large-12 columns">
-        <ul class= "button-group">
-          <li><%= link_to 'Vocabulary', user_interactions_path(@user), class: 'button small' %></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="large-8 columns">
-    <ul>
-      <% if @user.description %>
-        <li><%= @user.description %></li>
+  <div class="row text-center profile panel profile-box">
+    <div class="panel large-8 columns">
+      <% if @user.profile_picture.file %>
+        <p><%= image_tag @user.profile_picture, class: 'user-picture' %></p>
+      <% else %>
+        <p><%= image_tag "noprofile.png", class: 'user-picture' %></p>
       <% end %>
-      <li>Gender: <%= @user.gender %></li>
-      <li>Number of BAEs: <%= @user.bots.count %></li>
-      <li>Vocabulary: <%= @user.interactions.count %></li>
-    </ul>
-  </div>
-</div>
-<div class="row text-center profile panel profile-box">
-  <h3>List of BAEs</h3>
-  <ul>
-    <div class="row text-center">
-    <% @user.bots.each do |bot| %>
-      <div class="small-12 medium-4 columns ">
-        <li><%= image_tag bot.avatar, class: 'bot-avatar'%></li>
-        <div class="wrapper">
-          <label><%= bot.name %></label>
-          <%= link_to 'Profile', user_bot_path(@user, bot), class: 'inside' %>
-          <% if @user == current_user %>
-            <%= link_to 'Edit', edit_bot_path(bot), class: 'inside' %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+      <h1><%= @user.username %></h1>
+
+          <ul class= "button-group">
+            <li><%= link_to 'Vocabulary', user_interactions_path(@user), class: 'button small' %></li>
+          </ul>
+
+        <h4>Gender: <%= @user.gender %></h4>
+        <h4>Vocabulary: <%= @user.interactions.count %></h4>
+        <% if @user.description %>
+          <h4>Description:</h4>
+          <p><%= @user.description %></p>
+        <% end %>
     </div>
+
+
+    <div class="text-center profile panel profile-box bot_box">
+
+      <% if @user.bots.count > 0 %>
+      <h2>BAE</h2>
+      </br>
+      <ul>
+        <div class="row text-center">
+          <div class="large-4 columns">
+            <li><%= image_tag @bot.avatar, class: 'bot-avatar'%></li>
+            <div class="wrapper">
+              <label><%= @bot.name %></label>
+              <%= link_to 'Profile', user_bot_path(@user, @bot), class: 'inside' %>
+              <% if @user == current_user %>
+                <%= link_to 'Edit', edit_bot_path(@bot), class: 'inside' %>
+              <% end %>
+            </div>
+
+          <% if @bot.description.present?  %>
+            <h4>Description:</h4>
+            <p><%= @bot.description %></p>
+          <% end %>
   </ul>
+  <% end %>
+
+
+</div>
+</div>
+</div>
 </div>

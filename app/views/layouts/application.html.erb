@@ -76,16 +76,17 @@
     <%= javascript_include_tag 'application' %>
     <%= yield :extra_footer %>
 
+  <div class="large-12 small-centered columns">
     <footer class="row text-center">
       <hr/>
-        <table width="70%" class="shareable"%>
-          <tr>
+        <table class="shareable text-center large-12 small-6 columns" style="border: none;">
+          <tr class="text-center">
             <td><%= facebook_button %></td>
             <td><%= twitter_button %></td>
             <td><%= google_plus_button %></td>
-            <td><%= linkedin_button %></td>
             <td><%= reddit_button %></td>
             <td><%= tumblr_button %></td>
+            <td><%= linkedin_button %></td>
           </tr>
         </table>
       <div class='copyright'>
@@ -93,5 +94,6 @@
       </div>
 
     </footer>
+  </div>
   </body>
 </html>

@@ -30,7 +30,7 @@ feature "Visitor sees a list of all the users", %(
     visit users_path
     click_on(user1.username)
     expect(page).to have_content(user1.username)
-    expect(page).to have_content("List of BAEs")
+    expect(page).to have_content("Description")
   end
 
   scenario "user sees a maximum of 12 users per page" do
