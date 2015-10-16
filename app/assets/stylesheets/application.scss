@@ -18,6 +18,7 @@
 
 //paletee of colors #C63D0F #3B3738 #fdf3e7 #7E8F7C //
 
+//General
 .login-in {
   padding-top: 8%;
 }
@@ -29,26 +30,53 @@ body {
 .bot-avatar {
   border: 6px solid #C63D0F;
   border-radius: 1000px;
-  height: 50%;
-  width: 50%;
+  height: auto;
+  width: 80%;
 }
 
 .user-picture {
   border: 5px solid #3B3738;
   border-radius: 800px;
-  height: 200px;
-  width: 200px;
+  height: auto;
+  width: 65%;
 }
 
 .profile-box {
   background-color: #fdf3e7;
   color: #3B3738;
+  border-style: none;
+
 }
 
 li {
   list-style-type: none;
 }
 
+.bot_box {
+  margin-top: 15%;
+  padding: 2%;
+}
+
+.interaction-box {
+  background-color: #fdf3e7;
+  color: #3B3738;
+  border-style: none;
+}
+
+.vocabulary_box {
+  margin-top: 10%;
+  padding: 2%;
+}
+
+.avatar_table {
+  height: auto;
+  width: 15%;
+}
+
+.bot_tables {
+  padding: 2%;
+  margin: 5%;
+}
 //Buttons for adding  vocabulary//
 
 .wrapper {
@@ -134,4 +162,16 @@ input[data-toggle]:checked + label:active {
 //Shareable bar
 .shareable {
   background-color: #fdf3e7;
+}
+.shareable td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.user_description {
+  padding-top: 20%;
+}
+
+.bae_description {
+  padding-top: 8%;
 }

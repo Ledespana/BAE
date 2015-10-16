@@ -1,4 +1,3 @@
-<div class= "small-10 columns">
   <table>
     <thead>
       <tr>
@@ -45,16 +44,17 @@
             <% end %>
             <% if @user == current_user %>
               <% @user.bots.each do |bot|%>
-                <td><% if !bot.interactions.include?(interaction) %>
-                  <%= image_tag bot.avatar %>
-                  <%= form_for [bot, BotsInteraction.new] do |f| %>
-                        <%= f.text_field :interaction_id, value: interaction.id, type:"hidden" %>
-                        <%= f.text_field :bot_id, value: bot.id, type:"hidden" %>
-                        <%= f.submit "Add", class: "button small expand" %>
-                      <% end %>
-                  <% else %>
-                  <%= image_tag bot.avatar %>
-                  <%= link_to 'Remove', bot_bots_interaction_path(bot, interaction), data: { confirm: "Are you sure?" }, method: :delete, class: 'button small expand' %>
+                <td class= "avatar_table">
+                  <% if !bot.interactions.include?(interaction) %>
+                    <%= image_tag bot.avatar %>
+                    <%= form_for [bot, BotsInteraction.new] do |f| %>
+                          <%= f.text_field :interaction_id, value: interaction.id, type:"hidden" %>
+                          <%= f.text_field :bot_id, value: bot.id, type:"hidden" %>
+                          <%= f.submit "Add", class: "button small expand" %>
+                        <% end %>
+                    <% else %>
+                    <%= image_tag bot.avatar %>
+                    <%= link_to 'Remove', bot_bots_interaction_path(bot, interaction), data: { confirm: "Are you sure?" }, method: :delete, class: 'button small expand' %>
                   <% end %>
                 </td>
               <% end %>
@@ -76,4 +76,3 @@
         </tr>
     </tbody>
   </table>
-</div>

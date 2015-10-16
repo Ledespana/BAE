@@ -49,7 +49,7 @@ class Bot < ActiveRecord::Base
 
   def self.reply_body(params)
     message_sender = params[:From]
-    message_body = params[:Body]
+    message_body = params[:Body].downcase
     user = User.find_by(phone_number: message_sender.sub("+1", ""))
 
     reply_body = user.bots[0].right_answer(message_body)

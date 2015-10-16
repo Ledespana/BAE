@@ -25,18 +25,8 @@ feature "user sees his and others profile", %{
     expect(page).to have_content(user.username)
   end
 
-  scenario "user sees my list of bots" do
+  scenario "user sees his bot" do
     visit user_path(user)
     expect(page).to have_content(bot.name)
-  end
-
-  scenario "user sees my list of bots" do
-    visit user_path(user)
-    expect(page).to have_content("Number of BAEs: " + user.bots.count.to_s)
-  end
-
-  scenario "user sees my list of bots"do
-    visit user_path(user)
-    expect(page).to have_content("List of BAEs")
   end
 end

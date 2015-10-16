@@ -11,5 +11,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @bot = @user.bots[0]
   end
 end
