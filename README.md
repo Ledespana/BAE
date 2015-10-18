@@ -60,10 +60,10 @@ Built using modern software development techniques such as TDD and "Fat model, s
 
 * The user message will get an score from 0 to 1 depending of the state of happiness.
   If its less than 0.25 the message will be considered with a "Negative" sentiment.
-  If it between 0.25 and 0.65 the message will be considered with a "Neutral" sentiment.
-  If it grader than 0.65 the message will be considered with a "Positive" sentiment.
+  If its between 0.25 and 0.65 the message will be considered with a "Neutral" sentiment.
+  If its grader than 0.65 the message will be considered with a "Positive" sentiment.
 
-* When a bae gets a response and analyse the sentiment, it will look through the user's message for a whole sentence, a keyword or a combination of keywords in the database in order to give the response attached to that specific interaction found with the same sentiment.
+* When a bae gets a response and analyses the sentiment, it will look through the user's message for a whole sentence, a keyword or a combination of keywords in the database in order to give the response attached to that specific interaction found with the same sentiment.
 
 ### Dream list of features
 
