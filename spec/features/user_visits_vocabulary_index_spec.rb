@@ -8,11 +8,11 @@ feature "User sees his vocabulary index page", %(
   Acceptance Criteria
   [X] I must see the list of all the interactions
   [X] I must be able to hide tables depending of the category of the interaction
-  [ ] I must be able to have a link that it will send the user to new_interaction_path
-  [ ] I must be able to have a link that it will send the user to edit_interaction_path
-  [ ] I must be able to delete any interaction
-  [ ] I must be able to visit other users interactions index page
-  [ ] I must be able to add any interaction from other users interactions index page
+  [X] I must have a link that it will send the user to new_interaction_path
+  [X] I must have a link that it will send the user to edit_interaction_path
+  [X] I must be able to delete any interaction
+  [X] I must be able to visit other users interactions index page
+  [X] I must be able to add any interaction from other users interactions index page
 
 ) do
   let!(:user) { FactoryGirl.create(:user) }
