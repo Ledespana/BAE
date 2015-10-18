@@ -7,8 +7,7 @@ feature "Visitor sees a list of all the users", %(
 
   Acceptance Criteria
   [X] I must see the list of all the users
-  [] For each user I must see: his avatar, number of BAES
-  and Total of Vocabulary
+  [X] For each user I must see: his avatar and Total of Vocabulary
   [X] I must be able to click on a user an see his show page
   [X] I must be able to search for a specific user
 ) do
