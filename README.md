@@ -3,15 +3,26 @@
 [![Code Climate](https://codeclimate.com/github/ledes/BAE/badges/gpa.svg)](https://codeclimate.com/github/ledes/BAE)
 [![Coverage Status](https://coveralls.io/repos/ledes/BAE/badge.svg?branch=master&service=github)](https://coveralls.io/github/ledes/BAE?branch=master)
 
+
 ### Ruby version
 
 *2.2.3*
+
+#### Technical Specifications
+
+  - Ruby on Rails
+  - PostgreSQL
+  - Javascript/JQuery
+  - HTML
+  - SASS
+  - Twilio API
+  - Indico API
 
 ###  Description
 
 BAE is a platform for users to create a personalized bot(bae) that maintains a conversation with the user over the phone. By implementing an algorithm and database, the bot interprets the user’s texts and responds with the perfect answer for the user and his state of happiness.
 
-Built using modern software development techniques such as TDD and "Fat model, skinny controller". Languages used were Ruby, JavaScript and SQL. Software and tools were Ruby on Rails, TDD, Github, Twilio, Indico, and PostgreSQL.
+Built using modern software development techniques such as TDD and "Fat model, skinny controller".
 
 [Click Here To View Storyboard](https://trello.com/b/nSJUDmf7/bae)
 
@@ -19,7 +30,7 @@ Built using modern software development techniques such as TDD and "Fat model, s
 
 ###  ER Diagram
 
-[Imgur](http://i.imgur.com/Jk84Cfd.png)
+![ER Diagram](http://i.imgur.com/Jk84Cfd.png)
 
 ### Features
 
@@ -62,6 +73,9 @@ This is a list of features that I would like to implement in the future.
 
 * User can create more than one bae
 
+* Improve algorithm for text messages with several keywords included.
+  Add feature to prioritize different keywords
+
 * A user can follow other users
 
 * User can talk to his BAE and other BAEs from the website. So any user can try BAEs from other users
@@ -80,3 +94,18 @@ This is a list of features that I would like to implement in the future.
 
 
 ###  Challenges Faced
+
+Among all the challenges faced while I was building this application,
+implementing the Twilio API for fast responses was the most important one.
+
+While creating the algorithm that delivers responses to the users, I found an inconsistence in the response. I realize that I had to improve my code to make it fast.
+
+The difficulties finding the reason were mainly because of the lack of possible tests in a local environment. At the very begining, the only way to check if the Twilio API for creating responses was working was to push to heroku for every change in the algorithm. This was due the twilio API.
+Trying to find a way to do it from localhost, I found [ngrok](https://ngrok.com/). Ngrok allowed me to expose a web server running on my local machine to the internet.
+
+Even though this was working I found myself using heroku better due to the specific information
+that I was getting from the command *heroku logs --tail*
+
+After improving the algorithm and adding an index to the schema in order to improve the speed for finding the right response, I found myself with a very effient app, being solved my main problem of inconsistence.
+
+Due to the nature of the app, the biggest the database is the more real the app can be. It is worth to implement in the future a *worker* and a *binary/binary recursive search algorithm* to increase the speed of the app.
