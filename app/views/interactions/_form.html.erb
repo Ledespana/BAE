@@ -1,14 +1,11 @@
-
 <%= form_for [@user, @interaction] do |f| %>
 <div class="large-6 large-centered columns panel">
     <div class="login-box">
       <div class="row">
         <div class="large-12 columns">
-          <div class="large-12 columns">
             <div class="field">
               <%= f.label :category %>
               <%= f.select :category,['Sentence', 'Keyword', 'Combo'], id: 'category', class: 'category' %>
-            </div>
             </div>
             <div class="large-12 columns combo">
               <div class="field">
@@ -41,7 +38,7 @@
                 <%= f.submit "Submit", class: "button expand" %>
               </div>
             </div>
-          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

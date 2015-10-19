@@ -34,7 +34,6 @@
             <li><%= link_to 'Vocabulary', user_interactions_path(current_user) %></li>
             <li class="divider"></li>
 
-
             <% unless current_user.bots.empty? %>
               <li><%= link_to current_user.bots[0].name, user_bot_path(current_user, current_user.bots[0])  %></li>
             <% else %>

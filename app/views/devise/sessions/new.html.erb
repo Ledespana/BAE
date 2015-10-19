@@ -1,40 +1,34 @@
 <div class='row text-center'>
   <h2>Sign in</h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="large-6 large-centered columns panel">
+  <div class="large-6 large-centered columns panel">
       <div class="login-box">
         <div class="row">
           <div class="large-12 columns">
-              <div class="row">
-                 <div class="large-12 columns">
-                    <div class="field">
-                      <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
-                    </div>
-                  </div>
-                </div>
-              <div class="row">
-                <div class="large-12 columns">
-                  <div class="field">
-                    <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
-                  </div>
-                </div>
+
+            <div class="field">
+              <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+            </div>
+
+            <div class="field">
+              <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
+            </div>
+
+            <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
               </div>
-              <% if devise_mapping.rememberable? -%>
-                <div class="field">
-                  <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me %>
-                </div>
-              <% end -%>
-              <div class="row">
-                <div class="large-12 columns">
-                  <div class="actions">
-                    <input type="submit" class="button expand" value="Log in"/>
-                  </div>
-                </div>
-              </div>
-              <%= render "devise/shared/links" %>
+            <% end -%>
+
+          <div class="actions">
+            <input type="submit" class="button expand" value="Log in"/>
           </div>
+
+          <%end%>
         </div>
       </div>
-  <%end%>
+    </div>
+    <%= render "devise/shared/links" %>
+  </div>
 </div>

@@ -7,51 +7,49 @@
         <div class="login-box">
           <div class="row">
             <div class="large-12 columns">
-
-                <div class="field">
+              <div class="field">
                 <%= f.text_field :username, autofocus: true, placeholder: 'Username'%>
-                </div>
-                <div class="field">
-                  <%= f.text_area :description, autofocus: true, placeholder: 'Description' %>
-                </div>
+              </div>
+              <div class="field">
+                <%= f.text_area :description, autofocus: true, placeholder: 'Description' %>
+              </div>
 
-                <div class="field">
-                  <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
-                </div>
+              <div class="field">
+                <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+              </div>
 
-                <div class="field">
-                  <%= f.telephone_field :phone_number, placeholder: "Phone Number (10-digit, no formatting, no '+1')" %>
-                </div>
+              <div class="field">
+                <%= f.telephone_field :phone_number, placeholder: "Phone Number (10-digit, no formatting, no '+1')" %>
+              </div>
 
-                <div class="field">
-                  <%= f.label :gender %><br/>
-                  Male
-                  <%= f.radio_button :gender, 'Male'%>
-                  Female
-                  <%= f.radio_button :gender, 'Female'  %>
-                </div>
+              <div class="field">
+                <%= f.label :gender %><br/>
+                Male
+                <%= f.radio_button :gender, 'Male'%>
+                Female
+                <%= f.radio_button :gender, 'Female'  %>
+              </div>
 
-                <div class="field">
-                  <% if @minimum_password_length %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em>
-                  <% end %><br />
-                  <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
-                </div>
+              <div class="field">
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+              </div>
 
-                <div class="field">
-                  <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation" %>
-                </div>
+              <div class="field">
+                <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation" %>
+              </div>
 
-                <div class="field">
-                  <%= f.label :profile_picture %> 
-                  <%= f.file_field :profile_picture %>
-                </div>
+              <div class="field">
+                <%= f.label :profile_picture %>
+                <%= f.file_field :profile_picture %>
+              </div>
 
-
-                <div class="actions">
-                  <%= f.submit "Sign up", class:"button expand" %>
-                </div>
-              <% end %>
+              <div class="actions">
+                <%= f.submit "Sign up", class:"button expand" %>
+              </div>
+            <% end %>
 
         </div>
       </div>

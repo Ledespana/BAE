@@ -5,13 +5,13 @@
         <th width="250">Response</th>
         <% if current_user %>
           <th width="100">Actions</th>
+
           <% if @user == current_user %>
             <% @user.bots.each do |bot|%>
               <th width="100"><%= bot.name %></th>
             <% end %>
           <% end %>
-        <% end %>
-        <% if current_user %>
+
           <% if current_user.role == "Admin" && @user != current_user %>
             <th>Admin Vocabulary</th>
             <% end %>
