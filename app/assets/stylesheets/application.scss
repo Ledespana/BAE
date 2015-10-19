@@ -19,12 +19,22 @@
 //paletee of colors #C63D0F #3B3738 #fdf3e7 #7E8F7C //
 
 //General
-.login-in {
-  padding-top: 8%;
-}
 
 body {
   background-color: #fdf3e7;
+  font-family: 'Amaranth', sans-serif;
+}
+
+h1 {
+  font-family: 'Amaranth', sans-serif;
+}
+
+.panel {
+  background-color: #fafcfd;
+}
+
+.login-in {
+  padding-top: 8%;
 }
 
 .bot-avatar {
@@ -134,7 +144,7 @@ $success-color: #43ac6a;
 $warning-color: #f08a24;
 $info-color: #a0d3e8;
 
-$selected-color: #fa8072;
+$selected-color: #3B3738;
 
 input[data-toggle] {
   display: none;

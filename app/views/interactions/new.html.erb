@@ -1,50 +1,51 @@
 <div class='row text-center small-10 medium-10' id="interactions_form">
   <h1>Create a new interaction</h1>
-
-  <div class='panel sentence_explanation '>
-    <p>
-      <strong> Adding a sentence:</strong> Your BAE will look for exactly that sentence and it will send back the response
-    </p>
-  </div>
-
-  <div class='panel keyword_explanation '>
-    <p>
-      <strong>Adding a keyword:</strong> Your BAE will look for one keyword and the right sentiment in your text and if it finds it, it will return the response. Make sure to don't use capitals letters unless you want them.
-    </p>
-  </div>
-
-  <div class='panel combo_explanation'>
-    <p>
-      <strong>Adding a combo:</strong> Your BAE will look for a combination of keywords and the right sentiment in your text and if it finds it, it will return the response. Make sure to don't use capitals letters unless you want them.
-    </p>
-  </div>
-
-  <div class='row'>
-    <div class='panel column large-4 small-12'>
+  <div class="large-12 columns">
+    <div class='panel sentence_explanation '>
       <p>
-        Once you create an interaction and added to your BAE, it will be part of that BAE's vocabulary.
-      </p>
-      <p>
-        Your BAE will try to find your sentence, keyword or combination of Keyword in your text messages
-        in order to give you the right response
+        <strong> Adding a sentence:</strong> Your BAE will look for exactly that sentence and it will send back the response
       </p>
     </div>
-    <div class='column large-8 small-12'>
-      <%= render 'form' %>
-    </div>
-  </div>
 
-  <div class='panel'>
-    <h3>Sentiment</h3>
-    <p>
-      Any text message that you send, will receive a score from 0 to 1 depending of your state of happiness.
-      Our software will classify them in <strong>"Possitive"</strong> (more than 0.65),
-      <strong>"Neutral"</strong>(more than 0.25) or <strong>"Negative"</strong>(less than 0.25).
-    </p>
-    <p>
-      If you are adding a keyword or a combination of keyword make sure to know
-      that you are adding them with the right sentiment, so you will get the response
-      only if you are actually in that state of happiness.
-    </p>
+    <div class='panel keyword_explanation '>
+      <p>
+        <strong>Adding a keyword:</strong> Your BAE will look for one keyword and the right sentiment in your text and if it finds it, it will return the response. Make sure to don't use capitals letters unless you want them.
+      </p>
+    </div>
+
+    <div class='panel combo_explanation'>
+      <p>
+        <strong>Adding a combo:</strong> Your BAE will look for a combination of keywords and the right sentiment in your text and if it finds it, it will return the response. Make sure to don't use capitals letters unless you want them.
+      </p>
+    </div>
+
+    <div class='row'>
+      <div class='panel column large-3 small-12'>
+        <p>
+          Once you create an interaction and add it to your BAE, it will be part of that BAE's vocabulary.
+        </p>
+        <p>
+          Your BAE will try to find your sentence, keyword or combination of Keyword in your text messages
+          in order to give you the right response
+        </p>
+      </div>
+      <div class='column large-9 small-12'>
+        <%= render 'form' %>
+      </div>
+    </div>
+
+    <div class='panel'>
+      <h3></strong>Sentiment</strong></h3>
+      <p>
+        Any text message that you send, will receive a score from 0 to 1 depending on your state of happiness.
+        Our software will classify them in <strong>"Possitive"</strong> (more than 0.65),
+        <strong>"Neutral"</strong>(more than 0.25) or <strong>"Negative"</strong>(less than 0.25).
+      </p>
+      <p>
+        If you are adding a keyword or a combination of keyword, make sure to know
+        that you are adding them with the right sentiment, so you will get the response
+        only if you are actually in that state of happiness.
+      </p>
+    </div>
   </div>
 </div>
