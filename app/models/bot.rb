@@ -29,11 +29,6 @@ class Bot < ActiveRecord::Base
     send_message(user.full_phone_number, welcome_message)
   end
 
-  def update_texts
-    message = "You conversation has been updated"
-    send_message(user.full_phone_number, message)
-  end
-
   def send_message(recipient_phone, body)
     twilio_number = ENV["TWILIO_PHONE_NUMBER"]
     client = Twilio::REST::Client.new(
@@ -53,17 +48,7 @@ class Bot < ActiveRecord::Base
     user = User.find_by(phone_number: message_sender.sub("+1", ""))
 
     reply_body = user.bots[0].right_answer(message_body)
-
-    twilio_number = ENV["TWILIO_PHONE_NUMBER"]
-    client = Twilio::REST::Client.new(
-      ENV["TWILIO_ACCOUNT_SID"],
-      ENV["TWILIO_AUTH_TOKEN"]
-    )
-    client.account.messages.create(
-      from: "#{twilio_number}",
-      to: user.full_phone_number,
-      body: reply_body
-    )
+    send_message(user.full_phone_number, reply_body)
   end
 
   def sentiment?(message)
