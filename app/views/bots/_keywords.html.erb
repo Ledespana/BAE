@@ -1,18 +1,18 @@
-  <table>
-    <thead>
+<table>
+  <thead>
+    <tr>
+      <th width="100">Sentiment</th>
+      <th width="100">Keyword</th>
+      <th width="200">Response</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @keywords.each do |interaction| %>
       <tr>
-        <th width="100">Sentiment</th>
-        <th width="100">Keyword</th>
-        <th width="200">Response</th>
+        <td><%= interaction.sentiment %></td>
+        <td><%= interaction.keyword1 %></td>
+        <td><%= interaction.response %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% @keywords.each do |interaction| %>
-        <tr>
-          <td><%= interaction.sentiment %></td>
-          <td><%= interaction.keyword1 %></td>
-          <td><%= interaction.response %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>
