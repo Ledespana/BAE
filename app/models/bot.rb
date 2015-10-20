@@ -25,7 +25,7 @@ class Bot < ActiveRecord::Base
   end
 
   def update_conversation
-    message = "Your conversation has been updated"
+    message = "Sorry for not answering, I'm back :)"
     send_message(user.full_phone_number, message)
   end
 
@@ -52,20 +52,24 @@ class Bot < ActiveRecord::Base
      message_body = params[:Body].downcase
      user = User.find_by(phone_number: message_sender.sub("+1", ""))
 
-     reply_body = user.bots[0].right_answer(message_body)
+     if message_body == "answer me"
+       update_conversation
+     else
+       reply_body = user.bots[0].right_answer(message_body)
 
-     twilio_number = ENV["TWILIO_PHONE_NUMBER"]
-     client = Twilio::REST::Client.new(
-       ENV["TWILIO_ACCOUNT_SID"],
-       ENV["TWILIO_AUTH_TOKEN"]
-     )
-     client.account.messages.create(
-       from: "#{twilio_number}",
-       to: user.full_phone_number,
-       body: reply_body
-     )
+       twilio_number = ENV["TWILIO_PHONE_NUMBER"]
+       client = Twilio::REST::Client.new(
+         ENV["TWILIO_ACCOUNT_SID"],
+         ENV["TWILIO_AUTH_TOKEN"]
+       )
+       client.account.messages.create(
+         from: "#{twilio_number}",
+         to: user.full_phone_number,
+         body: reply_body
+       )
+     end
    end
-   
+
   def sentiment?(message)
     Indico.api_key = ENV["INDICO"]
     if Indico.sentiment_hq(message) > 0.65
