@@ -30,7 +30,7 @@ class Bot < ActiveRecord::Base
   end
 
   def send_welcome_message
-    welcome_message = "Welcome to your new BAE! I'm #{self.name} and I can't wait to talk to you, #{self.user.username}! :)"
+    welcome_message = "Welcome to your new BAE! I'm #{self.name} and I can't wait to talk to you, #{self.user.username}! :) If I don't answer just type 'answer me' and I'll be back"
     send_message(user.full_phone_number, welcome_message)
   end
 
