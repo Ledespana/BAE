@@ -53,7 +53,7 @@ class Bot < ActiveRecord::Base
      user = User.find_by(phone_number: message_sender.sub("+1", ""))
 
      if message_body == "answer me"
-       update_conversation
+       self.update_conversation
      else
        reply_body = user.bots[0].right_answer(message_body)
 
