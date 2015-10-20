@@ -24,7 +24,7 @@ class Bot < ActiveRecord::Base
     gender + "-" + hair_color + "-" + eye_color + ".png"
   end
 
-  def self.update_conversation
+  def update_conversation
     message = "Sorry for not answering, I'm back :)"
     send_message(user.full_phone_number, message)
   end
@@ -53,7 +53,7 @@ class Bot < ActiveRecord::Base
      user = User.find_by(phone_number: message_sender.sub("+1", ""))
 
      if message_body == "answer me"
-       Bot.update_conversation
+       user.bots[0].update_conversation
      else
        reply_body = user.bots[0].right_answer(message_body)
 
