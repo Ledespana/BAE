@@ -106,6 +106,9 @@ Trying to find a way to do it from localhost, I found [ngrok](https://ngrok.com/
 Even though this was working, it was better to use Heroku due to the specific information
 that I was getting from the command *heroku logs --tail*
 
-After improving the algorithm and adding an index to the schema in order to improve the speed for finding the right response, I found that my problem of inconsistency was solved and I had created a more efficient app. 
+After improving the algorithm and adding an index to the schema in order to improve the speed for finding the right response, I found that my problem of inconsistency was solved and I had created a more efficient app.
+
+Also I added a function to reset the conversation so it  continue the conversation in  case a bae takes a long time to reply. This function is displayed by
+a "Reset" button in the bae show page.
 
 Due to the nature of the app, the bigger the database, the more realistic the app can be. It would be worthwhile to implement, in the future, a *worker* and a *binary/binary recursive search algorithm* to increase the speed of the app.
