@@ -53,7 +53,7 @@ class Bot < ActiveRecord::Base
     user = User.find_by(phone_number: message_sender.sub("+1", ""))
 
     reply_body = user.bots[0].right_answer(message_body)
-    send_message(user.full_phone_number, reply_body)
+    self.send_message(user.full_phone_number, reply_body)
   end
 
   def sentiment?(message)
