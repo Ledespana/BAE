@@ -76,6 +76,13 @@ class BotsController < ApplicationController
     end
   end
 
+  def reset
+    @bot = Bot.find(params[:bot_id])
+    @bot.update_conversation
+    flash[:notice] = "Your conversation has been updated"
+    redirect_to :back
+  end
+
   protected
 
   def bot_params

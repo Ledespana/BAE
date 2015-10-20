@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :bots, except: [:show, :index] do
     resources :bots_interactions
+    get '/reset', to: 'bots#reset'
   end
 
 

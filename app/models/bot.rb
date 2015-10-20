@@ -24,6 +24,11 @@ class Bot < ActiveRecord::Base
     gender + "-" + hair_color + "-" + eye_color + ".png"
   end
 
+  def update_conversation
+    message = "Your conversation has been updated"
+    send_message(user.full_phone_number, message)
+  end
+
   def send_welcome_message
     welcome_message = "Welcome to your new BAE! I'm #{self.name} and I can't wait to talk to you, #{self.user.username}! :)"
     send_message(user.full_phone_number, welcome_message)

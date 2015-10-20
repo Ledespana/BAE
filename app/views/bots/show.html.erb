@@ -7,6 +7,7 @@
       <ul class= "button-group">
         <li><%= link_to 'Edit', edit_bot_path(@bot), class: 'button small' %></li>
         <li><%= button_to 'Delete', bot_path(@bot), data: { confirm: "Are you sure?" }, method: :delete, class: 'button small' %></li>
+        <li><%= link_to 'Reset', bot_reset_path(@bot), class: 'button small' %></li>
       </ul>
     <% end %>
       <ul class="stack button-group" data-toggle="buttons-radio">
@@ -24,7 +25,7 @@
         </li>
       </ul>
     </div>
-    
+
     <div class="large-8 columns">
       <h2>Description</h2>
       <ul>

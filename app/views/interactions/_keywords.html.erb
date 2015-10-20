@@ -6,6 +6,7 @@
       <th width="250">Response</th>
       <% if current_user %>
         <th width="100">Actions</th>
+
         <% if @user == current_user %>
           <% @user.bots.each do |bot|%>
             <th width="100"><%= bot.name %></th>
@@ -30,14 +31,15 @@
           <% if @user == current_user || current_user.role == "Admin" %>
             <td><%= link_to  edit_user_interaction_path(@user, interaction) do %>
                 <i class="fa fa-pencil"></i>
-              <% end%>
+              <% end %>
               <%= link_to user_interaction_path(@user, interaction), id: "delete_button", data: { confirm: "Are you sure?" }, method: :delete do %>
                 <i class="fa fa-trash-o"></i>
-              <% end%>
+              <% end %>
             </td>
 
           <% elsif current_user %>
-            <td><%= form_for [current_user, Interaction.new ] do |f| %>
+            <td>
+              <%= form_for [current_user, Interaction.new ] do |f| %>
                   <%= f.text_field :category, value: interaction.category, type:"hidden" %>
                   <%= f.text_field :sentiment, value: interaction.sentiment, type:"hidden" %>
                   <%= f.text_field :keyword1, value: interaction.keyword1, type:"hidden" %>

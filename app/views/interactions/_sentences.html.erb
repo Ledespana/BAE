@@ -19,21 +19,25 @@
       </tr>
     </thead>
     <tbody>
+
       <% @sentences.each do |interaction| %>
           <tr>
             <td><%= interaction.sentence %></td>
             <td><%= interaction.response %></td>
+
             <% if current_user %>
               <% if @user == current_user || current_user.role == "Admin" %>
                 <td><%= link_to  edit_user_interaction_path(@user, interaction) do %>
                     <i class="fa fa-pencil"></i>
-                  <% end%>
+                  <% end %>
                   <%= link_to user_interaction_path(@user, interaction), id: "delete_button", data: { confirm: "Are you sure?" }, method: :delete do %>
                     <i class="fa fa-trash-o"></i>
-                  <% end%>
+                  <% end %>
                 </td>
+
               <% elsif current_user %>
-                  <td><%= form_for [current_user, Interaction.new ] do |f| %>
+                  <td>
+                    <%= form_for [current_user, Interaction.new ] do |f| %>
                         <%= f.text_field :category, value: interaction.category, type:"hidden" %>
                         <%= f.text_field :sentence, value: interaction.sentence, type:"hidden" %>
                         <%= f.text_field :response, value: interaction.response, type:"hidden" %>
@@ -42,6 +46,7 @@
                   </td>
               <% end %>
             <% end %>
+
             <% if @user == current_user %>
               <% @user.bots.each do |bot|%>
                 <td class= "avatar_table">
@@ -59,6 +64,7 @@
                 </td>
               <% end %>
             <% end %>
+
             <% if current_user %>
               <% if current_user.role == "Admin" && @user != current_user %>
                 <td><%= form_for [current_user, Interaction.new ] do |f| %>
