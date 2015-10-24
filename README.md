@@ -28,6 +28,10 @@ Built using modern software development techniques such as TDD and "Fat model, s
 
 [Click Here To View Heroku Application](https://protected-sands-5404.herokuapp.com/)
 
+### Presentation
+
+[![Presentation](http://i.imgur.com/6JMggH9.png)](https://vimeo.com/143484288)
+
 ###  ER Diagram
 
 ![ER Diagram](http://i.imgur.com/Jk84Cfd.png)
