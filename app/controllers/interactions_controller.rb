@@ -20,12 +20,19 @@ class InteractionsController < ApplicationController
     @user = User.find(params[:user_id])
     if current_user
       @interaction = @user.interactions.new(interaction_params)
-      if @interaction.save
-        flash[:notice] = "Interaction created!"
-        redirect_to :back
-      else
-        flash[:errors] = "Something went wrong!"
-        redirect_to :back
+      respond_to do |f|
+        f.html {
+          if @interaction.save
+            flash[:notice] = "Interaction created!"
+            redirect_to :back
+          else
+            flash[:errors] = "Something went wrong!"
+            redirect_to :back
+          end
+        }
+        f.js {
+          @interaction.save
+        }
       end
     else
       flash[:errors] = "You have no permission to do that!"
