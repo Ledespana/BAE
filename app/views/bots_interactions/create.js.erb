@@ -2,10 +2,9 @@
   var addSentence = document.querySelectorAll("#addSentence");
   var deleteSentence = document.querySelectorAll("#deleteSentence");
 
-  if ( $('#sentences').css('hidden') != 'none' ){
-    addSentence[0].classList.add("hidden");
-    deleteSentence[0].classList.remove("hidden");
-  };
+  addSentence[0].classList.add("hidden");
+  deleteSentence[0].classList.remove("hidden");
+
 <% else %>
   alert("Something went wrong");
 <% end %>
