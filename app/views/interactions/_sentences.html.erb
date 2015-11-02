@@ -41,7 +41,7 @@
                         <%= f.text_field :category, value: interaction.category, type:"hidden" %>
                         <%= f.text_field :sentence, value: interaction.sentence, type:"hidden" %>
                         <%= f.text_field :response, value: interaction.response, type:"hidden" %>
-                        <%= f.submit "Add", class: "button expand" %>
+                        <%= f.submit "Add", class: "button expand", id:"addButton"  %>
                       <% end %>
                   </td>
               <% end %>
@@ -73,14 +73,12 @@
 
             <% if current_user %>
               <% if current_user.role == "Admin" && @user != current_user %>
-                <td><%= form_for [current_user, Interaction.new ] do |f| %>
+                <td><%= form_for [current_user, Interaction.new ], remote: true do |f| %>
                   <%= f.text_field :category, value: interaction.category, type:"hidden" %>
-                  <%= f.text_field :sentiment, value: interaction.sentiment, type:"hidden" %>
-                  <%= f.text_field :keyword1, value: interaction.keyword1, type:"hidden" %>
-                  <%= f.text_field :keyword2, value: interaction.keyword2, type:"hidden" %>
+                  <%= f.text_field :sentence, value: interaction.sentence, type:"hidden" %>
                   <%= f.text_field :response, value: interaction.response, type:"hidden" %>
-                  <%= f.submit "Add", class: "button expand"  %>
-                    <% end %>
+                  <%= f.submit "Add", class: "button expand", id:"addButton" %>
+                  <% end %>
                 </td>
               <% end %>
             <% end %>
