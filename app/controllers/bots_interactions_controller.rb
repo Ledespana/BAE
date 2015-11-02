@@ -7,10 +7,10 @@ class BotsInteractionsController < ApplicationController
       f.html {
         if @bots_interaction.save
           flash[:notice] = "Interaction added to #{@bot.name}!"
-           redirect_to :back
+          redirect_to :back
         else
           flash[:errors] = "Something went wrong!"
-           redirect_to :back
+          redirect_to :back
         end
       }
       f.js {
