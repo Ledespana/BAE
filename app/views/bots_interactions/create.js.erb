@@ -1,6 +1,6 @@
 <% if @bots_interaction.persisted? %>
-  var addSentence = document.querySelectorAll("#addSentence");
-  var deleteSentence = document.querySelectorAll("#deleteSentence");
+  var addSentence = document.querySelectorAll("#addSentence" + <%= @bots_interaction.interaction_id %>);
+  var deleteSentence = document.querySelectorAll("#deleteSentence"+  <%= @bots_interaction.interaction_id %>);
 
   addSentence[0].classList.add("hidden");
   deleteSentence[0].classList.remove("hidden");

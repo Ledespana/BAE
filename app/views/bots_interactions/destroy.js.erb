@@ -1,6 +1,5 @@
-var addSentence = document.querySelectorAll("#addSentence");
-var deleteSentence = document.querySelectorAll("#deleteSentence");
-
+var addSentence = document.querySelectorAll("#addSentence" + <%= @interaction.id %>);
+var deleteSentence = document.querySelectorAll("#deleteSentence" + <%=@interaction.id %>);
 
   addSentence[0].classList.remove("hidden");
   deleteSentence[0].classList.add("hidden");

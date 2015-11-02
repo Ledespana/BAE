@@ -55,17 +55,17 @@
                     <%= form_for [bot, BotsInteraction.new], remote: true do |f| %>
                           <%= f.text_field :interaction_id, value: interaction.id, type:"hidden" %>
                           <%= f.text_field :bot_id, value: bot.id, type:"hidden" %>
-                          <%= f.submit "Add", class: "button small expand", id:"addSentence" %>
+                          <%= f.submit "Add", class: "button small expand", id:"addSentence#{interaction.id}" %>
                         <% end %>
-                        <%= link_to 'Remove', bot_bots_interaction_path(bot, interaction), method: :delete, id:"deleteSentence", class: 'button small expand hidden', remote: true %>
+                        <%= link_to 'Remove', bot_bots_interaction_path(bot, interaction), method: :delete, id:"deleteSentence#{interaction.id}", class: 'button small expand hidden', remote: true %>
                     <% else %>
                     <%= image_tag bot.avatar %>
                     <%= form_for [bot, BotsInteraction.new], remote: true do |f| %>
                           <%= f.text_field :interaction_id, value: interaction.id, type:"hidden" %>
                           <%= f.text_field :bot_id, value: bot.id, type:"hidden" %>
-                          <%= f.submit "Add", class: "button small expand hidden", id:"addSentence" %>
+                          <%= f.submit "Add", class: "button small expand hidden", id:"addSentence#{interaction.id}" %>
                         <% end %>
-                    <%= link_to 'Remove', bot_bots_interaction_path(bot, interaction),method: :delete, class: 'button small expand',id:"deleteSentence", remote: true %>
+                    <%= link_to 'Remove', bot_bots_interaction_path(bot, interaction),method: :delete, class: 'button small expand',id:"deleteSentence#{interaction.id}", remote: true %>
                   <% end %>
                 </td>
               <% end %>
