@@ -43,7 +43,7 @@
               <% end %>
           </div>
         </ul>
-      <% else %>
+      <% elsif @user.bots.count == 0 && current_user == @user%>
         </br>
         <ul>
           <div class="row text-center">
