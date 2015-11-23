@@ -11,6 +11,7 @@
 #### Technical Specifications
 
   - Ruby on Rails
+  - Ruby
   - PostgreSQL
   - Javascript/JQuery
   - HTML
