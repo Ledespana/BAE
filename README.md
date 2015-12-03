@@ -26,6 +26,7 @@ BAE is a platform where users can create a personalized bot(bae) that maintains 
 Built using modern software development techniques such as TDD and "Fat model, skinny controller".
 
 [Click Here To View Storyboard](https://trello.com/b/nSJUDmf7/bae)
+[![Click Here To View Storyboard](http://imgur.com/Dv21kzV)](https://trello.com/b/nSJUDmf7/bae)
 
 [Click Here To View Heroku Application](https://protected-sands-5404.herokuapp.com/)
 
