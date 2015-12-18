@@ -1,0 +1,4 @@
+category, sentiment, keyword1, keyword2, sentence, response
+Sentence, , , , why?, You know why...
+Keyword, Positive, hi, , , Hi! How are you?
+Combo, Positive, chicken, pork, ,I love chicken but sometimes pork is the right choice :)
