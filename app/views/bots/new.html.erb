@@ -1,5 +1,64 @@
 <div class='row text-center'>
   <h1>Create a new BAE</h1>
-
-  <%= render 'form' %>
+  <%= form_for @bot do |f| %>
+  <div class="large-6 large-centered columns panel">
+      <div class="login-box">
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="field">
+              <%= f.text_field :name, placeholder: 'Name' %>
+            </div>
+            <div class="large-6 columns">
+              <div class="field">
+                <%= f.label :gender %>
+                <%= f.select :gender, ['Male', 'Female'], placeholder: 'Gender'%>
+              </div>
+            </div>
+            <div class="large-6 columns">
+              <div class="field">
+                <%= f.label :Age %>
+                <%= f.select :age, options_for_select(18..99) %>
+              </div>
+            </div>
+            <div class="large-6 columns">
+              <div class="field">
+                <%= f.label :eye_color %>
+                <%= f.select :eye_color, ['Green', 'Blue', 'Brown', 'Black'] %>
+              </div>
+            </div>
+            <div class="large-6 columns">
+              <div class="field">
+                <%= f.label :hair_color %>
+                <%= f.select :hair_color, ['Black', 'Brown', 'Blonde', 'Red'] %>
+              </div>
+            </div>
+            <div class="large-12 columns">
+              <div class="field">
+                <%= f.text_area :description, placeholder: 'Description' %>
+              </div>
+            </div>
+            <div class="large-12 columns">
+              <p> Your new BAE will have a default vocabulary if you click on any of the following boxes. This are just initial vocabularies, please make sure to add your personalized one in the vocabulary section after your BAE is created.</p>
+              <div class="large-6 columns">
+                <div class="field">
+                  <%= f.label "Sweet vocabulary" %>
+                  <input type="checkbox" id="sweet_vocabulary" name="vocabulary[]" value="sweet_vocabulary"/>
+                </div>
+              </div>
+              <div class="large-6 columns">
+                <div class="field">
+                  <%= f.label "Funny vocabulary" %>
+                  <input type="checkbox" id="funny_vocabulary" name="vocabulary[]" value="funny_vocabulary"/>
+                </div>
+              </div>
+            <div class="large-12 columns">
+              <div class="field">
+                <%= f.submit "Submit", class: "button expand" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

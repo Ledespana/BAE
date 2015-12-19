@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Bot, type: :model do
   it { should belong_to(:user) }
-  it { should have_many(:bots_interactions) }
+  it { should have_many(:bots_interactions).dependent(:destroy)  }
   it { should have_many(:interactions).through(:bots_interactions) }
 
   it { should validate_presence_of :name}
@@ -166,7 +166,7 @@ RSpec.describe Bot, type: :model do
 
   describe "right_anwer()" do
     scenario "it should return the right answer for a sentence" do
-      message = "You are great"
+      message = "you are great"
       expect(bot.right_answer(message)).to eq("I have a great teacher")
     end
 
