@@ -3,7 +3,7 @@ require 'csv'
 
 class Bot < ActiveRecord::Base
   belongs_to :user
-  has_many :bots_interactions
+  has_many :bots_interactions, dependent: :destroy
   has_many :interactions, through: :bots_interactions
 
   validates :name, presence: true
@@ -108,26 +108,30 @@ class Bot < ActiveRecord::Base
     end
   end
 
-  def default_vocabulary
-    csv_text = File.read('default_interactions.csv')
-    csv = CSV.parse(csv_text, :headers => true, col_sep: "/")
-    csv.each do |row|
-      category = row["category"]
-      sentiment = row["sentiment"]
-      keyword1 = row["keyword1"]
-      keyword2 = row["keyword2"]
-      sentence = row["sentence"]
-      response = row["response"]
+  def default_vocabulary(vocabularies)
+    if !vocabularies.nil?
+      vocabularies.each do |vocabulary|
+        csv_text = File.read(vocabulary += ".csv")
+        csv = CSV.parse(csv_text, :headers => true, col_sep: "/")
+        csv.each do |row|
+          category = row["category"]
+          sentiment = row["sentiment"]
+          keyword1 = row["keyword1"]
+          keyword2 = row["keyword2"]
+          sentence = row["sentence"]
+          response = row["response"]
 
-      interaction = Interaction.create(
-        category: category,
-        sentiment: sentiment,
-        keyword1: keyword1,
-        keyword2: keyword2,
-        sentence: sentence,
-        response: response,
-        user_id: self.user.id)
-      BotsInteraction.create(bot_id: self.id, interaction_id: interaction.id)
+          interaction = Interaction.create(
+            category: category,
+            sentiment: sentiment,
+            keyword1: keyword1,
+            keyword2: keyword2,
+            sentence: sentence,
+            response: response,
+            user_id: self.user.id)
+          BotsInteraction.create(bot_id: self.id, interaction_id: interaction.id)
+        end
+      end
     end
   end
 end

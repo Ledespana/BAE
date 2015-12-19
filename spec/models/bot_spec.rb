@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Bot, type: :model do
   it { should belong_to(:user) }
-  it { should have_many(:bots_interactions) }
+  it { should have_many(:bots_interactions).dependent(:destroy)  }
   it { should have_many(:interactions).through(:bots_interactions) }
 
   it { should validate_presence_of :name}

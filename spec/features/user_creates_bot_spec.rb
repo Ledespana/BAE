@@ -64,7 +64,7 @@ feature "user creates a bot", %{
     expect(page).to have_content("You have reached the limits of BAEs")
   end
 
-  scenario "Every new bot will have a default vocabulary" do
+  scenario "A bot will have a default vocabulary if it was selected" do
     user = FactoryGirl.create(
       :user,
       phone_number: ENV["TWILIO_PHONE_NUMBER"].sub("+1", "")
@@ -72,6 +72,9 @@ feature "user creates a bot", %{
     login(user)
     visit new_bot_path
     fill_in "Name", with: "Asia"
+    check('funny_vocabulary')
+    check('sweet_vocabulary')
+
     click_button("Submit")
 
     visit user_bot_path(user, Bot.last)

@@ -25,9 +25,9 @@ class BotsController < ApplicationController
       redirect_to user_path(current_user)
     else
       if @bot.save
-        @bot.default_vocabulary
+        @bot.default_vocabulary(params["vocabulary"])
         @bot.send_welcome_message
-        flash[:notice] = "BAE created!. Each BAE has a initial default vocabulary, make sure to add more!"
+        flash[:notice] = "BAE created!. Each BAE has a initial default vocabulary if you selected one, make sure to add more!"
         redirect_to user_path(current_user)
       else
         flash[:errors] = "Something went wrong!"
