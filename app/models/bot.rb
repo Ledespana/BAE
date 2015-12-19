@@ -111,7 +111,7 @@ class Bot < ActiveRecord::Base
   def default_vocabulary(vocabularies)
     if !vocabularies.nil?
       vocabularies.each do |vocabulary|
-        csv_text = File.read(vocabulary += ".csv")
+        csv_text = File.read(Rails.root.join('app', 'assets', "vocabularies", (vocabulary += ".csv")))
         csv = CSV.parse(csv_text, :headers => true, col_sep: "/")
         csv.each do |row|
           category = row["category"]
