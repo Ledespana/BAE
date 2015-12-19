@@ -1,4 +1,5 @@
 require 'indico'
+require 'csv'
 
 class Bot < ActiveRecord::Base
   belongs_to :user
@@ -104,6 +105,29 @@ class Bot < ActiveRecord::Base
       new_response = UNKNOWN_MESSAGE.shuffle.sample
     else
       new_response
+    end
+  end
+
+  def default_vocabulary
+    csv_text = File.read('default_interactions.csv')
+    csv = CSV.parse(csv_text, :headers => true, col_sep: "/")
+    csv.each do |row|
+      category = row["category"]
+      sentiment = row["sentiment"]
+      keyword1 = row["keyword1"]
+      keyword2 = row["keyword2"]
+      sentence = row["sentence"]
+      response = row["response"]
+
+      interaction = Interaction.create(
+        category: category,
+        sentiment: sentiment,
+        keyword1: keyword1,
+        keyword2: keyword2,
+        sentence: sentence,
+        response: response,
+        user_id: self.user.id)
+      BotsInteraction.create(bot_id: self.id, interaction_id: interaction.id)
     end
   end
 end
