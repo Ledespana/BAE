@@ -82,19 +82,31 @@ class Bot < ActiveRecord::Base
     end
   end
 
+  def change_to_downcase(interaction)
+    if !interaction.sentence.nil?
+      @sentence = interaction.sentence.downcase
+    elsif !interaction.keyword1.nil? && !interaction.keyword2.nil?
+      @keyword1 = interaction.keyword1.downcase
+      @keyword2 = interaction.keyword2.downcase
+    elsif !interaction.keyword1.nil?
+      @keyword1 = interaction.keyword1.downcase
+    end
+  end
+
   def right_answer(message)
     bot_interactions = self.interactions
     words = message.split(/\W+/)
     new_response = ""
 
     bot_interactions.each do |interaction|
-      if interaction.sentence == message
+      change_to_downcase(interaction)
+      if @sentence == message
         new_response = interaction.response
-      elsif words.include?(interaction.keyword1) && words.include?(interaction.keyword2)
+      elsif words.include?(@keyword1) && words.include?(@keyword2)
         if interaction.sentiment == sentiment?(message)
           new_response = interaction.response
         end
-      elsif words.include?(interaction.keyword1) && !interaction.keyword2.present?
+      elsif words.include?(@keyword1) && !@keyword2.present?
         if interaction.sentiment == sentiment?(message)
           new_response = interaction.response
         end
@@ -110,6 +122,7 @@ class Bot < ActiveRecord::Base
 
   def default_vocabulary(vocabularies)
     if !vocabularies.nil?
+      vocabularies << "default"
       vocabularies.each do |vocabulary|
         csv_text = File.read(Rails.root.join('app', 'assets', "vocabularies", (vocabulary += ".csv")))
         csv = CSV.parse(csv_text, :headers => true, col_sep: "/")

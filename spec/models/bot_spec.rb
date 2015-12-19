@@ -166,7 +166,7 @@ RSpec.describe Bot, type: :model do
 
   describe "right_anwer()" do
     scenario "it should return the right answer for a sentence" do
-      message = "You are great"
+      message = "you are great"
       expect(bot.right_answer(message)).to eq("I have a great teacher")
     end
 
