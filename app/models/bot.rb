@@ -82,43 +82,38 @@ class Bot < ActiveRecord::Base
     end
   end
 
-  def change_to_downcase(interaction)
-    if !interaction.sentence.nil?
-      @sentence = interaction.sentence.downcase
-    elsif !interaction.keyword1.nil? && !interaction.keyword2.nil?
-      @keyword1 = interaction.keyword1.downcase
-      @keyword2 = interaction.keyword2.downcase
-    elsif !interaction.keyword1.nil?
-      @keyword1 = interaction.keyword1.downcase
-    end
-  end
 
-  def right_answer(message)
-    bot_interactions = self.interactions
-    words = message.split(/\W+/)
-    new_response = ""
+   def right_answer(message)
+     bot_interactions = self.interactions
+     words = message.split(/\W+/)
+     new_response = ""
 
-    bot_interactions.each do |interaction|
-      change_to_downcase(interaction)
-      if @sentence == message
-        new_response = interaction.response
-      elsif words.include?(@keyword1) && words.include?(@keyword2)
-        if interaction.sentiment == sentiment?(message)
-          new_response = interaction.response
-        end
-      elsif words.include?(@keyword1) && !@keyword2.present?
-        if interaction.sentiment == sentiment?(message)
-          new_response = interaction.response
-        end
-      end
-    end
+     bot_interactions.each do |interaction|
+       if interaction.sentence.present?
+         if interaction.sentence.downcase == message
+           new_response = interaction.response
+         end
+       elsif interaction.keyword1.present? && interaction.keyword2.present?
+         if words.include?(interaction.keyword1.downcase) && words.include?(interaction.keyword2.downcase)
+           if interaction.sentiment == sentiment?(message)
+             new_response = interaction.response
+           end
+         end
+       elsif interaction.keyword1.present?
+         if words.include?(interaction.keyword1.downcase) && !interaction.keyword2.present?
+           if interaction.sentiment == sentiment?(message)
+             new_response = interaction.response
+           end
+         end
+       end
+     end
 
-    if new_response == ""
-      new_response = UNKNOWN_MESSAGE.shuffle.sample
-    else
-      new_response
-    end
-  end
+     if new_response == ""
+       new_response = UNKNOWN_MESSAGE.shuffle.sample
+     else
+       new_response
+     end
+   end
 
   def default_vocabulary(vocabularies)
     if !vocabularies.nil?

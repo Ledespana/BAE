@@ -23,4 +23,16 @@ class Interaction < ActiveRecord::Base
     end
   end
 
+  def self.values_to_downcase(params)
+    if !params["interaction"]["sentence"].nil?
+      params["interaction"]["sentence"].downcase!
+    elsif !params["interaction"]["keyword1"].nil? && !params["interaction"]["keyword2"].nil?
+      params["interaction"]["keyword1"].downcase!
+      params["interaction"]["keyword2"].downcase!
+    elsif !params["interaction"]["keyword1"].nil?
+      params["interaction"]["keyword1"].downcase!
+    end
+  end
+
+
 end

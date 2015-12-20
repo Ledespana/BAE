@@ -20,6 +20,7 @@ class InteractionsController < ApplicationController
     @user = User.find(params[:user_id])
     if current_user
       @interaction = @user.interactions.new(interaction_params)
+
       respond_to do |f|
         f.html {
           if @interaction.save
@@ -58,6 +59,7 @@ class InteractionsController < ApplicationController
     @user = User.find(params[:user_id])
 
     if current_user == User.find(params[:user_id]) || current_user.role == "Admin"
+
       if @interaction.update_attributes(interaction_params)
         flash[:success] = "Interaction edited successfully!"
         redirect_to user_interactions_path(@user)
@@ -87,6 +89,8 @@ class InteractionsController < ApplicationController
   protected
 
   def interaction_params
+
+
     params.require(:interaction).permit(
       :category,
       :sentiment,

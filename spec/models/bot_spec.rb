@@ -1,4 +1,5 @@
 require "rails_helper"
+require "pry"
 
 RSpec.describe Bot, type: :model do
   it { should belong_to(:user) }
@@ -22,25 +23,17 @@ RSpec.describe Bot, type: :model do
   let!(:bot) { FactoryGirl.create(:bot, user_id: user.id) }
 
   before(:each) do
-    Bot.create(
-      name: "Louisa",
-      gender: "Female",
-      eye_color: "Green",
-      hair_color: "Blonde",
-      age: 26,
-      user: user
-    )
     ##Sentence
     interaction1 = Interaction.create(
       category: "Sentence",
-      sentence: "You are great",
+      sentence: "you are great",
       response: "I have a great teacher",
       user: user
     )
 
     interaction2 = Interaction.create(
       category: "Sentence",
-      sentence: "I want a bike",
+      sentence: "i want a bike",
       response: "I think you should get one",
       user: user
     )
@@ -48,7 +41,7 @@ RSpec.describe Bot, type: :model do
     interaction3 = Interaction.create(
       category: "Keyword",
       sentiment: "Positive",
-      keyword1: "cars",
+      keyword1: "CARS",
       keyword2: "",
       response: "I like cars too",
       user: user
@@ -57,7 +50,7 @@ RSpec.describe Bot, type: :model do
     interaction4 = Interaction.create(
       category: "Keyword",
       sentiment: "Positive",
-      keyword1: "bikes",
+      keyword1: "BIkes",
       response: "I love bikes but I prefer cars",
       user: user
     )
@@ -65,7 +58,7 @@ RSpec.describe Bot, type: :model do
     interaction5 = Interaction.create(
       category: "Keyword",
       sentiment: "Positive",
-      keyword1: "pork",
+      keyword1: "PORK",
       response: "I like pork a lot!",
       user: user
     )
@@ -73,7 +66,7 @@ RSpec.describe Bot, type: :model do
     interaction6 = Interaction.create(
       category: "Keyword",
       sentiment: "Negative",
-      keyword1: "pork",
+      keyword1: "Pork",
       response: "I hate pork!",
       user: user
     )
@@ -82,7 +75,7 @@ RSpec.describe Bot, type: :model do
       category: "Combo",
       sentiment: "Positive",
       keyword1: "bikes",
-      keyword2: "cars",
+      keyword2: "CARS",
       response: "I prefer cars",
       user: user
     )
@@ -90,7 +83,7 @@ RSpec.describe Bot, type: :model do
     interaction8 = Interaction.create(
       category: "Combo",
       sentiment: "Negative",
-      keyword1: "bikes",
+      keyword1: "BIKES",
       keyword2: "cars",
       response: "I don't like them either",
       user: user
@@ -100,7 +93,7 @@ RSpec.describe Bot, type: :model do
       category: "Combo",
       sentiment: "Positive",
       keyword1: "chicken",
-      keyword2: "pork",
+      keyword2: "Pork",
       response: "I love pork but I prefer chicken",
       user: user
     )
@@ -111,6 +104,13 @@ RSpec.describe Bot, type: :model do
       keyword1: "chicken",
       keyword2: "pork",
       response: "Me neither!",
+      user: user
+    )
+    interaction11 = Interaction.create(
+      category: "Keyword",
+      sentiment: "Positive",
+      keyword1: "BACON",
+      response: "I love bacon",
       user: user
     )
 
@@ -162,6 +162,10 @@ RSpec.describe Bot, type: :model do
       bot: bot,
       interaction: interaction10
     )
+    BotsInteraction.create(
+      bot: bot,
+      interaction: interaction11
+    )
   end
 
   describe "right_anwer()" do
@@ -173,6 +177,9 @@ RSpec.describe Bot, type: :model do
     scenario "it should return the right answer for a keyword" do
       message = "What do you think about cars?"
       expect(bot.right_answer(message)).to eq("I like cars too")
+
+      message = "great bacon"
+      expect(bot.right_answer(message)).to eq("I love bacon")
     end
 
     scenario "it should return the right answer for a combo" do

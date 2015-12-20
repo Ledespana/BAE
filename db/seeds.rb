@@ -27,22 +27,22 @@ Bot.create(
 
 Interaction.create(
   category: "Sentence",
-  sentence: "I love how you understand me",
-  response: "It's not easy but I have fun",
+  sentence: "i love how you understand me",
+  response: "it's not easy but I have fun",
   user_id: User.last.id
 )
 
 Interaction.create(
   category: "Sentence",
-  sentence: "I promise",
-  response: "Great :)",
+  sentence: "i promise",
+  response: "great :)",
   user_id: User.last.id
 )
 
 Interaction.create(
   category: "Sentence",
-  sentence: "I love how well you understand me",
-  response: "It's not easy but I have fun",
+  sentence: "i love how well you understand me",
+  response: "it's not easy but I have fun",
   user_id: User.last.id
 )
 
