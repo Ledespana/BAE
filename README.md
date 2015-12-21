@@ -47,6 +47,10 @@ Example of a conversation:
 
 * User is able to create a bae with different attributes.
 
+* Seed each BAE with a default vocabulary (implemented but it needs more vocabulary)
+
+* User can install packages of vocabularies. For example: romantic, funny, or optimistic (implemented but it needs more vocabulary)
+
 * Bae's avatar will be different depending on its attributes.
 
 * User has a vocabulary page with all the interactions
@@ -98,10 +102,6 @@ This is a list of features that I would like to implement in the future.
 * Create bilingual website
 
 * User is able to add interactions from Imessage
-
-* Seed each BAE with a default vocabulary
-
-* User can install packages of vocabularies. For example: romantic, funny, or optimistic
 
 
 ###  Challenges Faced
