@@ -15,7 +15,7 @@
 
     <div class='panel combo_explanation'>
       <p>
-        <strong>Adding a combo:</strong> Your BAE will look for a combination of keywords and the right sentiment in your text and if it finds it, it will return the response. 
+        <strong>Adding a combo:</strong> Your BAE will look for a combination of keywords and the right sentiment in your text and if it finds it, it will return the response.
       </p>
     </div>
 
@@ -46,6 +46,24 @@
         that you are adding them with the right sentiment, so you will get the response
         only if you are actually in that state of happiness.
       </p>
+      <div class='row'>
+        <div class='column large-8 small-8'>
+          <fieldset>
+            <legend>Sentiment Preview</legend>
+            <label>Write a sentence to get a sentiment preview</label>
+            <form>
+              <input type="text" name="message" value="Your message">
+              <br><br>
+              <input type="submit" value="Preview" id="preview">
+            </form>
+          </fieldset>
+        </div>
+        <fieldset>
+          <div class='column large-4 small-4' >
+            <h6 id="sentiment">Your score:</h6>
+          </div>
+        </fieldset>
+      </div>
     </div>
   </div>
 </div>
