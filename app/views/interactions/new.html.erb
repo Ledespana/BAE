@@ -34,35 +34,33 @@
       </div>
     </div>
 
-    <div class='panel'>
-      <h3></strong>Sentiment</strong></h3>
-      <p>
-        Any text message that you send, will receive a score from 0 to 1 depending on your state of happiness.
-        Our software will classify them in <strong>"Positive"</strong> (more than 0.65),
-        <strong>"Neutral"</strong>(more than 0.25) or <strong>"Negative"</strong>(less than 0.25).
-      </p>
-      <p>
-        If you are adding a keyword or a combination of keyword, make sure to know
-        that you are adding them with the right sentiment, so you will get the response
-        only if you are actually in that state of happiness.
-      </p>
+    <div class='panel keyword_explanation column large-9 small-12 large-offset-3' id="sentiment=box">
+      <h3 id="sentiment_preview_tittle">Sentiment Preview</h3>
+        <div class="column large-6 small-12" id="preview_box">
+          <br>
+        <p>
+          Any text message that you send, will be classified, depending on your state of happiness, between <strong>"Positive", "Neutral" or "Negative"</strong>.
+          You will get the response associated only if you are actually in that state of happiness.
+        </p>
+        <p>
+          <strong>Try your text message</strong> and get your sentiment!
+        </p>
+        <br>
+
+      </div>
       <div class='row'>
-        <div class='column large-8 small-8'>
-          <fieldset>
-            <legend>Sentiment Preview</legend>
-            <label>Write a sentence to get a sentiment preview</label>
-            <form>
-              <input type="text" name="message" value="Your message">
-              <br><br>
-              <input type="submit" value="Preview" id="preview">
-            </form>
-          </fieldset>
-        </div>
-        <fieldset>
-          <div class='column large-4 small-4' >
-            <h6 id="sentiment">Your score:</h6>
+        <div class="column large-6 small-12">
+          <div class='column large-12 small-12 sentiment-fields'>
+              <p id="sentence_explanation">Write a sentence to get a sentiment preview</p>
+              <form>
+                <input type="text" name="message">
+                <input type="submit" value="Preview"  class="button expand" id="preview">
+
+                <hr>
+                <h6 id="sentiment"></h6>
+              </form>
           </div>
-        </fieldset>
+      </div>
       </div>
     </div>
   </div>

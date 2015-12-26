@@ -10,9 +10,13 @@ $(document).ready(function() {
             })
           ).then(function(res) {
               var score = JSON.parse(res).results;
-              $('#sentiment').text( score.toString());
+              if (score >= 0.65){
+                $('#sentiment').text( "Sentiment: Positive");
+              } else if (score >= 0.25){
+                $('#sentiment').text( "Sentiment: Neutral");
+              }else {
+                $('#sentiment').text( "Sentiment: Negative");
+              };
           });
-
-  $("#sentiment").text("<p>"+ score.responseText + "</p>");
   });
 });

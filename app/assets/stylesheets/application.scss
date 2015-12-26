@@ -87,6 +87,31 @@ li {
   padding: 2%;
   margin: 5%;
 }
+
+@media screen and (min-width: 1025px){
+  #preview_box {
+    border-right:  solid rgba(70, 130, 180, 0.6);
+  }
+  .sentiment-fields {
+    margin-top: 40px;
+  }
+
+}
+
+#sentiment_preview_tittle{
+  color: #3f75a2;
+}
+
+#sentiment {
+  color: #3f75a2;
+  font-style: italic;
+}
+#sentence_explanation {
+    font-size: 0.9em;
+}
+#preview {
+}
+// #C63D0F #3B3738 #fdf3e7 #7E8F7C
 //Buttons for adding  vocabulary//
 
 .wrapper {
@@ -132,6 +157,10 @@ li {
     font-weight: bold;
     padding: 16px;
   }
+}
+
+#sentiment_box {
+text-align: right;
 }
 
 

@@ -13,6 +13,7 @@ $(document).ready(function() {
     sentencefields[0].classList.remove("hidden");
     setenceExplanation[0].classList.remove("hidden");
     keywordExplanation[0].classList.add("hidden");
+    keywordExplanation[1].classList.add("hidden");
     comboExplanation[0].classList.add("hidden");
 
     $.each(combo, function( index, value ) {
@@ -25,6 +26,8 @@ $(document).ready(function() {
         setenceExplanation[0].classList.remove("hidden");
         keywordExplanation[0].classList.add("hidden");
         comboExplanation[0].classList.add("hidden");
+        keywordExplanation[1].classList.add("hidden");
+
 
         $.each(combo, function( index, value ) {
           value.classList.add("hidden");
@@ -35,6 +38,8 @@ $(document).ready(function() {
         setenceExplanation[0].classList.add("hidden");
         keywordExplanation[0].classList.add("hidden");
         comboExplanation[0].classList.remove("hidden");
+        keywordExplanation[1].classList.remove("hidden");
+
 
 
         $.each(combo, function( index, value ) {
@@ -44,6 +49,7 @@ $(document).ready(function() {
         setenceExplanation[0].classList.add("hidden");
         keywordExplanation[0].classList.remove("hidden");
         comboExplanation[0].classList.add("hidden");
+        keywordExplanation[1].classList.remove("hidden");
 
 
 
