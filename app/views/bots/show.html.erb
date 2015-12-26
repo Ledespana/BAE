@@ -4,11 +4,13 @@
     <p><%= image_tag @bot.avatar, class: 'user-picture' %></p>
     <h1><%= @bot.name %></h1>
     <% if @user == current_user %>
-      <ul class= "button-group">
-        <li><%= link_to 'Edit', edit_bot_path(@bot), class: 'button small' %></li>
-        <li><%= button_to 'Delete', bot_path(@bot), data: { confirm: "Are you sure?" }, method: :delete, class: 'button small' %></li>
-        <li><%= link_to 'Reset', bot_reset_path(@bot), class: 'button small' %></li>
-      </ul>
+      <% if @user == current_user || current_user.role == "Admin"%>
+        <ul class= "button-group">
+          <li><%= link_to 'Edit', edit_bot_path(@bot), class: 'button small' %></li>
+          <li><%= button_to 'Delete', bot_path(@bot), data: { confirm: "Are you sure?" }, method: :delete, class: 'button small' %></li>
+          <li><%= link_to 'Reset', bot_reset_path(@bot), class: 'button small' %></li>
+        </ul>
+      <% end %>
     <% end %>
       <ul class="stack button-group" data-toggle="buttons-radio">
         <li>

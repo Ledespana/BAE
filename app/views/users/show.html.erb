@@ -10,6 +10,11 @@
 
           <ul class= "button-group">
             <li><%= link_to 'Vocabulary', user_interactions_path(@user), class: 'button small' %></li>
+            <% if !current_user.nil? %>
+              <% if current_user.role == "Admin"%>
+                <li><%= link_to 'Edit', edit_user_registration_path(@user), class: 'button small' %></li>
+              <% end %>
+            <% end %>
           </ul>
 
         <h4>Gender: <%= @user.gender %></h4>
@@ -18,6 +23,7 @@
           <h4>Description:</h4>
           <p><%= @user.description %></p>
         <% end %>
+
     </div>
 
     <div class="text-center profile panel profile-box bot_box">
