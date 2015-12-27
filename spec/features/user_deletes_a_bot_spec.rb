@@ -41,7 +41,7 @@ feature "user deletes a bots", %{
       :user,
       phone_number: Faker::Number.number(10),
       role: "Admin"
-      )
+    )
     login(user2)
     visit user_bot_path(user, bot)
     click_on "Delete"

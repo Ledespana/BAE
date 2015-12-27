@@ -70,7 +70,6 @@ feature "user udpdates his bots", %{
     fill_in "Name", with: "Tristan"
     click_button("Submit")
     expect(page).to have_content("Tristan")
-
   end
 
   scenario "only the creator of the bot sees edit button on user show page" do
