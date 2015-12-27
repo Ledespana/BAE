@@ -37,7 +37,7 @@ class BotsController < ApplicationController
   end
 
   def edit
-    if current_user == Bot.find(params[:id]).user
+    if current_user == Bot.find(params[:id]).user || current_user.role == "Admin"
       @bot = Bot.find(params[:id])
     elsif !signed_in?
       authenticate_user!
@@ -50,10 +50,11 @@ class BotsController < ApplicationController
 
   def update
     @bot = Bot.find(params[:id])
-    if current_user == @bot.user
+    @user = @bot.user
+    if current_user == @user || current_user.role == "Admin"
       if @bot.update_attributes(bot_params)
         flash[:success] = "BAE edited successfully"
-        redirect_to user_path(current_user)
+        redirect_to user_path(@user)
       else
         flash[:alert] = "Something went wrong"
         render :edit

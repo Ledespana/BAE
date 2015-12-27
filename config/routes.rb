@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'homes#index'
   devise_for :users, path: 'accounts'
+  match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
 
   resources :users, only: [:show, :index] do
     resources :bots, only: [:show]
