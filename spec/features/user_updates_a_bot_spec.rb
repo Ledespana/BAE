@@ -41,8 +41,13 @@ feature "user udpdates his bots", %{
     expect(page).to have_content("BAE edited successfully")
   end
 
-  scenario "only the creator of the bot can update the bot" do
+  scenario "only the creator of the bot or an Admin can update the bot" do
     user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
+    user3 = FactoryGirl.create(
+      :user,
+      phone_number: Faker::Number.number(10),
+      role: "Admin"
+    )
     bot2 = FactoryGirl.create(:bot, user: user2)
 
     visit user_bot_path(user2, bot2)
@@ -51,12 +56,21 @@ feature "user udpdates his bots", %{
     visit edit_bot_path(bot2)
     expect(page).to have_content("You have no permission to edit this BAE")
 
-
     visit user_bot_path(user, bot)
     click_link("Edit")
     fill_in "Name", with: "Marcos"
     click_button("Submit")
     expect(page).to have_content("Marcos")
+
+    click_link "Sign Out"
+    login(user3)
+
+    visit user_bot_path(user, bot)
+    click_link("Edit")
+    fill_in "Name", with: "Tristan"
+    click_button("Submit")
+    expect(page).to have_content("Tristan")
+
   end
 
   scenario "only the creator of the bot sees edit button on user show page" do

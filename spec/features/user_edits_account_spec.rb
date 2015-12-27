@@ -7,7 +7,7 @@ feature "user edits his account", %{
 } do
 
 
-  let!(:user) { FactoryGirl.create(:user) }
+  let!(:user) { FactoryGirl.create(:user, role: "Admin") }
 
   before(:each) do
     login(user)
@@ -48,5 +48,12 @@ feature "user edits his account", %{
 
     click_button "Update"
     expect(page).to have_content("Current password can't be blank")
+  end
+
+  scenario "Admin deletes a user account" do
+    user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
+    visit user_path(user2)
+    click_link "Destroy"
+    expect(page).to have_content("User deleted successfully")
   end
 end

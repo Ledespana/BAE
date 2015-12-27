@@ -19,20 +19,32 @@ feature "user deletes a bots", %{
     login(user)
     visit user_bot_path(user, bot)
     click_on "Delete"
-    expect(page).to_not have_content("bot.name")
+    expect(page).to_not have_content(bot.name)
   end
 
   scenario "user deletes bot from a bot edit page " do
     login(user)
     visit edit_bot_path(bot)
     click_on "Delete"
-    expect(page).to_not have_content("bot.name")
+    expect(page).to_not have_content(bot.name)
   end
 
-  scenario "only the creator of the bot can delete it" do
+  scenario "other users can't can delete other user's bot" do
     user2 = FactoryGirl.create(:user, phone_number: Faker::Number.number(10))
     login(user2)
     visit user_path(user)
     expect(page).to_not have_content("Delete")
+  end
+
+  scenario "Admin can delete any bot" do
+    user2 = FactoryGirl.create(
+      :user,
+      phone_number: Faker::Number.number(10),
+      role: "Admin"
+      )
+    login(user2)
+    visit user_bot_path(user, bot)
+    click_on "Delete"
+    expect(page).to have_content("BAE deleted successfully")
   end
 end

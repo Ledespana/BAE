@@ -11,8 +11,8 @@
           <ul class= "button-group">
             <li><%= link_to 'Vocabulary', user_interactions_path(@user), class: 'button small' %></li>
             <% if !current_user.nil? %>
-              <% if current_user.role == "Admin"%>
-                <li><%= link_to 'Edit', edit_user_registration_path(@user), class: 'button small' %></li>
+              <% if current_user.role == "Admin" && @user.role != "Admin"%>
+                <li><%= link_to "Destroy", admin_destroy_user_path(@user), method: :delete, data: { confirm: "You sure?" }, class: 'button small' %></li>
               <% end %>
             <% end %>
           </ul>
