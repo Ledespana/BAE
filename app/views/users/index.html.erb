@@ -17,7 +17,7 @@
   <% @users.each do |user| %>
     <div class= "user column large-3  medium-6  small-12 ">
       <ul class="small-block-grid-3">
-        <div >
+        <div class='user-info'>
           <li><%= image_tag user.profile_picture, class: 'user-picture' %></li>
           <li><%= link_to user.username, user_path(user) %></li>
           <li>Vocabulary: <%= user.interactions.count  %></li>
