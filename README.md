@@ -27,8 +27,6 @@ Built using modern software development techniques such as TDD and "Fat model, s
 
 [Click Here To View Storyboard](https://trello.com/b/nSJUDmf7/bae)
 
-[Click Here To View Heroku Application](https://protected-sands-5404.herokuapp.com/)
-
 Example of a conversation:
 
 ![gif1](http://cdn.makeagif.com/media/12-03-2015/sqHSBS.gif)
